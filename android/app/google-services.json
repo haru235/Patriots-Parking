@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "707676750171",
+    "project_id": "patriots-parking",
+    "storage_bucket": "patriots-parking.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:707676750171:android:7578cc5f35e2020ea69a7e",
+        "android_client_info": {
+          "package_name": "com.example.patriots_parking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "707676750171-q6ibr6dpahn6hbnj6ob1tigeifrjhjs7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFKJylxouNrYDsESQLab-HL4dInksvhwk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "707676750171-q6ibr6dpahn6hbnj6ob1tigeifrjhjs7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
