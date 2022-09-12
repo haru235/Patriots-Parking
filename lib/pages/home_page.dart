@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:patriots_parking/models/slot.dart';
+import 'package:patriots_parking/parking_lot_dada.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -15,15 +17,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Stack(
-          children: [
-            Positioned(
-              child: Container(color: Colors.red),
-            ),
-          ],
-        ),
-      ),
+      body: Center(child: parkingLotTest),
     );
   }
 }
