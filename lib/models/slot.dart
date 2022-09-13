@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:patriots_parking/resources/firestore_service.dart';
 
@@ -33,8 +34,8 @@ class _SlotState extends State<Slot> {
         child: GestureDetector(
           onTap: () => setState(() {
             isOpen = !isOpen;
-            FirestoreService.instance
-                .addDocument(path: '/test', data: {'hey': 4});
+            FirestoreService.instance.updateDocument(
+                path: '/test/test', data: {'value': FieldValue.increment(1)});
           }),
           child: Container(
             width: 50,
