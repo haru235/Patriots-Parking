@@ -29,6 +29,13 @@
             {
               "client_id": "707676750171-q6ibr6dpahn6hbnj6ob1tigeifrjhjs7.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "707676750171-354rd2pn7rta4amthla5hk62cratf601.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.patriotsParking"
+              }
             }
           ]
         }

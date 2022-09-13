@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:patriots_parking/firebase_options.dart';
 import 'package:patriots_parking/pages/home_page.dart';
 
 void main() async {
@@ -19,7 +20,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: FutureBuilder(
-        future: Firebase.initializeApp(),
+        future: Firebase.initializeApp(
+          options: DefaultFirebaseOptions.currentPlatform,
+        ),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             debugPrint('You have an error! ${snapshot.error.toString()}');

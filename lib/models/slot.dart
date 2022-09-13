@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:patriots_parking/resources/firestore_service.dart';
 
 class Slot extends StatefulWidget {
   final double positionX;
@@ -32,6 +33,8 @@ class _SlotState extends State<Slot> {
         child: GestureDetector(
           onTap: () => setState(() {
             isOpen = !isOpen;
+            FirestoreService.instance
+                .addDocument(path: '/test', data: {'hey': 4});
           }),
           child: Container(
             width: 50,
