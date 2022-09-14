@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patriots_parking/models/parking_lot.dart';
 import 'package:patriots_parking/models/slot.dart';
 import 'package:patriots_parking/parking_lot_dada.dart';
 
@@ -13,11 +14,19 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    ParkingLot _parkingLot = parkingLotTest;
     return Scaffold(
+      backgroundColor: Colors.lightGreenAccent,
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(child: parkingLotTest),
+      body: Stack(
+        children: [
+          InteractiveViewer(
+            child: Center(child: _parkingLot),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -2,6 +2,13 @@ import 'package:patriots_parking/models/parking_lot.dart';
 
 import 'models/slot.dart';
 
+ParkingLot test2 = const ParkingLot(
+  name: "Test2",
+  width: 320,
+  height: 310,
+  slots: [],
+);
+
 ParkingLot parkingLotTest = const ParkingLot(
   name: "Test",
   width: 320,
