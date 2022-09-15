@@ -1,3 +1,8 @@
+//to test dragging first and last parking spaces in a row of a parking lot.  Got most of the code from a stackoverflow post, but some code is missing to work.  
+//This is to facilitate a user to draw the parking rows faster.  The user doesn't have to drag the spaces exactly, we could round off and use approximations.  
+//The user would drag the first and last spaces, then the program would ask, how many spaces in this row? and whatever value is typed, the spaces will be 
+//placed in that row.  This code is mainly to facilitate a user to draw rows in the middle of the parking lot, so user doesn't have to worry about coordinate values.
+//then transfer data to database
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
