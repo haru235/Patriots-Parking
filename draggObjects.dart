@@ -3,6 +3,7 @@
 //The user would drag the first and last spaces, then the program would ask, how many spaces in this row? and whatever value is typed, the spaces will be 
 //placed in that row.  This code is mainly to facilitate a user to draw rows in the middle of the parking lot, so user doesn't have to worry about coordinate values.
 //then transfer data to database
+//      https://stackoverflow.com/questions/58910018/draggable-element-with-tracking-x-and-y-position-in-flutter
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
