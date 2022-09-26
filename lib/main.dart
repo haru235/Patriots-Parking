@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:patriots_parking/firebase_options.dart';
 import 'package:patriots_parking/pages/home_page.dart';
+import 'package:patriots_parking/resources/app_state.dart';
+import 'package:patriots_parking/resources/locator.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  setUpLocator();
   runApp(const MyApp());
 }
 
@@ -28,8 +32,11 @@ class MyApp extends StatelessWidget {
             debugPrint('You have an error! ${snapshot.error.toString()}');
             return const Text('Something went wrong!');
           } else if (snapshot.hasData) {
-            return const HomePage(
-              title: 'Parking Lot Sample',
+            return ChangeNotifierProvider.value(
+              value: locator.get<AppState>(),
+              child: const HomePage(
+                title: 'Parking Lot Sample',
+              ),
             );
           } else {
             return const Center(

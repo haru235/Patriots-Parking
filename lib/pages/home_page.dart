@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
-import 'package:patriots_parking/parking_lot_dada.dart';
+import 'package:patriots_parking/resources/app_state.dart';
+import 'package:patriots_parking/resources/firestore_methods.dart';
+import 'package:patriots_parking/resources/locator.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -11,6 +13,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    locator.get<FirestoreMethods>().initializeSubscriptions();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    locator.get<FirestoreMethods>().cancelSubscriptions();
+  }
+
   ParkingLot? selected;
   @override
   Widget build(BuildContext context) {
@@ -76,32 +90,32 @@ class _HomePageState extends State<HomePage> {
                             child: ListView(
                               controller: scrollController,
                               children: [
-                                if (parkingLots.isNotEmpty) ...[
-                                  for (ParkingLot lot in parkingLots) ...[
-                                    GestureDetector(
-                                      onTap: () => setState(() {
-                                        selected = lot;
-                                        Navigator.pop(context);
-                                      }),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 8,
-                                          vertical: 4,
+                                for (ParkingLot lot
+                                    in locator.get<AppState>().parkingLots) ...[
+                                  GestureDetector(
+                                    onTap: () => setState(() {
+                                      selected = lot;
+                                      Navigator.pop(context);
+                                    }),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                        vertical: 4,
+                                      ),
+                                      child: Container(
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          color: lot == selected
+                                              ? Colors.grey
+                                              : Colors.white,
+                                          border: Border.all(),
                                         ),
-                                        child: Container(
-                                          height: 50,
-                                          decoration: BoxDecoration(
-                                              color: lot == selected
-                                                  ? Colors.grey
-                                                  : Colors.white,
-                                              border: Border.all()),
-                                          child: Center(
-                                            child: Text(lot.name),
-                                          ),
+                                        child: Center(
+                                          child: Text(lot.name),
                                         ),
                                       ),
                                     ),
-                                  ],
+                                  ),
                                 ],
                               ],
                             ),
