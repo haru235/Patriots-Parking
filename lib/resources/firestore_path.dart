@@ -1,3 +1,4 @@
+// paths to collections and documents in firestore
 class FirestorePath {
   static String parkingLots() => 'parkingLots';
   static String parkingLot(String id) => 'parkingLots/$id';

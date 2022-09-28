@@ -12,6 +12,7 @@ class FirestoreMethods {
   late StreamSubscription _parkingLotsSubscription;
   late StreamSubscription _parkingSpacesSubscription;
 
+// subscripe to database collections
   Future<void> initializeSubscriptions() async {
     _parkingLotsSubscription = _firestoreService
         .collectionStream(
@@ -29,21 +30,25 @@ class FirestoreMethods {
     });
   }
 
+// pause subscriptions
   Future<void> pauseSubscriptions() async {
     _parkingLotsSubscription.pause();
     _parkingSpacesSubscription.pause();
   }
 
+// resume subscriptions
   Future<void> resumeSubscriptions() async {
     _parkingLotsSubscription.resume();
     _parkingSpacesSubscription.resume();
   }
 
+// cancel subscriptions
   Future<void> cancelSubscriptions() async {
     _parkingLotsSubscription.cancel();
     _parkingSpacesSubscription.cancel();
   }
 
+// toggle parking space state
   Future<void> toggleSpace(ParkingSpace space) async {
     FirestoreService.instance.updateDocument(
       path: FirestorePath.parkingSpace(space.id),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:patriots_parking/firebase_options.dart';
-import 'package:patriots_parking/pages/home_page.dart';
+import 'package:patriots_parking/pages/parking_page.dart';
 import 'package:patriots_parking/resources/app_state.dart';
 import 'package:patriots_parking/resources/locator.dart';
 import 'package:provider/provider.dart';

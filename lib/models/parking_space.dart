@@ -1,11 +1,10 @@
 import 'dart:math';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:patriots_parking/resources/firestore_methods.dart';
-import 'package:patriots_parking/resources/firestore_service.dart';
 import 'package:patriots_parking/resources/locator.dart';
 
+// parking space object
 class ParkingSpace extends StatefulWidget {
   final String id;
   final String parkingLot;
@@ -23,6 +22,7 @@ class ParkingSpace extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
+// convert ParkingSpace to json to send to firestore
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -34,6 +34,7 @@ class ParkingSpace extends StatefulWidget {
     };
   }
 
+// convert json data from firestore to ParkingSpace
   static ParkingSpace fromJson(Map<String, dynamic> json) {
     return ParkingSpace(
       id: json['id'],
@@ -61,8 +62,6 @@ class _ParkingSpaceState extends State<ParkingSpace> {
         child: GestureDetector(
           onTap: () => setState(() {
             locator.get<FirestoreMethods>().toggleSpace(widget);
-            FirestoreService.instance.updateDocument(
-                path: '/test/test', data: {'value': FieldValue.increment(1)});
           }),
           child: Container(
             width: 50,

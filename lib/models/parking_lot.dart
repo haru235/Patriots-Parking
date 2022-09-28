@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:patriots_parking/resources/app_state.dart';
 import 'package:provider/provider.dart';
 
+// parking lot object
 class ParkingLot extends StatelessWidget {
   final String id;
   final String name;
@@ -16,6 +17,7 @@ class ParkingLot extends StatelessWidget {
     super.key,
   });
 
+// convert ParkingLot to json to send to firestore
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -25,6 +27,7 @@ class ParkingLot extends StatelessWidget {
     };
   }
 
+// convert json data from firestore to ParkingLot
   static ParkingLot fromJson(Map<String, dynamic> json) {
     return ParkingLot(
       id: json['id'],
