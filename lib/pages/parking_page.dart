@@ -43,10 +43,12 @@ class _HomePageState extends State<HomePage> {
             maxScale: 10,
             child: Center(
               // show UT Tyler map when no parking lot selected
-              child: selected ??
-                  const Image(
-                    image: AssetImage('assets/uttylerMap.jpg'),
-                  ),
+              child: FittedBox(
+                child: selected ??
+                    const Image(
+                      image: AssetImage('assets/uttylerMap.jpg'),
+                    ),
+              ),
             ),
           ),
         ],
