@@ -44,21 +44,19 @@ class ParkingLot extends StatelessWidget {
     //HS-9/30/2022 9:28PM, SingleChildScrollView only scrolls in one direction.
     //    Instead, used FittedBox to contain parkinglot in window. Scroll and zoom
     //    taken care of by InteractiveViewer.
-    return SingleChildScrollView(
-      child: Container(
-        width: width.toDouble(),
-        height: height.toDouble(),
-        color: Colors.grey,
-        child: Consumer<AppState>(
-          builder: (_, value, __) {
-            return Stack(
-              children: [
-                for (ParkingSpace slot in value.parkingSpacess
-                    .where((element) => element.parkingLot == name)) ...[slot]
-              ],
-            );
-          },
-        ),
+    return Container(
+      width: width.toDouble(),
+      height: height.toDouble(),
+      color: Colors.grey,
+      child: Consumer<AppState>(
+        builder: (_, value, __) {
+          return Stack(
+            children: [
+              for (ParkingSpace slot in value.parkingSpacess
+                  .where((element) => element.parkingLot == name)) ...[slot]
+            ],
+          );
+        },
       ),
     );
   }
