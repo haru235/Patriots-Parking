@@ -39,7 +39,8 @@ class ParkingLot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(    //---9/29/2022 10:35PM, added a singlechildscrollView widget to be able to move around lot in case parking spaces do not fit in window
+      child: Container(
       width: width.toDouble(),
       height: height.toDouble(),
       color: Colors.grey,
@@ -53,6 +54,7 @@ class ParkingLot extends StatelessWidget {
           );
         },
       ),
-    );
-  }
+    ),
+  );    //This paranthesis was added with semicolon, in case of removing singlechildscrollview, delete this parenthesis and semicolon, and in parenthisis above it add a semicolon   
+ }
 }
