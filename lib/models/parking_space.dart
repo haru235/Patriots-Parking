@@ -64,8 +64,8 @@ class _ParkingSpaceState extends State<ParkingSpace> {
             locator.get<FirestoreMethods>().toggleSpace(widget);
           }),
           child: Container(
-            width: 50,
-            height: 100,
+            width: 25,                   //New Code 10/1/2022 11:34, just changed the dimension distances by half
+            height: 50,
             decoration: BoxDecoration(
               color: widget.open ? Colors.green : Colors.red,
               border: const Border(
