@@ -2,6 +2,7 @@ import 'package:patriots_parking/models/parking_space.dart';
 import 'package:flutter/material.dart';
 import 'package:patriots_parking/resources/app_state.dart';
 import 'package:provider/provider.dart';
+import 'package:patriots_parking/models/C_ustomPaint.dart';
 
 // parking lot object
 class ParkingLot extends StatelessWidget {
