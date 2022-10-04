@@ -31,6 +31,10 @@ class _HomePageState extends State<HomePage> {
   ParkingLot? selected;
   @override
   Widget build(BuildContext context) {
+    //7:45AM 10/4/2022
+    //spacerows(20, 900, 26); <- This method will create spaces, first space will be at x:20 and y:900 when using the coordinates referencees established by the gray
+    //container.  KEEP THIS METHOD COMMENTED, i am not sure how the database or graphics would respond if it is run again.
+    
     return Scaffold(
       backgroundColor: Colors.lightGreenAccent,
       appBar: AppBar(
