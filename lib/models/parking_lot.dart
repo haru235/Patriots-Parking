@@ -50,6 +50,12 @@ class ParkingLot extends StatelessWidget {
     //HS-9/30/2022 9:28PM, SingleChildScrollView only scrolls in one direction.
     //    Instead, used FittedBox to contain parkinglot in window. Scroll and zoom
     //    taken care of by InteractiveViewer.
+
+    List<ParkingSpace> tempSpaces = tempRow('Lot15', 400, 550, 15, 45, 1) +
+        tempRow('Lot15', 550, 400, 8, 45, 2) +
+        tempRow('Lot15', 700, 250, 8, 45, 2) +
+        tempRow('Lot15', 850, 100, 15, 45, 0); // sample use of tempRows
+
     return Container(
       width: width.toDouble(),
       height: height.toDouble(),
@@ -61,10 +67,9 @@ class ParkingLot extends StatelessWidget {
           builder: (_, value, __) {
             return Stack(
               children: [
-                for (ParkingSpace slot in tempRow(200, 300, 10, 45, 2)) ...[
-                  slot
-                ], // // (HS 10/5/22 @ 1:27AM) sample use of tempRow for positioning
                 for (ParkingSpace slot in value.parkingSpaces
+                    .where((element) => element.parkingLot == name)) ...[slot],
+                for (ParkingSpace slot in tempSpaces
                     .where((element) => element.parkingLot == name)) ...[slot],
               ],
             );
