@@ -67,10 +67,8 @@ class ParkingLot extends StatelessWidget {
           builder: (_, value, __) {
             return Stack(
               children: [
-                for (ParkingSpace slot in value.parkingSpaces
-                    .where((element) => element.parkingLot == name)) ...[slot],
-                for (ParkingSpace slot in tempSpaces
-                    .where((element) => element.parkingLot == name)) ...[slot],
+                ...(value.parkingSpaces + tempSpaces) // add temp spaces
+                    .where((element) => element.parkingLot == name),
               ],
             );
           },
