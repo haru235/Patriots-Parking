@@ -55,4 +55,12 @@ class FirestoreMethods {
       data: {'open': !space.open},
     );
   }
+
+  // adds parking space to 'spaces' collection
+  Future<void> addSpace(ParkingSpace data) async {
+    FirestoreService.instance.addDocument(
+      path: FirestorePath.parkingSpaces(),
+      data: data.toJson(),
+    );
+  }
 }

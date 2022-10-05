@@ -4,7 +4,7 @@ import 'package:patriots_parking/models/parking_space.dart';
 
 class AppState with ChangeNotifier {
   List<ParkingLot> parkingLots = [];
-  List<ParkingSpace> parkingSpacess = [];
+  List<ParkingSpace> parkingSpaces = [];
 
 // run when change in parking lot data
   onParkingLotsChanged(List<ParkingLot> newData) {
@@ -14,7 +14,7 @@ class AppState with ChangeNotifier {
 
 // run when change in parking space data
   onParkingSpacesChanged(List<ParkingSpace> newData) {
-    parkingSpacess = newData;
+    parkingSpaces = newData;
     notifyListeners();
   }
 }

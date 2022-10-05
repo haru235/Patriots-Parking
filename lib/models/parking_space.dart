@@ -12,6 +12,7 @@ class ParkingSpace extends StatefulWidget {
   final num positionY;
   final num orientation;
   final bool open;
+  final bool temp;
   const ParkingSpace({
     this.id = '',
     required this.parkingLot,
@@ -19,6 +20,7 @@ class ParkingSpace extends StatefulWidget {
     required this.positionY,
     required this.orientation,
     required this.open,
+    this.temp = false,
     Key? key,
   }) : super(key: key);
 
@@ -43,6 +45,7 @@ class ParkingSpace extends StatefulWidget {
       positionY: json['y'],
       orientation: json['orientation'],
       open: json['open'],
+      temp: false,
     );
   }
 
@@ -61,17 +64,25 @@ class _ParkingSpaceState extends State<ParkingSpace> {
         angle: widget.orientation / 180 * pi,
         child: GestureDetector(
           onTap: () => setState(() {
-            locator.get<FirestoreMethods>().toggleSpace(widget);
+            widget.temp // (HS 10/5/22 @ 1:12AM) temp spaces do not run code
+                ? null
+                : locator.get<FirestoreMethods>().toggleSpace(widget);
           }),
           child: Container(
-            width: 25,                   //New Code 10/1/2022 11:34, just changed the dimension distances by half
+            width:
+                25, //New Code 10/1/2022 11:34, just changed the dimension distances by half
             height: 50,
             decoration: BoxDecoration(
-              color: widget.open ? Colors.green : Colors.red,
+              color: widget.temp
+                  ? Colors
+                      .orange // (HS 10/5/22 @ 1:12AM) orange represent temp spaces
+                  : widget.open
+                      ? Colors.green
+                      : Colors.red,
               border: const Border(
-                left: BorderSide(color: Colors.white, width: 3),
-                right: BorderSide(color: Colors.white, width: 3),
-                bottom: BorderSide(color: Colors.white, width: 3),
+                left: BorderSide(color: Colors.white, width: 2),
+                right: BorderSide(color: Colors.white, width: 2),
+                bottom: BorderSide(color: Colors.white, width: 2),
               ),
             ),
           ),
