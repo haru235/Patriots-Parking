@@ -34,7 +34,15 @@ class _HomePageState extends State<HomePage> {
     //7:45AM 10/4/2022
     //spacerows(20, 900, 26); <- This method will create spaces, first space will be at x:20 and y:900 when using the coordinates referencees established by the gray
     //container.  KEEP THIS METHOD COMMENTED, i am not sure how the database or graphics would respond if it is run again.
-    
+
+    List<ParkingLot> tempLots = [
+      const ParkingLot(
+        name: 'Lot18',
+        width: 700,
+        height: 800,
+      ),
+    ]; // temp parking lots for testing without firebase
+
     return Scaffold(
       backgroundColor: Colors.lightGreenAccent,
       appBar: AppBar(
@@ -54,6 +62,17 @@ class _HomePageState extends State<HomePage> {
                     ),
             ),
           ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Text(
+                selected == null ? 'Campus Map' : selected!.name,
+                style:
+                    const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
         ],
       ),
       // parking lot selection button
@@ -65,7 +84,8 @@ class _HomePageState extends State<HomePage> {
             context: context,
             title: 'Parking Lots',
             children: [
-              for (ParkingLot lot in locator.get<AppState>().parkingLots) ...[
+              for (ParkingLot lot
+                  in locator.get<AppState>().parkingLots + tempLots) ...[
                 GestureDetector(
                   onTap: () => setState(() {
                     selected == lot ? selected = null : selected = lot;

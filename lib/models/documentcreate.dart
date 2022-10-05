@@ -17,8 +17,14 @@ String randomString(int length) {
 //    added direction and side.
 //    direction: 0 = East, direction 90 = North, etc.
 //    side 0 = left only, side 1 = right only, side 2 = both
-void insertRow(String parkingLot, double x, double y, int spaceCount,
-    double direction, int side) {
+void insertRow(
+  String parkingLot,
+  double x,
+  double y,
+  int spaceCount,
+  double direction,
+  int side,
+) {
   double leftOrientation = 360 - direction;
   double rightOrientation = 180 - direction;
   ParkingSpace temp;
@@ -49,8 +55,14 @@ void insertRow(String parkingLot, double x, double y, int spaceCount,
 }
 
 // (HS 10/5/22 @1:20AM) duplicate of above, except instead of adding spaces to firestore, returns list for testing
-List<ParkingSpace> tempRow(String parkingLot, double x, double y,
-    int spaceCount, double direction, int side) {
+List<ParkingSpace> tempRow(
+  String parkingLot,
+  double x,
+  double y,
+  int spaceCount,
+  double direction,
+  int side,
+) {
   double leftOrientation = 360 - direction;
   double rightOrientation = 180 - direction;
   List<ParkingSpace> list = [];
@@ -58,7 +70,7 @@ List<ParkingSpace> tempRow(String parkingLot, double x, double y,
     if (side == 0 || side == 2) {
       list.add(
         ParkingSpace(
-          parkingLot: 'Lot15',
+          parkingLot: parkingLot,
           positionX: x + cos(direction / 180 * pi) * 25,
           positionY: y + sin(direction / 180 * pi) * 25,
           orientation: leftOrientation,
@@ -70,7 +82,7 @@ List<ParkingSpace> tempRow(String parkingLot, double x, double y,
     if (side == 1 || side == 2) {
       list.add(
         ParkingSpace(
-          parkingLot: 'Lot15',
+          parkingLot: parkingLot,
           positionX: x,
           positionY: y,
           orientation: rightOrientation,

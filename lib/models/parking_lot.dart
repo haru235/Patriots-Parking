@@ -51,18 +51,27 @@ class ParkingLot extends StatelessWidget {
     //    Instead, used FittedBox to contain parkinglot in window. Scroll and zoom
     //    taken care of by InteractiveViewer.
 
-    List<ParkingSpace> tempSpaces = tempRow('Lot15', 400, 550, 15, 45, 1) +
-        tempRow('Lot15', 550, 400, 8, 45, 2) +
-        tempRow('Lot15', 700, 250, 8, 45, 2) +
-        tempRow('Lot15', 850, 100, 15, 45, 0); // sample use of tempRows
+    List<ParkingSpace> tempSpaces = [
+      ...tempRow('Lot18', 175, 100, 5, 0, 0),
+      ...tempRow('Lot18', 125, 150, 6, 90, 1),
+      ...tempRow('Lot18', 125, 325, 1, 90, 1),
+      ...tempRow('Lot18', 125, 375, 2, 90, 1),
+      ...tempRow('Lot18', 125, 450, 1, 90, 1),
+      ...tempRow('Lot18', 425, 100, 10, 90, 2),
+      ...tempRow('Lot18', 425, 375, 12, 90, 2),
+      ...tempRow('Lot18', 575, 25, 8, 90, 0),
+      ...tempRow('Lot18', 575, 250, 9, 90, 0),
+      ...tempRow('Lot18', 575, 500, 8, 90, 0),
+      ...tempRow('Lot18', 275, 225, 8, 90, 1),
+      ...tempRow('Lot18', 275, 225, 7, 90, 0),
+    ]; // sample use of tempRows
 
     return Container(
       width: width.toDouble(),
       height: height.toDouble(),
-      color: Colors.grey,
+      color: Colors.transparent,
       child: CustomPaint(
-        //New widget here   <------
-        painter: ParkingBorderLine(), //Ends here  <---------
+        painter: ParkingBorderLine(), //adjust to parking lots
         child: Consumer<AppState>(
           builder: (_, value, __) {
             return Stack(

@@ -6,10 +6,10 @@ class ParkingBorderLine extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.0
-      ..color = Colors.black;
+      ..strokeWidth = 50.0
+      ..color = Colors.blueGrey;
 
-    var temporaryVariable = Path()
+    var path = Path()
       ..moveTo(650, 0) //middle line
       ..lineTo(650, 1000)
       ..moveTo(650,
@@ -22,7 +22,26 @@ class ParkingBorderLine extends CustomPainter {
           930) //this would represent the left most exit that is on parking lot 15, the middle main entrance will be drawn later
       ..lineTo(40, 0);
 
-    canvas.drawPath(temporaryVariable, paint);
+// link path to parking lot
+    path = Path()
+      ..moveTo(525, 100)
+      ..lineTo(525, 775)
+      ..moveTo(375, 100)
+      ..lineTo(375, 775)
+      ..moveTo(75, 750)
+      ..lineTo(550, 750)
+      ..moveTo(200, 625)
+      ..lineTo(400, 625)
+      ..moveTo(100, 300)
+      ..moveTo(225, 650)
+      ..lineTo(225, 325)
+      ..quadraticBezierTo(225, 300, 375, 275)
+      ..moveTo(100, 800)
+      ..lineTo(100, 300)
+      ..quadraticBezierTo(150, 150, 400, 75)
+      ..lineTo(550, 75);
+
+    canvas.drawPath(path, paint);
   }
 
   @override
