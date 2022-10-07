@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 
 class ParkingBorderLine extends CustomPainter {
+  final List<List<num>> path;
+  ParkingBorderLine({this.path = const []});
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
@@ -9,37 +11,24 @@ class ParkingBorderLine extends CustomPainter {
       ..strokeWidth = 50.0
       ..color = Colors.blueGrey;
 
-    var path = Path()
-      ..moveTo(650, 0) //middle line
-      ..lineTo(650, 1000)
-      ..moveTo(650,
-          150) //line where sections of parking differ in height, left section has two additional rows than right
-      ..lineTo(1300, 150)
-      ..moveTo(650,
-          930) //line to draw the end of the parking lot, it would represent the road when entering the university
-      ..lineTo(70, 930)
-      ..moveTo(40,
-          930) //this would represent the left most exit that is on parking lot 15, the middle main entrance will be drawn later
-      ..lineTo(40, 0);
+    Path path = Path();
 
-// link path to parking lot
-    path = Path()
-      ..moveTo(525, 100)
-      ..lineTo(525, 775)
-      ..moveTo(375, 100)
-      ..lineTo(375, 775)
-      ..moveTo(75, 750)
-      ..lineTo(550, 750)
-      ..moveTo(200, 625)
-      ..lineTo(400, 625)
-      ..moveTo(100, 300)
-      ..moveTo(225, 650)
-      ..lineTo(225, 325)
-      ..quadraticBezierTo(225, 300, 375, 275)
-      ..moveTo(100, 800)
-      ..lineTo(100, 300)
-      ..quadraticBezierTo(150, 150, 400, 75)
-      ..lineTo(550, 75);
+    // (HS 10/7/22 @ 9:47AM) Path data moved to parking_lot.dart under getPath()
+    // Build path from List<List<num>> input for better communication with firestore
+    for (List<num> road in this.path) {
+      if (road.length == 4) {
+        path.moveTo(road[0].toDouble(), road[1].toDouble());
+        path.lineTo(road[2].toDouble(), road[3].toDouble());
+      } else if (road.length == 6) {
+        path.moveTo(road[0].toDouble(), road[1].toDouble());
+        path.quadraticBezierTo(
+          road[2].toDouble(),
+          road[3].toDouble(),
+          road[4].toDouble(),
+          road[5].toDouble(),
+        );
+      }
+    }
 
     canvas.drawPath(path, paint);
   }

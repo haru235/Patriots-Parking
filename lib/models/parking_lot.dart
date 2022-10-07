@@ -11,11 +11,13 @@ class ParkingLot extends StatelessWidget {
   final String name;
   final num width;
   final num height;
+  final List<List<num>> roadPath;
   const ParkingLot({
     this.id = '',
     required this.name,
     required this.width,
     required this.height,
+    this.roadPath = const [],
     super.key,
   });
 
@@ -26,6 +28,7 @@ class ParkingLot extends StatelessWidget {
       'name': name,
       'width': width,
       'height': height,
+      'roadPath': roadPath,
     };
   }
 
@@ -36,6 +39,7 @@ class ParkingLot extends StatelessWidget {
       name: json['name'],
       height: json['height'],
       width: json['width'],
+      roadPath: json['roadPath'],
     );
   }
 
@@ -64,6 +68,7 @@ class ParkingLot extends StatelessWidget {
       ...tempRow('Lot18', 575, 500, 8, 90, 0),
       ...tempRow('Lot18', 275, 225, 8, 90, 1),
       ...tempRow('Lot18', 275, 225, 7, 90, 0),
+      ...tempRow('Lot18', 275, 790, 5, 5, 1),
     ]; // sample use of tempRows
 
     return Container(
@@ -71,7 +76,8 @@ class ParkingLot extends StatelessWidget {
       height: height.toDouble(),
       color: Colors.transparent,
       child: CustomPaint(
-        painter: ParkingBorderLine(), //adjust to parking lots
+        painter: ParkingBorderLine(
+            name: name, path: getPath(name)), //adjust to parking lots
         child: Consumer<AppState>(
           builder: (_, value, __) {
             return Stack(
@@ -84,5 +90,43 @@ class ParkingLot extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<List<num>> getPath(String name) {
+    List<List<num>> p = [];
+    if (name == 'Lot18') {
+      p = [
+        // vertical road from entrance
+        [100, 800, 100, 300],
+        // vertical road next to handicap
+        [225, 650, 225, 325],
+        // middle vertical road
+        [375, 100, 375, 775],
+        // vertical road on right
+        [525, 100, 525, 775],
+        // horizontal road right after entrance
+        [75, 750, 550, 750],
+        // short horizontal road
+        [200, 625, 400, 625],
+        // front of recycle collection
+        [400, 75, 550, 75],
+        // curved road near handicap
+        [225, 325, 225, 300, 375, 275],
+        // curved road in front of garage
+        [100, 300, 100, 75, 400, 75],
+      ];
+    } else {
+      [
+        //middle line
+        [650, 0, 650, 1000],
+        //line where sections of parking differ in height, left section has two additional rows than right
+        [650, 150, 1300, 150],
+        //line to draw the end of the parking lot, it would represent the road when entering the university
+        [650, 930, 70, 930],
+        //this would represent the left most exit that is on parking lot 15, the middle main entrance will be drawn later
+        [40, 930, 40, 0],
+      ];
+    }
+    return p;
   }
 }

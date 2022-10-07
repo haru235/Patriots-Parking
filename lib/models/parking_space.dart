@@ -4,6 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:patriots_parking/resources/firestore_methods.dart';
 import 'package:patriots_parking/resources/locator.dart';
 
+enum SpaceType {
+  normal,
+  handicap,
+  handicapL,
+  handicapR,
+  motorcycle,
+  reserved,
+  guest
+}
+
 // parking space object
 class ParkingSpace extends StatefulWidget {
   final String id;
@@ -13,6 +23,7 @@ class ParkingSpace extends StatefulWidget {
   final num orientation;
   final bool open;
   final bool temp;
+  final SpaceType type;
   const ParkingSpace({
     this.id = '',
     required this.parkingLot,
@@ -21,6 +32,7 @@ class ParkingSpace extends StatefulWidget {
     required this.orientation,
     required this.open,
     this.temp = false,
+    this.type = SpaceType.normal,
     Key? key,
   }) : super(key: key);
 
