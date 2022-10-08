@@ -74,6 +74,33 @@ class ParkingLot extends StatelessWidget {
       ...tempRow('Lot18', 275, 768, 5, 18, 1),
     ]; // sample use of tempRows
 
+    /*
+      10/8/2022 - remove comment block to activate the reference lines, and comment the other return statement block. if prefer to not use them, leave this commented
+        return Container(
+      width: width.toDouble(),
+      height: height.toDouble(),
+      color: Color.fromARGB(129, 0, 0, 0),
+      child: CustomPaint(
+        painter: CoordinateSystem(width, height), <-the change of widget tree starts here, I just moved ParkingBorderLine a level lower than it was
+        child: CustomPaint(                        and replaced it with CoordinateSystem in its previous place.  
+          painter: ParkingBorderLine(
+            path: getPath(name),
+          ), //adjust to parking lots
+          child: Consumer<AppState>(
+            builder: (_, value, __) {
+              return Stack(
+                children: [
+                  ...(value.parkingSpaces + tempSpaces) // add temp spaces
+                      .where((element) => element.parkingLot == name),
+                ],
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+  */
     return Container(
       width: width.toDouble(),
       height: height.toDouble(),
