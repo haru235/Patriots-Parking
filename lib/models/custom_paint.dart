@@ -9,7 +9,8 @@ class ParkingBorderLine extends CustomPainter {
     final paint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 50.0
-      ..color = Colors.blueGrey;
+      ..color = Colors.blueGrey
+      ..strokeCap = StrokeCap.round;
 
     Path path = Path();
 

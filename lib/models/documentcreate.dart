@@ -61,8 +61,9 @@ List<ParkingSpace> tempRow(
   double y,
   int spaceCount,
   double direction,
-  int side,
-) {
+  int side, {
+  SpaceType type = SpaceType.normal,
+}) {
   double leftOrientation = 360 - direction;
   double rightOrientation = 180 - direction;
   List<ParkingSpace> list = [];
@@ -76,6 +77,7 @@ List<ParkingSpace> tempRow(
           orientation: leftOrientation,
           open: true,
           temp: true,
+          type: type,
         ),
       );
     }
@@ -88,6 +90,7 @@ List<ParkingSpace> tempRow(
           orientation: rightOrientation,
           open: true,
           temp: true,
+          type: type,
         ),
       );
     }

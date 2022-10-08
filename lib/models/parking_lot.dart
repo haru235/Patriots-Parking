@@ -57,18 +57,21 @@ class ParkingLot extends StatelessWidget {
 
     List<ParkingSpace> tempSpaces = [
       ...tempRow('Lot18', 175, 100, 5, 0, 0),
-      ...tempRow('Lot18', 125, 150, 6, 90, 1),
-      ...tempRow('Lot18', 125, 325, 1, 90, 1),
-      ...tempRow('Lot18', 125, 375, 2, 90, 1),
-      ...tempRow('Lot18', 125, 450, 1, 90, 1),
+      ...tempRow('Lot18', 125, 150, 5, 90, 1),
+      ...tempRow('Lot18', 125, 275, 1, 90, 1, type: SpaceType.handicap),
+      ...tempRow('Lot18', 125, 310, 1, 90, 1, type: SpaceType.handicapR),
+      ...tempRow('Lot18', 125, 345, 1, 90, 1, type: SpaceType.handicapR),
+      ...tempRow('Lot18', 125, 380, 1, 90, 1, type: SpaceType.handicapL),
+      ...tempRow('Lot18', 125, 405, 1, 90, 1, type: SpaceType.handicap),
       ...tempRow('Lot18', 425, 100, 10, 90, 2),
-      ...tempRow('Lot18', 425, 375, 12, 90, 2),
+      ...tempRow('Lot18', 425, 375, 11, 90, 0),
+      ...tempRow('Lot18', 425, 375, 12, 90, 1),
       ...tempRow('Lot18', 575, 25, 8, 90, 0),
       ...tempRow('Lot18', 575, 250, 9, 90, 0),
       ...tempRow('Lot18', 575, 500, 8, 90, 0),
       ...tempRow('Lot18', 275, 225, 8, 90, 1),
       ...tempRow('Lot18', 275, 225, 7, 90, 0),
-      ...tempRow('Lot18', 275, 790, 5, 5, 1),
+      ...tempRow('Lot18', 275, 768, 5, 18, 1),
     ]; // sample use of tempRows
 
     return Container(
@@ -76,8 +79,8 @@ class ParkingLot extends StatelessWidget {
       height: height.toDouble(),
       color: Colors.transparent,
       child: CustomPaint(
-        painter: ParkingBorderLine(
-            name: name, path: getPath(name)), //adjust to parking lots
+        painter:
+            ParkingBorderLine(path: getPath(name)), //adjust to parking lots
         child: Consumer<AppState>(
           builder: (_, value, __) {
             return Stack(
@@ -97,23 +100,23 @@ class ParkingLot extends StatelessWidget {
     if (name == 'Lot18') {
       p = [
         // vertical road from entrance
-        [100, 800, 100, 300],
+        [100, 800, 100, 425],
         // vertical road next to handicap
-        [225, 650, 225, 325],
+        [225, 650, 225, 375],
         // middle vertical road
-        [375, 100, 375, 775],
+        [375, 100, 375, 750],
         // vertical road on right
-        [525, 100, 525, 775],
+        [525, 50, 525, 750],
         // horizontal road right after entrance
-        [75, 750, 550, 750],
+        [100, 750, 550, 750],
         // short horizontal road
-        [200, 625, 400, 625],
-        // front of recycle collection
-        [400, 75, 550, 75],
+        [225, 625, 375, 625],
         // curved road near handicap
-        [225, 325, 225, 300, 375, 275],
+        [225, 375, 225, 300, 375, 300],
         // curved road in front of garage
-        [100, 300, 100, 75, 400, 75],
+        [100, 425, 125, 100, 525, 50],
+        // path to parking garage
+        [225, 150, 200, 100],
       ];
     } else {
       [

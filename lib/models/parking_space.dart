@@ -45,6 +45,7 @@ class ParkingSpace extends StatefulWidget {
       'y': positionY,
       'orientation': orientation,
       'open': open,
+      'type': type.name,
     };
   }
 
@@ -58,6 +59,7 @@ class ParkingSpace extends StatefulWidget {
       orientation: json['orientation'],
       open: json['open'],
       temp: false,
+      type: SpaceType.values.byName(json['type']),
     );
   }
 
@@ -72,6 +74,13 @@ class _ParkingSpaceState extends State<ParkingSpace> {
       left: widget.positionX.toDouble(),
       bottom: widget.positionY.toDouble(),
       child: Transform.rotate(
+        origin: Offset(
+            widget.type == SpaceType.handicapR
+                ? -10
+                : widget.type == SpaceType.handicapL
+                    ? -10
+                    : 0,
+            0),
         alignment: Alignment.bottomRight,
         angle: widget.orientation / 180 * pi,
         child: GestureDetector(
@@ -81,8 +90,10 @@ class _ParkingSpaceState extends State<ParkingSpace> {
                 : locator.get<FirestoreMethods>().toggleSpace(widget);
           }),
           child: Container(
-            width:
-                25, //New Code 10/1/2022 11:34, just changed the dimension distances by half
+            width: 25 +
+                (widget.type == SpaceType.handicapL ? 10 : 0) +
+                (widget.type == SpaceType.handicapR ? 10 : 0),
+            //New Code 10/1/2022 11:34, just changed the dimension distances by half
             height: 50,
             decoration: BoxDecoration(
               color: widget.temp
@@ -91,10 +102,14 @@ class _ParkingSpaceState extends State<ParkingSpace> {
                   : widget.open
                       ? Colors.green
                       : Colors.red,
-              border: const Border(
-                left: BorderSide(color: Colors.white, width: 2),
-                right: BorderSide(color: Colors.white, width: 2),
-                bottom: BorderSide(color: Colors.white, width: 2),
+              border: Border(
+                left: BorderSide(
+                    color: Colors.white,
+                    width: widget.type == SpaceType.handicapL ? 12 : 2),
+                right: BorderSide(
+                    color: Colors.white,
+                    width: widget.type == SpaceType.handicapR ? 12 : 2),
+                bottom: const BorderSide(color: Colors.white, width: 2),
               ),
             ),
           ),
