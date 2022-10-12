@@ -59,7 +59,7 @@ class ParkingSpace extends StatefulWidget {
       orientation: json['orientation'],
       open: json['open'],
       temp: false,
-      type: SpaceType.values.byName(json['type']),
+      type: SpaceType.values.byName(json['type'] ?? 'normal'),
     );
   }
 

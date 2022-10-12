@@ -39,7 +39,7 @@ class ParkingLot extends StatelessWidget {
       name: json['name'],
       height: json['height'],
       width: json['width'],
-      roadPath: json['roadPath'],
+      roadPath: json['roadPath'] ?? [],
     );
   }
 
@@ -77,7 +77,7 @@ class ParkingLot extends StatelessWidget {
     return Container(
       width: width.toDouble(),
       height: height.toDouble(),
-      color: Colors.transparent,
+      color: Colors.blue,
       child: CustomPaint(
         painter:
             ParkingBorderLine(path: getPath(name)), //adjust to parking lots

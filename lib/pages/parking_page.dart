@@ -40,6 +40,7 @@ class _HomePageState extends State<HomePage> {
         name: 'Lot18',
         width: 700,
         height: 800,
+        roadPath: [],
       ),
     ]; // temp parking lots for testing without firebase
 
