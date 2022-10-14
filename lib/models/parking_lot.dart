@@ -104,7 +104,7 @@ class ParkingLot extends StatelessWidget {
     return Container(
       width: width.toDouble(),
       height: height.toDouble(),
-      color: Colors.blue,
+      //color: Colors.blue,
       child: CustomPaint(
         painter:
             ParkingBorderLine(path: getPath(name)), //adjust to parking lots

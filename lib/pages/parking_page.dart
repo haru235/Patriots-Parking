@@ -5,6 +5,8 @@ import 'package:patriots_parking/resources/firestore_methods.dart';
 import 'package:patriots_parking/resources/locator.dart';
 import 'package:patriots_parking/utils/util.dart';
 
+import '../models/campus_map.dart';
+
 class HomePage extends StatefulWidget {
   final String title;
   const HomePage({required this.title, Key? key}) : super(key: key);
@@ -14,6 +16,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final TransformationController _mapController = TransformationController();
+  final TransformationController _parkingController =
+      TransformationController();
+
   @override
   void initState() {
     super.initState();
@@ -26,6 +32,8 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
     // close subscriptions to parking lot and space collections
     locator.get<FirestoreMethods>().cancelSubscriptions();
+    _mapController.dispose();
+    _parkingController.dispose();
   }
 
   ParkingLot? selected;
@@ -53,14 +61,14 @@ class _HomePageState extends State<HomePage> {
         children: [
           // allow zoom and scroll
           InteractiveViewer(
+            transformationController:
+                selected != null ? _parkingController : _mapController,
             maxScale: 10,
             child: Center(
               // show UT Tyler map when no parking lot selected
               child: selected != null
                   ? FittedBox(child: selected)
-                  : const Image(
-                      image: AssetImage('assets/uttylerMap.jpg'),
-                    ),
+                  : const CampusMap(),
             ),
           ),
           Align(
