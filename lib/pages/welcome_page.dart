@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
+import 'package:patriots_parking/pages/signin_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -44,7 +45,7 @@ class WelcomePage extends StatelessWidget {
                       boxShadow: [
                         BoxShadow(
                           color: Colors.white.withOpacity(0.7),
-                          spreadRadius: 25,
+                          spreadRadius: 12,
                           blurRadius: 24,
                         ),
                       ],
@@ -53,15 +54,15 @@ class WelcomePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Transform.translate(
-                          offset: const Offset(20, 0),
-                          child: const Icon(
+                          offset: const Offset(38, -7),
+                          child: Icon(
                             Icons.local_parking_rounded,
                             size: 100,
-                            color: Colors.orange,
+                            color: Colors.orange[800],
                           ),
                         ),
                         Transform.translate(
-                          offset: const Offset(-20, 0),
+                          offset: const Offset(-38, 7),
                           child: Icon(
                             Icons.local_parking_rounded,
                             size: 100,
@@ -105,11 +106,7 @@ class WelcomePage extends StatelessWidget {
                                   padding: MediaQuery.of(context).viewInsets,
                                   child: const SizedBox(
                                     height: 400,
-                                    child: SignInScreen(
-                                      providerConfigs: [
-                                        EmailProviderConfiguration(),
-                                      ],
-                                    ),
+                                    child: SigninPage(),
                                   ),
                                 ),
                               ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
 import 'package:patriots_parking/resources/app_state.dart';
+import 'package:patriots_parking/resources/auth_methods.dart';
 import 'package:patriots_parking/resources/firestore_methods.dart';
 import 'package:patriots_parking/resources/locator.dart';
 import 'package:patriots_parking/utils/util.dart';
@@ -42,7 +43,7 @@ class _HomePageState extends State<HomePage> {
     //7:45AM 10/4/2022
     //spacerows(20, 900, 26); <- This method will create spaces, first space will be at x:20 and y:900 when using the coordinates referencees established by the gray
     //container.  KEEP THIS METHOD COMMENTED, i am not sure how the database or graphics would respond if it is run again.
-
+    Navigator.canPop(context) ? Navigator.pop(context) : null;
     List<ParkingLot> tempLots = [
       const ParkingLot(
         name: 'Lot18',
@@ -56,6 +57,27 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.lightGreenAccent,
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () => {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) => Column(
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        locator.get<AuthMethods>().signout();
+                      },
+                      child: const Text('Sign Out'),
+                    ),
+                  ],
+                ),
+              ),
+            },
+          ),
+        ],
       ),
       body: Stack(
         children: [
@@ -66,9 +88,9 @@ class _HomePageState extends State<HomePage> {
             maxScale: 10,
             child: Center(
               // show UT Tyler map when no parking lot selected
-              child: selected != null
-                  ? FittedBox(child: selected)
-                  : const CampusMap(),
+              child: FittedBox(
+                child: selected ?? const CampusMap(),
+              ),
             ),
           ),
           Align(

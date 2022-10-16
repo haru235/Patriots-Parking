@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';          //To draw reference lines, important lines are from line 20 to line 33.
+import 'package:flutter/material.dart'; //To draw reference lines, important lines are from line 20 to line 33.
 
 class CoordinateSystem extends CustomPainter {
   double width = 0;
   double height = 0;
-  CoordinateSystem(width, height) {
-    this.width = width;
-    this.height = height;
-  }
+  CoordinateSystem(this.width, this.height);
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()

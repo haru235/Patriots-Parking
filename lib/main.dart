@@ -26,7 +26,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Patriots Parking',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        //primarySwatch: Colors.blue,
+        primaryColor: Colors.blue[900],
       ),
       home: StreamBuilder(
         stream: locator.get<AuthMethods>().userStream,
