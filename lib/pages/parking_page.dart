@@ -51,6 +51,7 @@ class _HomePageState extends State<HomePage> {
         height: 800,
         roadPath: [],
       ),
+      const ParkingLot(name: 'Lot15', width: 1300, height: 1000, roadPath: [])  //10/16/2022 added lot15 parkinglot
     ]; // temp parking lots for testing without firebase
 
     return Scaffold(
