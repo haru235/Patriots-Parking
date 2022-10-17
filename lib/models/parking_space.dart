@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:patriots_parking/resources/firestore_methods.dart';
 import 'package:patriots_parking/resources/locator.dart';
@@ -24,6 +25,8 @@ class ParkingSpace extends StatefulWidget {
   final bool open;
   final bool temp;
   final SpaceType type;
+  final DateTime? timeTaken;
+  final DateTime? timeOpened;
   const ParkingSpace({
     this.id = '',
     required this.parkingLot,
@@ -33,6 +36,8 @@ class ParkingSpace extends StatefulWidget {
     required this.open,
     this.temp = false,
     this.type = SpaceType.normal,
+    this.timeTaken,
+    this.timeOpened,
     Key? key,
   }) : super(key: key);
 
@@ -46,6 +51,8 @@ class ParkingSpace extends StatefulWidget {
       'orientation': orientation,
       'open': open,
       'type': type.name,
+      'timeTaken': timeTaken,
+      'timeOpened': timeOpened,
     };
   }
 
@@ -60,6 +67,12 @@ class ParkingSpace extends StatefulWidget {
       open: json['open'],
       temp: false,
       type: SpaceType.values.byName(json['type'] ?? 'normal'),
+      timeTaken: json['timeTaken'] != null
+          ? (json['timeTaken'] as Timestamp).toDate()
+          : null,
+      timeOpened: json['timeOpened'] != null
+          ? (json['timeOpened'] as Timestamp).toDate()
+          : null,
     );
   }
 

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
 import 'package:patriots_parking/models/parking_space.dart';
 import 'package:patriots_parking/resources/app_state.dart';
@@ -52,15 +53,26 @@ class FirestoreMethods {
   Future<void> toggleSpace(ParkingSpace space) async {
     FirestoreService.instance.updateDocument(
       path: FirestorePath.parkingSpace(space.id),
-      data: {'open': !space.open},
+      data: space.open
+          ? {
+              'open': !space.open,
+              'timeTaken': Timestamp.now(),
+            }
+          : {
+              'open': !space.open,
+              'timeOpened': Timestamp.now(),
+            },
     );
   }
 
   // adds parking space to 'spaces' collection
-  Future<void> addSpace(ParkingSpace data) async {
+  Future<void> addSpace(ParkingSpace data, {String? customId}) async {
+    Map<String, dynamic> map = data.toJson();
+    map.addAll({'id': customId ?? ""});
     FirestoreService.instance.addDocument(
       path: FirestorePath.parkingSpaces(),
-      data: data.toJson(),
+      data: map,
+      myId: customId,
     );
   }
 }

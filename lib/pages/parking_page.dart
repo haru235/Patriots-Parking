@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
+import 'package:patriots_parking/models/parking_space.dart';
 import 'package:patriots_parking/resources/app_state.dart';
 import 'package:patriots_parking/resources/auth_methods.dart';
 import 'package:patriots_parking/resources/firestore_methods.dart';
@@ -58,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                 builder: (context) => Column(
                   children: [
                     TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         Navigator.pop(context);
                         locator.get<AuthMethods>().signout();
                       },
@@ -93,12 +94,31 @@ class _HomePageState extends State<HomePage> {
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
                     child: Text(
-                      selected == null ? 'Campus Map' : selected!.name,
+                      selected == null ? 'Campus Map' : selected.name,
                       style: const TextStyle(
                           fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
+                locator.get<AppState>().selectedLot != null
+                    ? Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: TextButton(
+                            onPressed: () =>
+                                locator.get<AppState>().setLot(null),
+                            child: const Text(
+                              '<- Back to Map',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : Container(),
               ],
             );
           }),
