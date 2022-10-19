@@ -14,7 +14,9 @@ class CampusMap extends StatelessWidget {
           left: 438,
           top: 550,
           child: GestureDetector(
-            onTap: () => locator.get<AppState>().setLotByName('Lot18'),
+            onTap: () => locator
+                .get<AppState>()
+                .setLot(locator.get<AppState>().getLotByName('Lot18')),
             child: Container(
               height: 44,
               width: 44,

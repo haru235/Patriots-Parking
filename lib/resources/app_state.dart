@@ -120,9 +120,7 @@ class AppState with ChangeNotifier {
     notifyListeners();
   }
 
-  void setLotByName(String name) {
-    ParkingLot lot = parkingLots.where((element) => element.name == name).first;
-    selectedLot != lot ? selectedLot = lot : selectedLot = null;
-    notifyListeners();
+  ParkingLot getLotByName(String name) {
+    return parkingLots.where((element) => element.name == name).first;
   }
 }

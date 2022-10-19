@@ -1,0 +1,16 @@
+"filename", "language", "Dart", "comment", "blank", "total"
+"c:\src\flutterApps\patriots-parking\patriots_parking\lib\main.dart", "Dart", 15, 2, 0, 17
+"c:\src\flutterApps\patriots-parking\patriots_parking\lib\models\campus_map.dart", "Dart", 62, 13, 8, 83
+"c:\src\flutterApps\patriots-parking\patriots_parking\lib\models\coordinate_system.dart", "Dart", 32, 3, 8, 43
+"c:\src\flutterApps\patriots-parking\patriots_parking\lib\models\custom_paint.dart", "Dart", 1, 0, 0, 1
+"c:\src\flutterApps\patriots-parking\patriots_parking\lib\models\documentcreate.dart", "Dart", 3, 0, 0, 3
+"c:\src\flutterApps\patriots-parking\patriots_parking\lib\models\parking_lot.dart", "Dart", -43, -12, -3, -58
+"c:\src\flutterApps\patriots-parking\patriots_parking\lib\models\parking_space.dart", "Dart", 27, 1, 0, 28
+"c:\src\flutterApps\patriots-parking\patriots_parking\lib\pages\parking_page.dart", "Dart", 46, 0, 1, 47
+"c:\src\flutterApps\patriots-parking\patriots_parking\lib\pages\signin_page.dart", "Dart", 13, 0, 3, 16
+"c:\src\flutterApps\patriots-parking\patriots_parking\lib\pages\welcome_page.dart", "Dart", 134, 0, 3, 137
+"c:\src\flutterApps\patriots-parking\patriots_parking\lib\resources\app_state.dart", "Dart", 52, 54, 2, 108
+"c:\src\flutterApps\patriots-parking\patriots_parking\lib\resources\auth_methods.dart", "Dart", 14, 0, 6, 20
+"c:\src\flutterApps\patriots-parking\patriots_parking\lib\resources\firestore_methods.dart", "Dart", 12, 0, 0, 12
+"c:\src\flutterApps\patriots-parking\patriots_parking\lib\resources\locator.dart", "Dart", 2, 0, 0, 2
+"Total", "-", 370, 61, 28, 459

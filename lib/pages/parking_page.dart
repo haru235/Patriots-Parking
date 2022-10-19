@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
-import 'package:patriots_parking/models/parking_space.dart';
 import 'package:patriots_parking/resources/app_state.dart';
 import 'package:patriots_parking/resources/auth_methods.dart';
 import 'package:patriots_parking/resources/firestore_methods.dart';

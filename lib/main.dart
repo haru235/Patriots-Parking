@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
                   return ChangeNotifierProvider.value(
                     value: locator.get<AppState>(),
                     child: const HomePage(
-                      title: 'Parking Lot Sample',
+                      title: 'Patriots Parking',
                     ),
                   );
                 },

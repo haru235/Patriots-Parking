@@ -9,7 +9,7 @@ class CoordinateSystem extends CustomPainter {
     final paint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.0
-      ..color = Color.fromARGB(160, 197, 198, 199);
+      ..color = const Color.fromARGB(160, 197, 198, 199);
 
     Path path_Yaxis = Path();
     Path path_Xaxis = Path();

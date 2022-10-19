@@ -44,39 +44,22 @@ class WelcomePage extends StatelessWidget {
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.white.withOpacity(0.7),
+                          color: Colors.white.withOpacity(0.85),
                           spreadRadius: 12,
                           blurRadius: 24,
                         ),
                       ],
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Transform.translate(
-                          offset: const Offset(38, -7),
-                          child: Icon(
-                            Icons.local_parking_rounded,
-                            size: 100,
-                            color: Colors.orange[800],
-                          ),
-                        ),
-                        Transform.translate(
-                          offset: const Offset(-38, 7),
-                          child: Icon(
-                            Icons.local_parking_rounded,
-                            size: 100,
-                            color: Colors.blue[900],
-                          ),
-                        ),
-                      ],
+                    child: Image.asset(
+                      'assets/logo.png',
+                      height: 150,
                     ),
                   ),
                   Container(
                     padding: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(150, 255, 255, 255),
-                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.85),
+                      borderRadius: const BorderRadius.all(Radius.circular(8)),
                     ),
                     child: const Text(
                       'Patriots Parking',

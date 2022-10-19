@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
 import 'package:patriots_parking/models/parking_space.dart';
 import 'package:patriots_parking/resources/app_state.dart';
@@ -51,16 +51,21 @@ class FirestoreMethods {
 
 // toggle parking space state
   Future<void> toggleSpace(ParkingSpace space) async {
+    DateTime time = DateTime.now();
+    if (space.open && space.timeTaken != null) {
+      time.difference(space.timeTaken!);
+      debugPrint('Space ${space.id} released after $time.');
+    }
     FirestoreService.instance.updateDocument(
       path: FirestorePath.parkingSpace(space.id),
       data: space.open
           ? {
               'open': !space.open,
-              'timeTaken': Timestamp.now(),
+              'timeTaken': time,
             }
           : {
               'open': !space.open,
-              'timeOpened': Timestamp.now(),
+              'timeOpened': time,
             },
     );
   }
