@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:patriots_parking/models/documentcreate.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
 import 'package:patriots_parking/models/parking_space.dart';
+import 'package:patriots_parking/models/newMethodToDrawSpaces.dart';
 
 class AppState with ChangeNotifier {
   List<ParkingLot> tempLots = [
@@ -60,7 +61,10 @@ class AppState with ChangeNotifier {
       width: 2000,
       height: 1500,
       roadPath: [[]],
-    ),//10/16/2022 added lot15 parkinglot
+    ),
+    const ParkingLot(name: 'Lot14', width: 1500, height: 1000, roadPath: []),   //need to update old space data, new method will be used to add the spaces for lot14 and lot10
+    const ParkingLot(name: 'Lot10', width: 1200, height: 2200, roadPath: []),   //spaces will be added later to github
+    //10/16/2022 added lot15 parkinglot                                         
   ]; // temp parking lots for testing without firebase
   List<ParkingSpace> tempSpaces = [
     // added to firestore @ 10/17/22
@@ -104,6 +108,7 @@ class AppState with ChangeNotifier {
     // ...tempRow('Lot15', 100, 620, 8, 0, 1), //13R
     // ...tempRow('Lot15', 350, 620, 8, 0, 1), //14R
     // ...tempRow('Lot15', 100, 620, 18, 0, 0), //15R   ends here
+ 
         ...tempRowOneArrayPerSpaceRow(
         'Lot9',
         500,
