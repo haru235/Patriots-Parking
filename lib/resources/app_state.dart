@@ -108,20 +108,64 @@ class AppState with ChangeNotifier {
     // ...tempRow('Lot15', 100, 620, 8, 0, 1), //13R
     // ...tempRow('Lot15', 350, 620, 8, 0, 1), //14R
     // ...tempRow('Lot15', 100, 620, 18, 0, 0), //15R   ends here
- 
-        ...tempRowOneArrayPerSpaceRow(
+    ...tempRowOneArrayPerSpaceRow(                                       //Encountered problems: Parking spaces only change in x and y BUT not in its orientation
+        'Lot9', 200, 200, 67, 90, [16, 34, 35, 36, 37, 38], 0, -0.60),   //Orientation variable is always keep the same in the method 
+    ...tempRowOneArrayPerSpaceRow(                                       //Solution is to change orientation value by adding the direction variable to orientation
+        'Lot9', 325, 200, 67, 90, [26, 34, 35, 36, 37, 38], 1, -0.60),   //While the spaces do change in orientation now, they change very unevenly.  
+    ...tempRowOneArrayPerSpaceRow(                                       //Could fix it by changing most of the code implemented in tempRow, 
+        'Lot9', 375, 200, 67, 90, [26, 34, 35, 36, 37, 38], 0, -0.60),   //but time will not allow. mention problems encountered for final presentation instead
+    ...tempRowOneArrayPerSpaceRow(                                       //and mention the solution to the problem. 
         'Lot9',
         500,
-        500,
-        30,
-        0,
+        170,
+        44,
+        90,
         [
-          10,
-          15,
+          0,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67
         ],
-        0,
-        0),
-  ];
+        1,
+        -0.60),
+    ...tempRow('Lot9', 1030, 1695, 1, 90, 1, type: SpaceType.handicapR),
+    ...tempRow('Lot9', 1010, 1660, 1, 90, 1, type: SpaceType.handicapL),
+    ...tempRow('Lot9', 988, 1625, 1, 90, 1),
+    ...tempRow('Lot9', 967, 1600, 1, 90, 1, type: SpaceType.handicapR),
+    ...tempRow('Lot9', 945, 1565, 1, 90, 1, type: SpaceType.handicapL),
+    ...tempRow('Lot9', 924, 1530, 1, 90, 1, type: SpaceType.handicapR),
+    ...tempRow('Lot9', 904, 1495, 1, 90, 1, type: SpaceType.handicapL),
+    ...tempRow('Lot9', 884, 1460, 1, 90, 1),
+    ...tempRow('Lot9', 864, 1435, 1, 90, 1, type: SpaceType.handicapR),
+    ...tempRow('Lot9', 844, 1400, 1, 90, 1, type: SpaceType.handicapL),
+  
   ]; // added to firestore @ 10/17/22
   ParkingLot? selectedLot;
   List<ParkingLot> parkingLots = [];
