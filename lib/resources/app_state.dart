@@ -54,7 +54,13 @@ class AppState with ChangeNotifier {
         [490, 80, 0, 0],
         //the four lines to create the curve on the top   //ends here for roads
       ],
-    ) //10/16/2022 added lot15 parkinglot
+    ),
+        const ParkingLot(   //To Test new method to draw spaces rows with gaps
+      name: 'Lot9',
+      width: 2000,
+      height: 1500,
+      roadPath: [[]],
+    ),//10/16/2022 added lot15 parkinglot
   ]; // temp parking lots for testing without firebase
   List<ParkingSpace> tempSpaces = [
     // added to firestore @ 10/17/22
@@ -98,6 +104,19 @@ class AppState with ChangeNotifier {
     // ...tempRow('Lot15', 100, 620, 8, 0, 1), //13R
     // ...tempRow('Lot15', 350, 620, 8, 0, 1), //14R
     // ...tempRow('Lot15', 100, 620, 18, 0, 0), //15R   ends here
+        ...tempRowOneArrayPerSpaceRow(
+        'Lot9',
+        500,
+        500,
+        30,
+        0,
+        [
+          10,
+          15,
+        ],
+        0,
+        0),
+  ];
   ]; // added to firestore @ 10/17/22
   ParkingLot? selectedLot;
   List<ParkingLot> parkingLots = [];
