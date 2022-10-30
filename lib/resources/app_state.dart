@@ -114,7 +114,7 @@ class AppState with ChangeNotifier {
         'Lot9', 325, 200, 67, 90, [26, 34, 35, 36, 37, 38], 1, -0.60),   //While the spaces do change in orientation now, they change very unevenly.  
     ...tempRowOneArrayPerSpaceRow(                                       //Could fix it by changing most of the code implemented in tempRow, 
         'Lot9', 375, 200, 67, 90, [26, 34, 35, 36, 37, 38], 0, -0.60),   //but time will not allow. mention problems encountered for final presentation instead
-    ...tempRowOneArrayPerSpaceRow(                                       //and mention the solution to the problem. 
+    ...tempRowOneArrayPerSpaceRow(                                       //and mention the solution to the problem. Problem will be noticable in Lot 9 and Lot 14
         'Lot9',
         500,
         170,
