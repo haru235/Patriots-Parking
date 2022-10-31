@@ -2,17 +2,7 @@ import 'package:patriots_parking/models/parking_space.dart';
 import 'package:patriots_parking/resources/firestore_methods.dart';
 import 'package:patriots_parking/resources/locator.dart';
 import 'dart:math';
-/*
-new method to draw the spaces with a single method call, few changes made from method created by Haru.  This method is mainly for Lot 14, Lot 10, Lot 7 and Lot 9 and
-Lot 15 because those lots have curves on them.  Starting with a row, count from the first space to the last space in that
-row, starting from 0, 1, 2 ,3,,,,n.  Suppose there is row of 8 spaces, and a gap exists, the gap is between space 6 and 8.  
-Estimate how much spaces the gap takes, suppose it takes the size of two spaces,, now assume the gap does not exist,
-then count, 0 1 2 3 4 5 6 7 8 9, so ten total because of the gap composed of the size of two parkign spaces.  
-the values of 6 and 7 represent the gap between 6 and 8, those values will go to the array
-, named rownumberGaps.  so the application will display the intended 8 spaces
-and the gap that is part of that row. The FixedR is to change the rate of direction change for each space as the tangent(rate) changes.
- The number of spaces can be extracted by this implementation for statitical data usage.
-*/
+
 
 String randomString(int length) {
   var random = Random();
@@ -57,43 +47,45 @@ void insertRow(
   }
 }
 
-List<ParkingSpace> tempRowOneArrayPerSpaceRow(
-  String parkingLot,
-  double x,
-  double y,
-  int spaceCount,
-  double direction,
-  List<int>
-      rownumberGaps, //array that holds location of gaps.  size of gaps is with respect to size of parking spaces
-  int side,
-  double FixedR, {
-  //Rate of change of the tangent of a curve (Average)
-  SpaceType type = SpaceType.normal,
+List<ParkingSpace> tempRowOneArrayPerSpaceRow(            
+  String parkingLot,                               //fixed bug from temprow where spaces where not changing orientation, only the x and y where changing
+  double x,                                        //Problem was that leftOrientation and rightOrientation never changed values since they were
+  double y,                                        //outside the forloop.  Solution was to change the values for every iteration inside the for loop as in line 91.
+  int spaceCount,                                  //added a array type to the parameters, this is to store where the gaps occur in a given row.  
+  double direction,                                //Suppose a row has 6 spaces.  Suppose there is a gap between them that seperates space 3 and space 4.  Suppose
+  List<int>                                        //The gap is the size of two parking spaces, then new array parameter will store two values to represent the gap.
+      rownumberGaps,                               //These values represent spaces too, but they are not added to the list nor displayed but the direction keeps changing
+  int side,                                        //so that when the 4th space is reached, it will have its correct value of orientation and x and y.  as in line 87-88
+  double FixedR, {                                 //semaphore variable is for logic purposes.  If false, do not add, if true add space.  Variable b is to 
+                                                   //prevent the array from going out of range and also using line 83 logic.  Not longer have to create a function
+  SpaceType type = SpaceType.normal,               //for every row in a curved lot.  Fulfills enhancement of development tools.  10/30/2022 6:58PM Final Method.
 }) {
-  bool semaphore = true; //Activates
+  bool semaphore = true;
   double leftOrientation = 360 - direction;
   double rightOrientation = 180 - direction;
   List<ParkingSpace> list = [];
 
-  int b = 0; //keeps track of the array index
+  int b = 0; 
 
   for (int i = 0; i < spaceCount + rownumberGaps.length; i++) {
     if (side == 0 || side == 2) {
-      semaphore = true; //restarts semaphore to true for every iteration
+      semaphore = true; 
       if (b < rownumberGaps.length) {
-        //first check if b does not got greater than the size of
+        
         if (i == rownumberGaps[b]) {
-          //rownumberGaps to avoid out of range error
+          
           direction =
-              direction + FixedR; //then check if i is equal to a part of a gap
-          b++; //if it is, then a gap has been reached, do not added to the list
-          semaphore = false; //but continue increasing the rate so that the next
-        } //valid parking space maintains its correct angle.
-      } //activate semaphore to false so the gap is not added
+              direction + FixedR;
+          b++; 
+          semaphore = false;
+          leftOrientation = leftOrientation -
+              FixedR;
+        } 
+      } 
       if (semaphore) {
-        //recall that a gap is composed of parking spaces, but those
+        
         list.add(
-          //parking spaces are not displayed nor added to the list.
+          
           ParkingSpace(
             parkingLot: parkingLot,
             positionX: x + cos(direction / 180 * pi) * 25,
@@ -105,6 +97,7 @@ List<ParkingSpace> tempRowOneArrayPerSpaceRow(
           ),
         );
         direction = direction + FixedR;
+        leftOrientation = leftOrientation - FixedR;
       }
       //}
     }
@@ -115,6 +108,7 @@ List<ParkingSpace> tempRowOneArrayPerSpaceRow(
           direction = direction + FixedR;
           b++;
           semaphore = false;
+          leftOrientation = leftOrientation - FixedR;
         }
       } //else {
       if (semaphore) {
@@ -130,6 +124,7 @@ List<ParkingSpace> tempRowOneArrayPerSpaceRow(
           ),
         );
         direction = direction + FixedR;
+        leftOrientation = leftOrientation - FixedR;
       }
       //}
     }
