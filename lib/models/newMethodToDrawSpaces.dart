@@ -108,7 +108,7 @@ List<ParkingSpace> tempRowOneArrayPerSpaceRow(
           direction = direction + FixedR;
           b++;
           semaphore = false;
-          leftOrientation = leftOrientation - FixedR;
+          leftOrientation = rightOrientation - FixedR;
         }
       } //else {
       if (semaphore) {
@@ -117,14 +117,14 @@ List<ParkingSpace> tempRowOneArrayPerSpaceRow(
             parkingLot: parkingLot,
             positionX: x + cos(direction / 180 * pi) * 25,
             positionY: y + sin(direction / 180 * pi) * 25,
-            orientation: leftOrientation,
+            orientation: rightOrientation,
             open: true,
             temp: true,
             type: type,
           ),
         );
         direction = direction + FixedR;
-        leftOrientation = leftOrientation - FixedR;
+        leftOrientation = rightOrientation - FixedR;
       }
       //}
     }

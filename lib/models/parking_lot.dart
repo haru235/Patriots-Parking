@@ -3,6 +3,8 @@ import 'package:patriots_parking/resources/app_state.dart';
 import 'package:provider/provider.dart';
 import 'package:patriots_parking/models/custom_paint.dart';
 
+import '../utils/global_variables.dart';
+
 // parking lot object
 class ParkingLot extends StatelessWidget {
   final String id;
@@ -55,14 +57,14 @@ class ParkingLot extends StatelessWidget {
     return Container(
       width: width.toDouble(),
       height: height.toDouble(),
-      color: Colors.blue,
+      color: debugMode ? Colors.blue : null,
       child: CustomPaint(
-        painter: ParkingBorderLine(path: roadPath), //adjust to parking lots
+        painter: ParkingBorderLine(path: roadPath),
         child: Consumer<AppState>(
           builder: (_, value, __) {
             return Stack(
               children: [
-                ...(value.parkingSpaces) // add temp spaces
+                ...(value.parkingSpaces)
                     .where((element) => element.parkingLot == name),
               ],
             );
