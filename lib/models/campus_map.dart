@@ -9,7 +9,12 @@ class CampusMap extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const Image(width: 1000, image: AssetImage('assets/uttylerMap.jpg')),
+        const Image(
+          width: 1000,
+          height: 1000,
+          image: AssetImage('assets/uttylerMap.jpg'),
+          fit: BoxFit.contain,
+        ),
         Positioned(
           left: 438,
           top: 550,

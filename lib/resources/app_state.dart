@@ -56,15 +56,24 @@ class AppState with ChangeNotifier {
         //the four lines to create the curve on the top   //ends here for roads
       ],
     ),
-        const ParkingLot(   //To Test new method to draw spaces rows with gaps
+    const ParkingLot(
+      //To Test new method to draw spaces rows with gaps
       name: 'Lot9',
       width: 2000,
-      height: 1500,
+      height: 2000,
       roadPath: [[]],
     ),
-    const ParkingLot(name: 'Lot14', width: 1500, height: 1000, roadPath: []),   //need to update old space data, new method will be used to add the spaces for lot14 and lot10
-    const ParkingLot(name: 'Lot10', width: 1200, height: 2200, roadPath: []),   //spaces will be added later to github
-    //10/16/2022 added lot15 parkinglot                                         
+    const ParkingLot(
+        name: 'Lot14',
+        width: 1500,
+        height: 1000,
+        roadPath: []), //need to update old space data, new method will be used to add the spaces for lot14 and lot10
+    const ParkingLot(
+        name: 'Lot10',
+        width: 1200,
+        height: 2200,
+        roadPath: []), //spaces will be added later to github
+    //10/16/2022 added lot15 parkinglot
   ]; // temp parking lots for testing without firebase
   List<ParkingSpace> tempSpaces = [
     // added to firestore @ 10/17/22
@@ -108,13 +117,38 @@ class AppState with ChangeNotifier {
     // ...tempRow('Lot15', 100, 620, 8, 0, 1), //13R
     // ...tempRow('Lot15', 350, 620, 8, 0, 1), //14R
     // ...tempRow('Lot15', 100, 620, 18, 0, 0), //15R   ends here
-    ...tempRowOneArrayPerSpaceRow(                                       //Encountered problems: Parking spaces only change in x and y BUT not in its orientation
-        'Lot9', 200, 200, 67, 90, [16, 34, 35, 36, 37, 38], 0, -0.60),   //Orientation variable is always keep the same in the method 
-    ...tempRowOneArrayPerSpaceRow(                                       //Solution is to change orientation value by adding the direction variable to orientation
-        'Lot9', 325, 200, 67, 90, [26, 34, 35, 36, 37, 38], 1, -0.60),   //While the spaces do change in orientation now, they change very unevenly.  
-    ...tempRowOneArrayPerSpaceRow(                                       //Could fix it by changing most of the code implemented in tempRow, 
-        'Lot9', 375, 200, 67, 90, [26, 34, 35, 36, 37, 38], 0, -0.60),   //but time will not allow. mention problems encountered for final presentation instead
-    ...tempRowOneArrayPerSpaceRow(                                       //and mention the solution to the problem. Problem will be noticable in Lot 9 and Lot 14
+    ...tempRowOneArrayPerSpaceRow(
+        //Encountered problems: Parking spaces only change in x and y BUT not in its orientation
+        'Lot9',
+        200,
+        200,
+        67,
+        90,
+        [16, 34, 35, 36, 37, 38],
+        0,
+        -0.60), //Orientation variable is always keep the same in the method
+    ...tempRowOneArrayPerSpaceRow(
+        //Solution is to change orientation value by adding the direction variable to orientation
+        'Lot9',
+        325,
+        200,
+        67,
+        90,
+        [26, 34, 35, 36, 37, 38],
+        1,
+        -0.60), //While the spaces do change in orientation now, they change very unevenly.
+    ...tempRowOneArrayPerSpaceRow(
+        //Could fix it by changing most of the code implemented in tempRow,
+        'Lot9',
+        375,
+        200,
+        67,
+        90,
+        [26, 34, 35, 36, 37, 38],
+        0,
+        -0.60), //but time will not allow. mention problems encountered for final presentation instead
+    ...tempRowOneArrayPerSpaceRow(
+        //and mention the solution to the problem. Problem will be noticable in Lot 9 and Lot 14
         'Lot9',
         500,
         170,
@@ -165,7 +199,6 @@ class AppState with ChangeNotifier {
     ...tempRow('Lot9', 884, 1460, 1, 90, 1),
     ...tempRow('Lot9', 864, 1435, 1, 90, 1, type: SpaceType.handicapR),
     ...tempRow('Lot9', 844, 1400, 1, 90, 1, type: SpaceType.handicapL),
-  
   ]; // added to firestore @ 10/17/22
   ParkingLot? selectedLot;
   List<ParkingLot> parkingLots = [];

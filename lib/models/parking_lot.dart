@@ -52,10 +52,10 @@ class ParkingLot extends StatelessWidget {
     //HS-9/30/2022 9:28PM, SingleChildScrollView only scrolls in one direction.
     //    Instead, used FittedBox to contain parkinglot in window. Scroll and zoom
     //    taken care of by InteractiveViewer.
-    return SizedBox(
+    return Container(
       width: width.toDouble(),
       height: height.toDouble(),
-      //color: Colors.blue,
+      color: Colors.blue,
       child: CustomPaint(
         painter: ParkingBorderLine(path: roadPath), //adjust to parking lots
         child: Consumer<AppState>(
