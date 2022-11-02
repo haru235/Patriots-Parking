@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
 import 'package:patriots_parking/resources/app_state.dart';
-import 'package:patriots_parking/resources/auth_methods.dart';
-import 'package:patriots_parking/resources/firestore_methods.dart';
+import 'package:patriots_parking/resources/firebase/auth_methods.dart';
+import 'package:patriots_parking/resources/firebase/firestore_methods.dart';
 import 'package:patriots_parking/resources/locator.dart';
 import 'package:patriots_parking/utils/util.dart';
 import 'package:provider/provider.dart';
@@ -44,7 +44,6 @@ class _HomePageState extends State<HomePage> {
     //spacerows(20, 900, 26); <- This method will create spaces, first space will be at x:20 and y:900 when using the coordinates referencees established by the gray
     //container.  KEEP THIS METHOD COMMENTED, i am not sure how the database or graphics would respond if it is run again.
     Navigator.canPop(context) ? Navigator.pop(context) : null;
-
     return Scaffold(
       backgroundColor: Colors.lightGreenAccent,
       appBar: AppBar(
@@ -71,6 +70,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+      // listen to changes in selected lot
       body: Selector<AppState, ParkingLot?>(
           selector: (p0, p1) => p1.selectedLot,
           builder: (_, selected, __) {
@@ -92,6 +92,7 @@ class _HomePageState extends State<HomePage> {
                   alignment: Alignment.bottomCenter,
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
+                    // show selected lot name
                     child: Text(
                       selected == null ? 'Campus Map' : selected.name,
                       style: const TextStyle(
@@ -104,6 +105,7 @@ class _HomePageState extends State<HomePage> {
                         alignment: Alignment.topLeft,
                         child: Padding(
                           padding: const EdgeInsets.all(8),
+                          // button to go back to map
                           child: TextButton(
                             onPressed: () =>
                                 locator.get<AppState>().setLot(null),
@@ -131,6 +133,7 @@ class _HomePageState extends State<HomePage> {
             title: 'Parking Lots',
             children: [
               for (ParkingLot lot in locator.get<AppState>().parkingLots) ...[
+                // update selected lot when clicked
                 GestureDetector(
                   onTap: () => setState(() {
                     locator.get<AppState>().setLot(lot);

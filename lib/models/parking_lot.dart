@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patriots_parking/resources/app_state.dart';
 import 'package:provider/provider.dart';
-import 'package:patriots_parking/models/custom_paint.dart';
+import 'package:patriots_parking/resources/road_paint.dart';
 
 import '../utils/global_variables.dart';
 
@@ -11,12 +11,18 @@ class ParkingLot extends StatelessWidget {
   final String name;
   final num width;
   final num height;
+  final num? mapX;
+  final num? mapY;
+  final num? mapR;
   final List<List<num>> roadPath;
   const ParkingLot({
     this.id = '',
     required this.name,
     required this.width,
     required this.height,
+    this.mapX,
+    this.mapY,
+    this.mapR,
     this.roadPath = const [],
     super.key,
   });
@@ -28,6 +34,9 @@ class ParkingLot extends StatelessWidget {
       'name': name,
       'width': width,
       'height': height,
+      'mapX': mapX,
+      'mapY': mapY,
+      'mapR': mapR,
       'roadPath': roadPath,
     };
   }
@@ -39,6 +48,9 @@ class ParkingLot extends StatelessWidget {
       name: json['name'],
       height: json['height'],
       width: json['width'],
+      mapX: json['mapX'],
+      mapY: json['mapY'],
+      mapR: json['mapR'],
       roadPath: json['roadPath'] ?? [],
     );
   }
@@ -59,7 +71,7 @@ class ParkingLot extends StatelessWidget {
       height: height.toDouble(),
       color: debugMode ? Colors.blue : null,
       child: CustomPaint(
-        painter: ParkingBorderLine(path: roadPath),
+        painter: RoadPaint(path: roadPath),
         child: Consumer<AppState>(
           builder: (_, value, __) {
             return Stack(

@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:patriots_parking/resources/firestore_methods.dart';
+import 'package:patriots_parking/resources/firebase/firestore_methods.dart';
 import 'package:patriots_parking/resources/locator.dart';
 
 enum SpaceType {

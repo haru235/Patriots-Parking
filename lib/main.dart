@@ -4,7 +4,7 @@ import 'package:patriots_parking/firebase_options.dart';
 import 'package:patriots_parking/pages/parking_page.dart';
 import 'package:patriots_parking/pages/welcome_page.dart';
 import 'package:patriots_parking/resources/app_state.dart';
-import 'package:patriots_parking/resources/auth_methods.dart';
+import 'package:patriots_parking/resources/firebase/auth_methods.dart';
 import 'package:patriots_parking/resources/locator.dart';
 import 'package:provider/provider.dart';
 

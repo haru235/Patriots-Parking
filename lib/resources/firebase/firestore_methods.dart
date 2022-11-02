@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
 import 'package:patriots_parking/models/parking_space.dart';
 import 'package:patriots_parking/resources/app_state.dart';
-import 'package:patriots_parking/resources/firestore_path.dart';
-import 'package:patriots_parking/resources/firestore_service.dart';
+import 'package:patriots_parking/resources/firebase/firestore_path.dart';
+import 'package:patriots_parking/resources/firebase/firestore_service.dart';
 import 'package:patriots_parking/resources/locator.dart';
 
 class FirestoreMethods {
@@ -21,7 +21,7 @@ class FirestoreMethods {
         .listen((event) {
       locator.get<AppState>().onParkingLotsChanged(event);
     });
-
+    locator.get<AppState>().onParkingSpacesChanged([]);
     _parkingSpacesSubscription = _firestoreService
         .collectionStream(
             path: FirestorePath.parkingSpaces(),

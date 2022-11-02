@@ -1,9 +1,9 @@
 //New File, this is to draw the parking lots borders.  If I am able to get the data of the coordinates from the database for moveTo and lineTo so the applications updates in real time, I might be able to draw the roads inside the parking lot
 import 'package:flutter/material.dart';
 
-class ParkingBorderLine extends CustomPainter {
+class RoadPaint extends CustomPainter {
   final List<List<num>> path;
-  ParkingBorderLine({this.path = const []});
+  RoadPaint({this.path = const []});
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
