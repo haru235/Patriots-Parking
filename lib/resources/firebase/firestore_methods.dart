@@ -68,6 +68,12 @@ class FirestoreMethods {
               'timeOpened': time,
             },
     );
+        i = locator.get<AppState>().getStatisticalData(space);
+    if (space.open) {
+      locator.get<AppState>().Statistical_Data[i].increaseStatiticalData(i);
+    } else {
+      locator.get<AppState>().Statistical_Data[i].decreaseStatiticalData(i);
+    }
   }
 
   // adds parking space to 'spaces' collection
