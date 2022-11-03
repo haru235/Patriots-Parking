@@ -7,7 +7,10 @@ The widgets to display the data will be  to the right side of the corresping lot
 If space is false, decrease Available, increase occupied
 If space is true, increase Available, decrease occupied
 Added a method to AppState.dart to get the index of the corresponding Statistical data from the array of Statistical data that is also created in the AppState.dart
-The index will be acquired by comparing the name of space class and Statistical Data class, if their lot number matches. 
+The index will be acquired by comparing the name of space class and Statistical Data class, if their lot number matches.
+Also added additional statements to the togglespace method in Firestore_methods.dart file.  The Data will be changed every time a space is toggled.
+I will have the mentioned code commented until I fill the arrays properly and find any possible bugs that will likely occur when traversing the array of statistical data
+(if no matches are found, add a error message).
 
 
 */
