@@ -28,24 +28,18 @@ class AppState with ChangeNotifier {
   ParkingLot getLotByName(String name) {
     return parkingLots.where((element) => element.name == name).first;
   }
-  /* Not Finished
-    void decreaseStatiticalData(StatisticalData statitical_Data) {
-    statitical_Data.Available--;
-    statitical_Data.Occupied++;
-  }
-
-  void increaseStatiticalData(StatisticalData statitical_Data) {
-    statitical_Data.Available++;
-    statitical_Data.Occupied--;
-    
-    int getStatisticalData(List<ParkingLot> lot, List<StatisticalData lot_Data) {   //After index of the StatisticalDAta that corresponds to a lot is acquired,
-    String name;                                                                    //use that index value in the array of StatisticalData, and then use
-    int index;                                                                      //the methods above to increase or decrease its values.
-    for (var i = 0; i < lot.length; i++ 
-    {
-      if lot[i].name = lot_Data.
+  /* 
+    int getStatisticalData(ParkingSpace space) {
+    int index = -1;
+    String name = space.parkingLot;
+    for (var i = 0; i < Statistical_Data.length; i++) {
+      if (name == Statistical_Data[i].parkinglot_Name) {
+        index = i;
+        i = Statistical_Data.length;
+      }
     }
     return index;
   }
+  
   */
 }
