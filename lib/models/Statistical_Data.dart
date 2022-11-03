@@ -2,30 +2,38 @@ import 'package:patriots_parking/models/parking_lot.dart';
 import 'package:flutter/material.dart';
 
 /*
-Class to display three boxes next to its parking lot, in the parking lot list
-Stateful because it will change as a space is toggled. 
-Additional statements have been placed in the togglespace method in firestore_methods.dart
-added three additional methods to appstate.dart
-
-decreaseStatiticalData to decrease available when space is red
-increaseStatiticalData to increase available when space is green
-StatisticalData getStatisticalData(ParkingLot lot) similar to getLotByName but with different type and return value.
+This class is to get the statistical data for the parking lots. Is a stateful Widget because the data will be changing as spaces are modified.  
+The widgets to display the data will be  to the right side of the corresping lot once the createState method is properly implemented.  
+If space is false, decrease Available, increase occupied
+If space is true, increase Available, decrease occupied
+Added a method to AppState.dart to get the index of the corresponding Statistical data from the array of Statistical data that is also created in the AppState.dart
+The index will be acquired by comparing the name of space class and Statistical Data class, if their lot number matches. 
 
 
 */
 class StatisticalData extends StatefulWidget {
-  ParkingLot parkinglot;
+  String parkinglot_Name;
   int Total;
   int Available;
   int Occupied;
 
   StatisticalData({
-    required this.parkinglot,
+    required this.parkinglot_Name,
     required this.Total,
     required this.Available,
     required this.Occupied,
     Key? key,
   }) : super(key: key);
+
+  void decreaseStatiticalData(int i) {
+    this.Available--;
+    this.Occupied++;
+  }
+
+  void increaseStatiticalData(int i) {
+    this.Available++;
+    this.Occupied--;
+  }
 
   @override
   State<StatefulWidget> createState() {
