@@ -63,7 +63,7 @@ List<ParkingLot> tempLots = [
   ),
   const ParkingLot(
       name: 'Lot14',
-      width: 1500,
+      width: 2000,  //changed to 2000 11/2/2022
       height: 1000,
       roadPath: []), //need to update old space data, new method will be used to add the spaces for lot14 and lot10
   const ParkingLot(
@@ -316,4 +316,33 @@ List<ParkingSpace> tempSpaces = [
   ...tempRow('Lot9', 884, 1460, 1, 90, 1),
   ...tempRow('Lot9', 864, 1435, 1, 90, 1, type: SpaceType.handicapR),
   ...tempRow('Lot9', 844, 1400, 1, 90, 1, type: SpaceType.handicapL),
+  
+    ...createSpaceRow('Lot14', 975, 700, 24, 0, [15, 16], 1, -1.0),  //11/2/2022
+    ...createSpaceRow('Lot14', 1000, 500, 14, 0, [6, 7], 0, -1.5),
+    ...createSpaceRow('Lot14', 675, 700, 10, 0, [], 1, 0),
+    ...createSpaceRow('Lot14', 700, 500, 14, 0, [], 0, 0),
+    ...tempRow(
+      'Lot14',
+      325,
+      700,
+      10,
+      0,
+      1,
+    ),
+    ...tempRow('Lot14', 300, 500, 8, 0, 0),  //11/2/2022
+    ...tempRow('Lot14', 300, 700, 1, 0, 1, type: SpaceType.handicapL),
+    ...tempRow('Lot14', 500, 500, 1, 0, 0, type: SpaceType.handicapR),
+    ...tempRow(
+      'Lot14',
+      535,
+      500,
+      2,
+      0,
+      0,
+    ),
+    ...tempRow('Lot14', 500, 500, 1, 0, 0, type: SpaceType.handicapR),
+    ...tempRow('Lot14', 1385, 413, 1, 337, 0, type: SpaceType.handicapR),
+    ...tempRow('Lot14', 1418, 400, 1, 335, 0, type: SpaceType.handicapL),
+    ...tempRow('Lot14', 1450, 384, 1, 333, 0, type: SpaceType.handicapL),
+    ...tempRow('Lot14', 1480, 366, 1, 330, 0, type: SpaceType.handicapL),
 ]; // added to firestore @ 10/17/22
