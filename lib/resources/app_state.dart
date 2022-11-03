@@ -28,4 +28,18 @@ class AppState with ChangeNotifier {
   ParkingLot getLotByName(String name) {
     return parkingLots.where((element) => element.name == name).first;
   }
+  /*
+    void decreaseStatiticalData(StatisticalData statitical_Data) {
+    statitical_Data.Available--;
+    statitical_Data.Occupied++;
+  }
+
+  void increaseStatiticalData(StatisticalData statitical_Data) {
+    statitical_Data.Available++;
+    statitical_Data.Occupied--;
+    
+      StatisticalData getStatisticalData(ParkingLot lot) {
+    return Statistical_Data.where((element) => element.parkinglot == lot).first;
+  }
+  */
 }
