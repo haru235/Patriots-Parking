@@ -7,6 +7,7 @@ class AppState with ChangeNotifier {
   ParkingLot? selectedLot;
   List<ParkingLot> parkingLots = [];
   List<ParkingSpace> parkingSpaces = [];
+  Map<String, List<num>> spaceAvailability = {};
 
 // run when change in parking lot data
   onParkingLotsChanged(List<ParkingLot> newData) {
@@ -18,6 +19,18 @@ class AppState with ChangeNotifier {
   onParkingSpacesChanged(List<ParkingSpace> newData) {
     parkingSpaces = newData + tempSpaces;
     notifyListeners();
+  }
+
+  getLotAvailability() {
+    for (ParkingLot lot in parkingLots) {
+      Iterable<ParkingSpace> lotSpaces =
+          parkingSpaces.where((element) => element.parkingLot == lot.name);
+      num total = lotSpaces.length;
+      num available = lotSpaces.where((element) => element.open).length;
+      spaceAvailability.addAll({
+        lot.name: [available, total]
+      });
+    }
   }
 
   void setLot(ParkingLot? lot) {
