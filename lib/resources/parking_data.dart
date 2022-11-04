@@ -317,10 +317,17 @@ List<ParkingSpace> tempSpaces = [
   ...tempRow('Lot9', 864, 1435, 1, 90, 1, type: SpaceType.handicapR),
   ...tempRow('Lot9', 844, 1400, 1, 90, 1, type: SpaceType.handicapL),
   
-    ...createSpaceRow('Lot14', 975, 700, 24, 0, [15, 16], 1, -1.0),  //11/2/2022
-    ...createSpaceRow('Lot14', 1000, 500, 14, 0, [6, 7], 0, -1.5),
-    ...createSpaceRow('Lot14', 675, 700, 10, 0, [], 1, 0),
-    ...createSpaceRow('Lot14', 700, 500, 14, 0, [], 0, 0),
+   ...createSpaceRow(       //Fixed conflict, data for lot14 had different parameter order, 11/3/2022
+    lot: 'Lot14',
+    x: 975,
+    y: 700,
+    count: 24,
+    direction: 0,
+    side: 1,
+    fixedR: -1.0,
+    gaps: [15, 16],
+  ),
+
     ...tempRow(
       'Lot14',
       325,
@@ -329,7 +336,37 @@ List<ParkingSpace> tempSpaces = [
       0,
       1,
     ),
-    ...tempRow('Lot14', 300, 500, 8, 0, 0),  //11/2/2022
+    ...createSpaceRow(
+    lot: 'Lot14',
+    x: 1000,
+    y: 500,
+    count: 14,
+    direction: 0,
+    side: 0,
+    fixedR: -1.5,
+    gaps: [6, 7],
+  ),
+    ...createSpaceRow(
+    lot: 'Lot14',
+    x: 675,
+    y: 700,
+    count: 10,
+    direction: 0,
+    side: 1,
+    fixedR: 0,
+    gaps: [],
+  ),
+    ...createSpaceRow(
+    lot: 'Lot14',
+    x: 700,
+    y: 500,
+    count: 14,
+    direction: 0,
+    side: 0,
+    fixedR: 0,
+    gaps: [],
+  ),
+    ...tempRow('Lot14', 300, 500, 8, 0, 0), 
     ...tempRow('Lot14', 300, 700, 1, 0, 1, type: SpaceType.handicapL),
     ...tempRow('Lot14', 500, 500, 1, 0, 0, type: SpaceType.handicapR),
     ...tempRow(
