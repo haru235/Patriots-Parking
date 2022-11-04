@@ -65,12 +65,18 @@ List<ParkingLot> tempLots = [
       name: 'Lot14',
       width: 2000,  //changed to 2000 11/2/2022
       height: 1000,
-      roadPath: []), //need to update old space data, new method will be used to add the spaces for lot14 and lot10
+      roadPath: []),
   const ParkingLot(
       name: 'Lot10',
       width: 1200,
       height: 2200,
-      roadPath: []), //spaces will be added later to github
+      roadPath: []),
+    const ParkingLot(
+    name: 'Lot7',
+    width: 2800,
+    height: 1500,
+    roadPath: [],
+  ),
   //10/16/2022 added lot15 parkinglot
 ]; // temp parking lots for testing without firebase
 List<ParkingSpace> tempSpaces = [
@@ -382,4 +388,168 @@ List<ParkingSpace> tempSpaces = [
     ...tempRow('Lot14', 1418, 400, 1, 335, 0, type: SpaceType.handicapL),
     ...tempRow('Lot14', 1450, 384, 1, 333, 0, type: SpaceType.handicapL),
     ...tempRow('Lot14', 1480, 366, 1, 330, 0, type: SpaceType.handicapL),
+  
+    ...createSpaceRow(
+    lot: 'Lot7',
+    x: 1750,
+    y: 1400,
+    count: 27,
+    direction: 10,
+    side: 1,
+    fixedR: -0.80,
+    gaps: [],
+  ),
+
+  ...createSpaceRow(
+    lot: 'Lot7',
+    x: 1750,
+    y: 1200,
+    count: 25,
+    direction: 10,
+    side: 0,
+    fixedR: -0.80,
+    gaps: [
+      4,
+      5,
+    ],
+  ),
+
+  ...createSpaceRow(
+    lot: 'Lot7',
+    x: 1700,
+    y: 1130,
+    count: 28,
+    direction: 10,
+    side: 0,
+    fixedR: -0.75,
+    gaps: [6, 7],
+  ),
+  ...createSpaceRow(
+    lot: 'Lot7',
+    x: 1710,
+    y: 1000,
+    count: 32,
+    direction: 10,
+    side: 0,
+    fixedR: -0.75,
+    gaps: [6, 7],
+  ),
+
+  ...createSpaceRow(
+    lot: 'Lot7',
+    x: 1000,
+    y: 700,
+    count: 53,
+    direction: 30,
+    side: 0,
+    fixedR: -0.70,
+    gaps: [12, 13, 14, 15, 24, 25, 26, 27, 28, 29, 30, 31, 48, 49, 50],
+  ),
+
+  ...createSpaceRow(
+    lot: 'Lot7',
+    x: 1035,
+    y: 600,
+    count: 39,
+    direction: 30,
+    side: 1,
+    fixedR: -0.72,
+    gaps: [
+      3,
+      4,
+      12,
+      13,
+      14,
+      15,
+      
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48
+    ],
+  ),
+
+  ...createSpaceRow(
+    lot: 'Lot7',
+    x: 1060,
+    y: 530,
+    count: 41,
+    direction: 30,
+    side: 1,
+    fixedR: -0.72,
+    gaps: [
+      12,
+      13,
+      14,
+
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      
+      
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      
+    ],
+  ),
+
+  ...tempRow('Lot7', 180, 80, 31, 30, 0),
+
+  ...createSpaceRow(
+    lot: 'Lot7',
+    x: 1035,
+    y: 350,
+    count: 48,
+    direction: 32,
+    side: 1,
+    fixedR: -0.72,
+    gaps: [23, 24, 25, 26, 35, 36],
+  ),
+
+  ...createSpaceRow(
+    lot: 'Lot7',
+    x: 305,
+    y: 30,
+    count: 19,
+    direction: 31,
+    side: 1,
+    fixedR: 0.00,
+    gaps: [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+    ],
+  ),
 ]; // added to firestore @ 10/17/22
