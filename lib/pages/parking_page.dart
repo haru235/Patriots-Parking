@@ -159,8 +159,8 @@ class _HomePageState extends State<HomePage> {
                               decoration: BoxDecoration(
                                 color:
                                     lot == locator.get<AppState>().selectedLot
-                                        ? Color.fromARGB(255, 19, 41, 205)
-                                        : Color.fromARGB(255, 238, 242, 6),
+                                        ? Colors.white
+                                        : Colors.grey,
                                 border: Border.all(),
                               ),
                               child: Text(lot.name),
