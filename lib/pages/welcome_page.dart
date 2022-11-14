@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutterfire_ui/auth.dart';
 import 'package:patriots_parking/pages/signin_page.dart';
 
 class WelcomePage extends StatelessWidget {

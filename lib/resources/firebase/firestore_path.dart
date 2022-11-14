@@ -5,7 +5,7 @@ class FirestorePath {
 
   static String parkingSpaces() => 'spaces';
   static String parkingSpace(String id) => 'spaces/$id';
-  
-  static String StatisticalData() => 'StatisticalDatanull';
-  static String StatisticalData_(String id) => 'StatisticalDatanull/$id';
+
+  static String statisticalData() => 'StatisticalDatanull';
+  static String statisticalData_(String id) => 'StatisticalDatanull/$id';
 }

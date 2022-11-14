@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patriots_parking/models/Statistical_Data.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
-import 'package:patriots_parking/models/parking_space.dart';
 import 'package:patriots_parking/resources/app_state.dart';
 import 'package:patriots_parking/resources/firebase/auth_methods.dart';
 import 'package:patriots_parking/resources/firebase/firestore_methods.dart';
@@ -173,19 +172,34 @@ class _HomePageState extends State<HomePage> {
                           ),
                           Expanded(
                             flex: 1,
-                            child: locator
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 8),
+                              child: Builder(builder: (context) {
+                                List<StatisticalData> dataMatch = locator
                                     .get<AppState>()
-                                    .Statistical_Data
+                                    .parkingData
                                     .where((element) =>
-                                        element.parkinglot_Name == lot.name)
-                                    .isNotEmpty
-                                ? locator
-                                    .get<AppState>()
-                                    .Statistical_Data
-                                    .where((element) =>
-                                        element.parkinglot_Name == lot.name)
-                                    .first
-                                : Container(),
+                                        element.parkingLotName == lot.name)
+                                    .toList();
+                                if (dataMatch.isNotEmpty) {
+                                  StatisticalData data = dataMatch.first;
+                                  return Container(
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                        color: data.available! > data.total! / 2
+                                            ? Colors.blue
+                                            : Colors.yellow),
+                                    child: Center(
+                                      child: Text(
+                                        '${data.available} Available',
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  );
+                                }
+                                return Container();
+                              }),
+                            ),
                           ),
                         ],
                       ),

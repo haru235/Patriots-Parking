@@ -18,10 +18,10 @@ void main() async {
   runApp(MultiProvider(providers: [
     Provider<StatisticalData>(
         create: (context) => StatisticalData(
-              Total: 0,
-              Available: 0,
-              Occupied: 0,
-              parkinglot_Name: 'Lot18',
+              total: 0,
+              available: 0,
+              occupied: 0,
+              parkingLotName: 'Lot18',
             ))
   ], child: const MyApp()));
 }

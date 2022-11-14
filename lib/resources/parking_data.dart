@@ -123,16 +123,16 @@ List<ParkingLot> tempLots = [
 ];
 List<StatisticalData> tempData = [
   StatisticalData(
-    Available: 50,
-    Total: 50,
-    Occupied: 0,
-    parkinglot_Name: 'Lot18',
+    available: 50,
+    total: 50,
+    occupied: 0,
+    parkingLotName: 'Lot18',
   ),
   StatisticalData(
-    Available: 80,
-    Occupied: 0,
-    Total: 80,
-    parkinglot_Name: 'Lot15',
+    available: 80,
+    occupied: 0,
+    total: 80,
+    parkingLotName: 'Lot15',
   )
 ];
 // temp parking lots for testing without firebase

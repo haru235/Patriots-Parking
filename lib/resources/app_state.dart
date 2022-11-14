@@ -9,7 +9,7 @@ class AppState with ChangeNotifier {
   ParkingSpace? selectedSpace;
   List<ParkingLot> parkingLots = [];
   List<ParkingSpace> parkingSpaces = [];
-  List<StatisticalData> Statistical_Data = [];
+  List<StatisticalData> parkingData = [];
   StatisticalData? data;
   Map<String, List<num>> spaceAvailability = {};
 
@@ -27,19 +27,7 @@ class AppState with ChangeNotifier {
   }
 
   onStatisticalDataChanged(List<StatisticalData> newData) {
-    Statistical_Data = newData + tempData;
-  }
-
-  getLotAvailability() {
-    for (ParkingLot lot in parkingLots) {
-      Iterable<ParkingSpace> lotSpaces =
-          parkingSpaces.where((element) => element.parkingLot == lot.name);
-      num total = lotSpaces.length;
-      num available = lotSpaces.where((element) => element.open).length;
-      spaceAvailability.addAll({
-        lot.name: [available, total]
-      });
-    }
+    parkingData = newData + tempData;
   }
 
   void setLot(ParkingLot? lot) {
@@ -51,13 +39,13 @@ class AppState with ChangeNotifier {
     return parkingLots.where((element) => element.name == name).first;
   }
 
-  int getStatisticalData(ParkingSpace space) {
+  int getStatisticalData(String lot) {
     int index = -1;
-    String name = space.parkingLot;
-    for (var i = 0; i < Statistical_Data.length; i++) {
-      if (name == Statistical_Data[i].parkinglot_Name) {
+    String name = lot;
+    for (var i = 0; i < parkingData.length; i++) {
+      if (name == parkingData[i].parkingLotName) {
         index = i;
-        i = Statistical_Data.length;
+        break;
       }
     }
     return index;

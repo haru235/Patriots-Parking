@@ -13,12 +13,11 @@ class FirestoreMethods {
   final FirestoreService _firestoreService = FirestoreService.instance;
   late StreamSubscription _parkingLotsSubscription;
   late StreamSubscription _parkingSpacesSubscription;
-  late StreamSubscription _StatisticalDataSubscription;
+  late StreamSubscription _statisticalDataSubscription;
 
 // subscripe to database collections
   Future<void> initializeSubscriptions() async {
     locator.get<AppState>().onParkingLotsChanged([]);
-    locator.get<AppState>().onParkingSpacesChanged([]);
     _parkingLotsSubscription = _firestoreService
         .collectionStream(
             path: '/parkingLots', builder: (data) => ParkingLot.fromJson(data))
@@ -33,10 +32,9 @@ class FirestoreMethods {
         .listen((event) {
       locator.get<AppState>().onParkingSpacesChanged(event);
     });
-
-    _StatisticalDataSubscription = _firestoreService
+    _statisticalDataSubscription = _firestoreService
         .collectionStream(
-            path: FirestorePath.StatisticalData(),
+            path: FirestorePath.statisticalData(),
             builder: (data) => StatisticalData.fromJson(data))
         .listen((event) {
       locator.get<AppState>().onStatisticalDataChanged(event);
@@ -47,18 +45,21 @@ class FirestoreMethods {
   Future<void> pauseSubscriptions() async {
     _parkingLotsSubscription.pause();
     _parkingSpacesSubscription.pause();
+    _statisticalDataSubscription.pause();
   }
 
 // resume subscriptions
   Future<void> resumeSubscriptions() async {
     _parkingLotsSubscription.resume();
     _parkingSpacesSubscription.resume();
+    _statisticalDataSubscription.resume();
   }
 
 // cancel subscriptions
   Future<void> cancelSubscriptions() async {
     _parkingLotsSubscription.cancel();
     _parkingSpacesSubscription.cancel();
+    _statisticalDataSubscription.cancel();
   }
 
 // toggle parking space state
@@ -66,7 +67,7 @@ class FirestoreMethods {
     int i;
     StatisticalData temp;
     DateTime time = DateTime.now();
-    if (space.open && space.timeTaken != null) {
+    if (!space.open && space.timeTaken != null) {
       time.difference(space.timeTaken!);
       debugPrint('Space ${space.id} released after $time.');
     }
@@ -88,16 +89,16 @@ class FirestoreMethods {
             },
     );
 
-    i = locator.get<AppState>().getStatisticalData(space);
-    temp = locator.get<AppState>().Statistical_Data[i];
+    i = locator.get<AppState>().getStatisticalData(space.parkingLot);
+    temp = locator.get<AppState>().parkingData[i];
 
     if (space.open) {
-      temp.Available = temp.Available! - 1;
+      temp.available = temp.available! - 1;
       //FirestoreService.instance.updateDocument(
       //path: FirestorePath.StatisticalData_(temp.id!),
       // data: {'Available': temp.Available! - 1});
     } else {
-      temp.Available = temp.Available! + 1;
+      temp.available = temp.available! + 1;
       //FirestoreService.instance.updateDocument(
       //   path: FirestorePath.StatisticalData_(temp.id!),
       //  data: {'Available': temp.Available! + 1});

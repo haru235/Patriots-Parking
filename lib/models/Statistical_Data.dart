@@ -13,30 +13,30 @@ import 'package:flutter/material.dart';
 //updated main, added multiprovider, not sure if needed.
 
 //11/14/2022
-class StatisticalData extends StatefulWidget {
+class StatisticalData {
   // String parkinglot_Name;
   String? id;
-  num? Total;
-  num? Available;
-  num? Occupied;
-  String? parkinglot_Name;
+  num? total;
+  num? available;
+  num? occupied;
+  String? parkingLotName;
 
   StatisticalData({
     //required this.parkinglot_Name,
     this.id = '',
-    required this.Total,
-    required this.Available,
-    required this.Occupied,
-    required this.parkinglot_Name,
+    required this.total,
+    required this.available,
+    required this.occupied,
+    required this.parkingLotName,
     Key? key,
-  }) : super(key: key);
+  });
 
   StatisticalData.widgetc(StatisticalData temp) {
-    this.Available = temp.Available;
-    this.Total = temp.Total;
-    this.Occupied = temp.Occupied;
-    this.id = temp.id;
-    this.parkinglot_Name = temp.parkinglot_Name;
+    available = temp.available;
+    total = temp.total;
+    occupied = temp.occupied;
+    id = temp.id;
+    parkingLotName = temp.parkingLotName;
   }
 /*
   const StatisticalDatawidget ({
@@ -50,20 +50,20 @@ class StatisticalData extends StatefulWidget {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'Total': Total,
-      'Available': Available,
-      'Occupied': Occupied,
-      'parking lot': parkinglot_Name
+      'Total': total,
+      'Available': available,
+      'Occupied': occupied,
+      'parking lot': parkingLotName
     };
   }
 
   static StatisticalData fromJson(Map<String, dynamic> json) {
     return StatisticalData(
       id: json['id'],
-      Total: json['Total'],
-      Available: json['Available'],
-      Occupied: json['Occupied'],
-      parkinglot_Name: json['parking lot'],
+      total: json['Total'],
+      available: json['Available'],
+      occupied: json['Occupied'],
+      parkingLotName: json['parking lot'],
     );
   }
 
@@ -85,20 +85,4 @@ class StatisticalData extends StatefulWidget {
       return false;
   }
 */
-  @override
-  State<StatisticalData> createState() => _StatisticalDataState();
-}
-
-class _StatisticalDataState extends State<StatisticalData> {
-  @override
-  Widget build(BuildContext context) {
-    //StatisticalData? temp;
-    return Container(
-        height: 50,
-        decoration: BoxDecoration(
-            color: widget.Available! > widget.Total! / 2
-                ? Colors.blue
-                : Colors.yellow),
-        child: Center(child: Text(widget.Available.toString())));
-  }
 }

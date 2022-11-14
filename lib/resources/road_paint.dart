@@ -36,8 +36,6 @@ class RoadPaint extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true; // // (HS 10/5/22 @ 1:27AM) to avoid error
-    // TODO: implement shouldRepaint
-    throw UnimplementedError();
+    return false;
   }
 }
