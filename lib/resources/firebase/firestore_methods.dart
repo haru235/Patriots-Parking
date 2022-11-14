@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:patriots_parking/models/Statistical_Data.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
 import 'package:patriots_parking/models/parking_space.dart';
 import 'package:patriots_parking/resources/app_state.dart';
@@ -12,6 +13,7 @@ class FirestoreMethods {
   final FirestoreService _firestoreService = FirestoreService.instance;
   late StreamSubscription _parkingLotsSubscription;
   late StreamSubscription _parkingSpacesSubscription;
+  late StreamSubscription _StatisticalDataSubscription;
 
 // subscripe to database collections
   Future<void> initializeSubscriptions() async {
@@ -28,6 +30,14 @@ class FirestoreMethods {
             builder: (data) => ParkingSpace.fromJson(data))
         .listen((event) {
       locator.get<AppState>().onParkingSpacesChanged(event);
+    });
+
+    _StatisticalDataSubscription = _firestoreService
+        .collectionStream(
+            path: FirestorePath.StatisticalData(),
+            builder: (data) => StatisticalData.fromJson(data))
+        .listen((event) {
+      locator.get<AppState>().onStatisticalDataChanged(event);
     });
   }
 
@@ -59,7 +69,8 @@ class FirestoreMethods {
       debugPrint('Space ${space.id} released after $time.');
     }
 
-   
+    // i = locator.get<AppState>().getStatisticalData(space);
+    //temp = locator.get<AppState>().Statistical_Data[i];
     FirestoreService.instance.updateDocument(
       path: FirestorePath.parkingSpace(space.id),
       data: space.open
