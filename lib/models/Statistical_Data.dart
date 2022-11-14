@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 //added new class for statisticaldata
@@ -95,12 +94,11 @@ class _StatisticalDataState extends State<StatisticalData> {
   Widget build(BuildContext context) {
     //StatisticalData? temp;
     return Container(
-        width: 25,
         height: 50,
         decoration: BoxDecoration(
             color: widget.Available! > widget.Total! / 2
                 ? Colors.blue
                 : Colors.yellow),
-        child: Text('${widget.Available}'));
+        child: Center(child: Text(widget.Available.toString())));
   }
 }

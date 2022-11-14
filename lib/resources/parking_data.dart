@@ -335,7 +335,6 @@ List<ParkingSpace> tempSpaces = [
       55,
     ],
   ),
-
   ...createSpaceRow(
     lot: 'Lot10',
     x: 410,
@@ -379,7 +378,6 @@ List<ParkingSpace> tempSpaces = [
   ...tempRow('Lot9', 884, 1460, 1, 90, 1),
   ...tempRow('Lot9', 864, 1435, 1, 90, 1, type: SpaceType.handicapR),
   ...tempRow('Lot9', 844, 1400, 1, 90, 1, type: SpaceType.handicapL),
-
   ...createSpaceRow(
     //Fixed conflict, data for lot14 had different parameter order, 11/3/2022
     lot: 'Lot14',
@@ -391,7 +389,6 @@ List<ParkingSpace> tempSpaces = [
     fixedR: -1.0,
     gaps: [15, 16],
   ),
-
   ...tempRow(
     'Lot14',
     325,
@@ -446,7 +443,6 @@ List<ParkingSpace> tempSpaces = [
   ...tempRow('Lot14', 1418, 400, 1, 335, 0, type: SpaceType.handicapL),
   ...tempRow('Lot14', 1450, 384, 1, 333, 0, type: SpaceType.handicapL),
   ...tempRow('Lot14', 1480, 366, 1, 330, 0, type: SpaceType.handicapL),
-
   ...createSpaceRow(
     lot: 'Lot7',
     x: 1750,
@@ -457,7 +453,6 @@ List<ParkingSpace> tempSpaces = [
     fixedR: -0.80,
     gaps: [],
   ),
-
   ...createSpaceRow(
     lot: 'Lot7',
     x: 1750,
@@ -471,7 +466,6 @@ List<ParkingSpace> tempSpaces = [
       5,
     ],
   ),
-
   ...createSpaceRow(
     lot: 'Lot7',
     x: 1700,
@@ -492,7 +486,6 @@ List<ParkingSpace> tempSpaces = [
     fixedR: -0.75,
     gaps: [6, 7],
   ),
-
   ...createSpaceRow(
     lot: 'Lot7',
     x: 1000,
@@ -503,7 +496,6 @@ List<ParkingSpace> tempSpaces = [
     fixedR: -0.70,
     gaps: [12, 13, 14, 15, 24, 25, 26, 27, 28, 29, 30, 31, 48, 49, 50],
   ),
-
   ...createSpaceRow(
     lot: 'Lot7',
     x: 1035,
@@ -540,7 +532,6 @@ List<ParkingSpace> tempSpaces = [
       48
     ],
   ),
-
   ...createSpaceRow(
     lot: 'Lot7',
     x: 1060,
@@ -573,9 +564,7 @@ List<ParkingSpace> tempSpaces = [
       47,
     ],
   ),
-
   ...tempRow('Lot7', 180, 80, 31, 30, 0),
-
   ...createSpaceRow(
     lot: 'Lot7',
     x: 1035,
@@ -586,7 +575,6 @@ List<ParkingSpace> tempSpaces = [
     fixedR: -0.72,
     gaps: [23, 24, 25, 26, 35, 36],
   ),
-
   ...createSpaceRow(
     lot: 'Lot7',
     x: 305,

@@ -139,45 +139,58 @@ class _HomePageState extends State<HomePage> {
                 context: context,
                 title: 'Parking Lots',
                 children: [
-                  Row(
-                    children: [
-                      Column(children: [
-                        for (ParkingLot lot
-                            in locator.get<AppState>().parkingLots) ...[
-                          // update selected lot when clicked
-                          GestureDetector(
-                            onTap: () => setState(() {
-                              locator.get<AppState>().setLot(lot);
-                              Navigator.pop(context);
-                            }),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                                vertical: 4,
-                              ),
-                              child: Container(
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color:
-                                      lot == locator.get<AppState>().selectedLot
-                                          ? Colors.white
-                                          : Colors.grey,
-                                  border: Border.all(),
+                  Column(children: [
+                    for (ParkingLot lot
+                        in locator.get<AppState>().parkingLots) ...[
+                      // update selected lot when clicked
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 4,
+                            child: GestureDetector(
+                              onTap: () => setState(() {
+                                locator.get<AppState>().setLot(lot);
+                                Navigator.pop(context);
+                              }),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 4,
                                 ),
-                                child: Text(lot.name),
+                                child: Container(
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color: lot ==
+                                            locator.get<AppState>().selectedLot
+                                        ? Colors.white
+                                        : Colors.grey,
+                                    border: Border.all(),
+                                  ),
+                                  child: Center(child: Text(lot.name)),
+                                ),
                               ),
                             ),
                           ),
-                        ]
-                      ]),
-                      Column(children: [
-                        for (StatisticalData data
-                            in locator.get<AppState>().Statistical_Data) ...[
-                          StatisticalData.widgetc(data)
-                        ]
-                      ])
-                    ],
-                  )
+                          Expanded(
+                            flex: 1,
+                            child: locator
+                                    .get<AppState>()
+                                    .Statistical_Data
+                                    .where((element) =>
+                                        element.parkinglot_Name == lot.name)
+                                    .isNotEmpty
+                                ? locator
+                                    .get<AppState>()
+                                    .Statistical_Data
+                                    .where((element) =>
+                                        element.parkinglot_Name == lot.name)
+                                    .first
+                                : Container(),
+                          ),
+                        ],
+                      ),
+                    ]
+                  ])
                 ]);
           },
         ),
