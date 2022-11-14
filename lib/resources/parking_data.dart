@@ -2,6 +2,7 @@ import 'package:patriots_parking/resources/documentcreate.dart';
 import 'package:patriots_parking/resources/lot_methods.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
 import 'package:patriots_parking/models/parking_space.dart';
+import 'package:patriots_parking/models/Statistical_Data.dart';
 
 List<ParkingLot> tempLots = [
   const ParkingLot(
