@@ -58,8 +58,8 @@ class ParkingButton extends StatelessWidget {
                 ),
               )
             : Text(
-                name,
-                style: const TextStyle(color: Colors.white),
+                name.replaceFirst('Lot', 'P'),
+                style: const TextStyle(fontSize: 10, color: Colors.white),
               ),
       ),
     );
