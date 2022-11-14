@@ -51,31 +51,44 @@ class FirestoreMethods {
 
 // toggle parking space state
   Future<void> toggleSpace(ParkingSpace space) async {
+    int i;
+    StatisticalData temp;
     DateTime time = DateTime.now();
     if (space.open && space.timeTaken != null) {
       time.difference(space.timeTaken!);
       debugPrint('Space ${space.id} released after $time.');
     }
+
+   
     FirestoreService.instance.updateDocument(
       path: FirestorePath.parkingSpace(space.id),
       data: space.open
           ? {
               'open': !space.open,
               'timeTaken': time,
+              //decrease available
             }
           : {
               'open': !space.open,
               'timeOpened': time,
+              //increase available
             },
     );
-    /*
-        i = locator.get<AppState>().getStatisticalData(space);
+
+    i = locator.get<AppState>().getStatisticalData(space);
+    temp = locator.get<AppState>().Statistical_Data[i];
+
     if (space.open) {
-      locator.get<AppState>().Statistical_Data[i].increaseStatiticalData(i);
+      temp.Available = temp.Available! - 1;
+      //FirestoreService.instance.updateDocument(
+      //path: FirestorePath.StatisticalData_(temp.id!),
+      // data: {'Available': temp.Available! - 1});
     } else {
-      locator.get<AppState>().Statistical_Data[i].decreaseStatiticalData(i);
+      temp.Available = temp.Available! + 1;
+      //FirestoreService.instance.updateDocument(
+      //   path: FirestorePath.StatisticalData_(temp.id!),
+      //  data: {'Available': temp.Available! + 1});
     }
-    */
   }
 
   // adds parking space to 'spaces' collection
