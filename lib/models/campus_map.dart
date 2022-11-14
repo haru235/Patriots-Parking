@@ -20,7 +20,7 @@ class CampusMap extends StatelessWidget {
           fit: BoxFit.contain,
         ),
         for (ParkingLot lot in tempLots) ...[
-          for (List<num> data in lot.buttonList) ...[
+          for (List<num> data in lot.buttonData) ...[
             ParkingButton1(name: lot.name, data: data),
           ]
         ],
@@ -47,13 +47,21 @@ class ParkingButton1 extends StatelessWidget {
           ? Transform.rotate(
               alignment: Alignment.topLeft,
               angle: data[4].toDouble() / 180 * pi,
-              child: Container(
-                width: data[2].toDouble(),
-                height: data[3].toDouble(),
-                color: const Color.fromARGB(98, 128, 0, 0),
+              child: GestureDetector(
+                onTap: () => locator
+                    .get<AppState>()
+                    .setLot(locator.get<AppState>().getLotByName(name)),
+                child: Container(
+                  width: data[2].toDouble(),
+                  height: data[3].toDouble(),
+                  color: Colors.deepPurple,
+                ),
               ),
             )
-          : Text(name),
+          : Text(
+              name,
+              style: const TextStyle(color: Colors.white),
+            ),
     );
   }
 }

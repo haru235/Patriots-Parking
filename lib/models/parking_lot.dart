@@ -14,7 +14,7 @@ class ParkingLot extends StatelessWidget {
   final num mapX;
   final num mapY;
   final num mapR;
-  final List<List<num>> buttonList;
+  final List<List<num>> buttonData;
   final List<List<num>> roadPath;
   const ParkingLot({
     this.id = '',
@@ -24,7 +24,7 @@ class ParkingLot extends StatelessWidget {
     required this.mapX,
     required this.mapY,
     required this.mapR,
-    this.buttonList = const [],
+    this.buttonData = const [],
     this.roadPath = const [],
     super.key,
   });
@@ -39,7 +39,7 @@ class ParkingLot extends StatelessWidget {
       'mapX': mapX,
       'mapY': mapY,
       'mapR': mapR,
-      'buttonList': buttonList,
+      'buttonList': buttonData,
       'roadPath': roadPath,
     };
   }
@@ -54,7 +54,7 @@ class ParkingLot extends StatelessWidget {
       mapX: json['mapX'],
       mapY: json['mapY'],
       mapR: json['mapR'],
-      buttonList: json['buttonList'] ?? [],
+      buttonData: json['buttonList'] ?? [],
       roadPath: json['roadPath'] ?? [],
     );
   }

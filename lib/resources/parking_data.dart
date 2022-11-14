@@ -8,12 +8,9 @@ List<ParkingLot> tempLots = [
     name: 'Lot18',
     width: 700,
     height: 800,
-    mapX: 460 - 20,
-    mapY: 672 + 15,
-    mapR: 20,
-    buttonList: [
+    buttonData: [
       [439, 685, 43, 43, 0],
-      [439, 695],
+      [446, 704],
     ],
     roadPath: [
       [100, 800, 100, 425],
@@ -39,13 +36,10 @@ List<ParkingLot> tempLots = [
     name: 'Lot15',
     width: 1300,
     height: 1000,
-    mapX: 0,
-    mapY: 0,
-    mapR: 10,
-    buttonList: [
+    buttonData: [
       [602, 675, 55, 43, -35],
       [620, 683, 52, 100, -6],
-      [625, 700]
+      [634, 706],
     ],
     roadPath: [
       [1300, 900, 75, 900], //entrance into Soules College
@@ -74,16 +68,13 @@ List<ParkingLot> tempLots = [
     name: 'Lot9',
     width: 2000,
     height: 2000,
-    mapX: 0,
-    mapY: 0,
-    mapR: 10,
-    buttonList: [
+    buttonData: [
       [378, 360, 10, 26, -60],
       [383, 351.5, 20, 25, -40],
       [398, 339, 12, 25, -30],
       [408, 333, 20, 25, -20],
       [427, 326, 10, 26, 0],
-      [378, 360],
+      [400, 346],
     ],
     roadPath: [],
   ),
@@ -91,11 +82,10 @@ List<ParkingLot> tempLots = [
     name: 'Lot14',
     width: 2000, //changed to 2000 11/2/2022
     height: 1000,
-    mapX: 0,
-    mapY: 0,
-    mapR: 10,
-    buttonList: [
-      [120, 525, 90, 40, 10],
+    buttonData: [
+      [120, 525, 88, 41, 10],
+      [206, 540, 62, 45, 35],
+      [164, 550],
     ],
     roadPath: [],
   ),
@@ -103,18 +93,27 @@ List<ParkingLot> tempLots = [
     name: 'Lot10',
     width: 1200,
     height: 2200,
-    mapX: 0,
-    mapY: 0,
-    mapR: 10,
+    buttonData: [
+      [343, 487, 30, 34, 12],
+      [338, 515, 30, 30, 22],
+      [343, 567, 30, 18, -137],
+      [277, 577, 60, 30, -35],
+      [320, 546],
+    ],
     roadPath: [],
   ),
   const ParkingLot(
     name: 'Lot7',
     width: 2800,
     height: 1500,
-    mapX: 0,
-    mapY: 0,
-    mapR: 10,
+    buttonData: [
+      [526, 265, 60, 13, -15],
+      [580, 238, 30, 24, 0],
+      [610, 238, 30, 24, 10],
+      [639, 243, 30, 24, 15],
+      [667, 251, 40, 24, 30],
+      [624, 250],
+    ],
     roadPath: [],
   ),
   //10/16/2022 added lot15 parkinglot
