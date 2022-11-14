@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:patriots_parking/models/Statistical_Data.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
+import 'package:patriots_parking/models/parking_space.dart';
 import 'package:patriots_parking/resources/app_state.dart';
 import 'package:patriots_parking/resources/firebase/auth_methods.dart';
 import 'package:patriots_parking/resources/firebase/firestore_methods.dart';
@@ -72,7 +74,11 @@ class _HomePageState extends State<HomePage> {
       ),
       // listen to changes in selected lot
       body: Selector<AppState, ParkingLot?>(
-          selector: (p0, p1) => p1.selectedLot,
+          selector: (
+            p0,
+            p1,
+          ) =>
+              p1.selectedLot,
           builder: (_, selected, __) {
             return Stack(
               children: [
@@ -129,38 +135,48 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           // parking lot selection list
           tapDismissibleModalSheet(
-            context: context,
-            title: 'Parking Lots',
-            children: [
-              for (ParkingLot lot in locator.get<AppState>().parkingLots) ...[
-                // update selected lot when clicked
-                GestureDetector(
-                  onTap: () => setState(() {
-                    locator.get<AppState>().setLot(lot);
-                    Navigator.pop(context);
-                  }),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
-                    child: Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: lot == locator.get<AppState>().selectedLot
-                            ? Colors.grey
-                            : Colors.white,
-                        border: Border.all(),
-                      ),
-                      child: Center(
-                        child: Text(lot.name),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ],
-          );
+              context: context,
+              title: 'Parking Lots',
+              children: [
+                Row(
+                  children: [
+                    Column(children: [
+                      for (ParkingLot lot
+                          in locator.get<AppState>().parkingLots) ...[
+                        // update selected lot when clicked
+                        GestureDetector(
+                          onTap: () => setState(() {
+                            locator.get<AppState>().setLot(lot);
+                            Navigator.pop(context);
+                          }),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
+                            child: Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color:
+                                    lot == locator.get<AppState>().selectedLot
+                                        ? Colors.white
+                                        : Colors.grey,
+                                border: Border.all(),
+                              ),
+                              child: Text(lot.name),
+                            ),
+                          ),
+                        ),
+                      ]
+                    ]),
+                    Column(children: [
+                      for (StatisticalData data in locator
+                          .get<AppState>()
+                          .Statistical_Data) ...[StatisticalData.widgetc(data)]
+                    ])
+                  ],
+                )
+              ]);
         },
       ),
     );

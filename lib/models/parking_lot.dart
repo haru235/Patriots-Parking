@@ -11,9 +11,6 @@ class ParkingLot extends StatelessWidget {
   final String name;
   final num width;
   final num height;
-  final num mapX;
-  final num mapY;
-  final num mapR;
   final List<List<num>> buttonData;
   final List<List<num>> roadPath;
   const ParkingLot({
@@ -21,9 +18,6 @@ class ParkingLot extends StatelessWidget {
     required this.name,
     required this.width,
     required this.height,
-    required this.mapX,
-    required this.mapY,
-    required this.mapR,
     this.buttonData = const [],
     this.roadPath = const [],
     super.key,
@@ -36,9 +30,6 @@ class ParkingLot extends StatelessWidget {
       'name': name,
       'width': width,
       'height': height,
-      'mapX': mapX,
-      'mapY': mapY,
-      'mapR': mapR,
       'buttonList': buttonData,
       'roadPath': roadPath,
     };
@@ -51,9 +42,6 @@ class ParkingLot extends StatelessWidget {
       name: json['name'],
       height: json['height'],
       width: json['width'],
-      mapX: json['mapX'],
-      mapY: json['mapY'],
-      mapR: json['mapR'],
       buttonData: json['buttonList'] ?? [],
       roadPath: json['roadPath'] ?? [],
     );

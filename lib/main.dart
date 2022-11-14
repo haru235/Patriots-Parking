@@ -7,6 +7,7 @@ import 'package:patriots_parking/resources/app_state.dart';
 import 'package:patriots_parking/resources/firebase/auth_methods.dart';
 import 'package:patriots_parking/resources/locator.dart';
 import 'package:provider/provider.dart';
+import 'package:patriots_parking/models/Statistical_Data.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,7 +15,15 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   setUpLocator();
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    Provider<StatisticalData>(
+        create: (context) => StatisticalData(
+              Total: 0,
+              Available: 0,
+              Occupied: 0,
+              parkinglot_Name: 'Lot18',
+            ))
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

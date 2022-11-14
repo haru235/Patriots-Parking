@@ -1,12 +1,16 @@
 import 'package:flutter/cupertino.dart';
+import 'package:patriots_parking/models/Statistical_Data.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
 import 'package:patriots_parking/models/parking_space.dart';
 import 'package:patriots_parking/resources/parking_data.dart';
 
 class AppState with ChangeNotifier {
   ParkingLot? selectedLot;
+  ParkingSpace? selectedSpace;
   List<ParkingLot> parkingLots = [];
   List<ParkingSpace> parkingSpaces = [];
+  List<StatisticalData> Statistical_Data = [];
+  StatisticalData? data;
   Map<String, List<num>> spaceAvailability = {};
 
 // run when change in parking lot data
@@ -19,6 +23,10 @@ class AppState with ChangeNotifier {
   onParkingSpacesChanged(List<ParkingSpace> newData) {
     parkingSpaces = newData + tempSpaces;
     notifyListeners();
+  }
+
+  onStatisticalDataChanged(List<StatisticalData> newData) {
+    Statistical_Data = newData + tempData;
   }
 
   getLotAvailability() {
@@ -41,8 +49,8 @@ class AppState with ChangeNotifier {
   ParkingLot getLotByName(String name) {
     return parkingLots.where((element) => element.name == name).first;
   }
-  /* 
-    int getStatisticalData(ParkingSpace space) {
+
+  int getStatisticalData(ParkingSpace space) {
     int index = -1;
     String name = space.parkingLot;
     for (var i = 0; i < Statistical_Data.length; i++) {
@@ -53,6 +61,4 @@ class AppState with ChangeNotifier {
     }
     return index;
   }
-  
-  */
 }

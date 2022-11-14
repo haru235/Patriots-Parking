@@ -2,6 +2,7 @@ import 'package:patriots_parking/resources/documentcreate.dart';
 import 'package:patriots_parking/resources/lot_methods.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
 import 'package:patriots_parking/models/parking_space.dart';
+import 'package:patriots_parking/models/Statistical_Data.dart';
 
 List<ParkingLot> tempLots = [
   const ParkingLot(
@@ -63,6 +64,7 @@ List<ParkingLot> tempLots = [
       //the four lines to create the curve on the top   //ends here for roads
     ],
   ),
+
   const ParkingLot(
     //To Test new method to draw spaces rows with gaps
     name: 'Lot9',
@@ -116,8 +118,24 @@ List<ParkingLot> tempLots = [
     ],
     roadPath: [],
   ),
+
   //10/16/2022 added lot15 parkinglot
-]; // temp parking lots for testing without firebase
+];
+List<StatisticalData> tempData = [
+  StatisticalData(
+    Available: 50,
+    Total: 50,
+    Occupied: 0,
+    parkinglot_Name: 'Lot18',
+  ),
+  StatisticalData(
+    Available: 80,
+    Occupied: 0,
+    Total: 80,
+    parkinglot_Name: 'Lot15',
+  )
+];
+// temp parking lots for testing without firebase
 List<ParkingSpace> tempSpaces = [
   // added to firestore @ 10/17/22
   //...tempRow('Lot18', 175, 100, 5, 0, 0),
