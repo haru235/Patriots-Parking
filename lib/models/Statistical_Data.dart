@@ -1,7 +1,19 @@
 
 import 'package:flutter/material.dart';
 
+//added new class for statisticaldata
+//number of Available spaces contained in a box next to parking lot number
+//box changes colors.  if many available, box is blue, if not many available, box is yellow
+//users don't have to tap every lot to see which ones have spaces open, users can just look at the available spaces box
+//less usage of mobile device while finding spaces = more safety, requirmenet phase 1
+//statistical data can be scalable with more type of data in the future, requirement phase 1
+//updated firestore methods, togglespace method, gets lot number of space tapped, matches names with statistical data's assigned parking lot
+//updated parking page, layout of widgets
+//updated Appstate, needed variables
+//updated firestorepaths, for new database collection
+//updated main, added multiprovider, not sure if needed.
 
+//11/14/2022
 class StatisticalData extends StatefulWidget {
   // String parkinglot_Name;
   String? id;
