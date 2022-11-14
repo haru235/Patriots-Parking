@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
 import 'package:patriots_parking/resources/app_state.dart';
 import 'package:patriots_parking/resources/locator.dart';
+import 'package:patriots_parking/resources/parking_data.dart';
 
 class CampusMap extends StatelessWidget {
   const CampusMap({Key? key}) : super(key: key);
@@ -16,37 +19,70 @@ class CampusMap extends StatelessWidget {
           image: AssetImage('assets/uttylerMap.jpg'),
           fit: BoxFit.contain,
         ),
-        for (ParkingLot lot in locator.get<AppState>().parkingLots) ...[
-          ParkingButton(x: lot.mapX, y: lot.mapY, name: lot.name)
-        ]
+        for (ParkingLot lot in tempLots) ...[
+          for (List<num> data in lot.buttonList) ...[
+            ParkingButton1(name: lot.name, data: data),
+          ]
+        ],
       ],
     );
   }
 }
 
-class ParkingButton extends StatelessWidget {
-  final num? x;
-  final num? y;
+class ParkingButton1 extends StatelessWidget {
   final String name;
-  final double radius;
-  const ParkingButton({
-    this.x = 0,
-    this.y = 0,
+  final List<num> data;
+  const ParkingButton1({
     required this.name,
-    this.radius = 25,
+    required this.data,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
+      left: data[0].toDouble(),
+      top: data[1].toDouble(),
+      child: data.length == 5
+          ? Transform.rotate(
+              alignment: Alignment.topLeft,
+              angle: data[4].toDouble() / 180 * pi,
+              child: Container(
+                width: data[2].toDouble(),
+                height: data[3].toDouble(),
+                color: const Color.fromARGB(98, 128, 0, 0),
+              ),
+            )
+          : Text(name),
+    );
+  }
+}
+
+class ParkingButton extends StatelessWidget {
+  final String name;
+  final double x;
+  final double y;
+  final double r;
+  const ParkingButton({
+    required this.name,
+    this.x = 0,
+    this.y = 0,
+    this.r = 0,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      left: x,
+      top: y,
       child: GestureDetector(
         onTap: () => locator
             .get<AppState>()
             .setLot(locator.get<AppState>().getLotByName(name)),
         child: Container(
-          width: radius * 2,
-          height: radius * 2,
+          width: r * 2,
+          height: r * 2,
           decoration: const BoxDecoration(
             color: Colors.orange,
             shape: BoxShape.circle,

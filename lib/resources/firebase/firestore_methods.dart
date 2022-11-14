@@ -15,6 +15,8 @@ class FirestoreMethods {
 
 // subscripe to database collections
   Future<void> initializeSubscriptions() async {
+    locator.get<AppState>().onParkingLotsChanged([]);
+    locator.get<AppState>().onParkingSpacesChanged([]);
     _parkingLotsSubscription = _firestoreService
         .collectionStream(
             path: '/parkingLots', builder: (data) => ParkingLot.fromJson(data))

@@ -8,6 +8,13 @@ List<ParkingLot> tempLots = [
     name: 'Lot18',
     width: 700,
     height: 800,
+    mapX: 460 - 20,
+    mapY: 672 + 15,
+    mapR: 20,
+    buttonList: [
+      [439, 685, 43, 43, 0],
+      [439, 695],
+    ],
     roadPath: [
       [100, 800, 100, 425],
       // vertical road next to handicap
@@ -32,6 +39,14 @@ List<ParkingLot> tempLots = [
     name: 'Lot15',
     width: 1300,
     height: 1000,
+    mapX: 0,
+    mapY: 0,
+    mapR: 10,
+    buttonList: [
+      [602, 675, 55, 43, -35],
+      [620, 683, 52, 100, -6],
+      [625, 700]
+    ],
     roadPath: [
       [1300, 900, 75, 900], //entrance into Soules College
       [75, 900, 37, 930], // to make curve 1
@@ -59,22 +74,47 @@ List<ParkingLot> tempLots = [
     name: 'Lot9',
     width: 2000,
     height: 2000,
-    roadPath: [[]],
+    mapX: 0,
+    mapY: 0,
+    mapR: 10,
+    buttonList: [
+      [378, 360, 10, 26, -60],
+      [383, 351.5, 20, 25, -40],
+      [398, 339, 12, 25, -30],
+      [408, 333, 20, 25, -20],
+      [427, 326, 10, 26, 0],
+      [378, 360],
+    ],
+    roadPath: [],
   ),
   const ParkingLot(
-      name: 'Lot14',
-      width: 2000,  //changed to 2000 11/2/2022
-      height: 1000,
-      roadPath: []),
+    name: 'Lot14',
+    width: 2000, //changed to 2000 11/2/2022
+    height: 1000,
+    mapX: 0,
+    mapY: 0,
+    mapR: 10,
+    buttonList: [
+      [120, 525, 90, 40, 10],
+    ],
+    roadPath: [],
+  ),
   const ParkingLot(
-      name: 'Lot10',
-      width: 1200,
-      height: 2200,
-      roadPath: []),
-    const ParkingLot(
+    name: 'Lot10',
+    width: 1200,
+    height: 2200,
+    mapX: 0,
+    mapY: 0,
+    mapR: 10,
+    roadPath: [],
+  ),
+  const ParkingLot(
     name: 'Lot7',
     width: 2800,
     height: 1500,
+    mapX: 0,
+    mapY: 0,
+    mapR: 10,
     roadPath: [],
   ),
   //10/16/2022 added lot15 parkinglot
@@ -322,8 +362,9 @@ List<ParkingSpace> tempSpaces = [
   ...tempRow('Lot9', 884, 1460, 1, 90, 1),
   ...tempRow('Lot9', 864, 1435, 1, 90, 1, type: SpaceType.handicapR),
   ...tempRow('Lot9', 844, 1400, 1, 90, 1, type: SpaceType.handicapL),
-  
-   ...createSpaceRow(       //Fixed conflict, data for lot14 had different parameter order, 11/3/2022
+
+  ...createSpaceRow(
+    //Fixed conflict, data for lot14 had different parameter order, 11/3/2022
     lot: 'Lot14',
     x: 975,
     y: 700,
@@ -334,15 +375,15 @@ List<ParkingSpace> tempSpaces = [
     gaps: [15, 16],
   ),
 
-    ...tempRow(
-      'Lot14',
-      325,
-      700,
-      10,
-      0,
-      1,
-    ),
-    ...createSpaceRow(
+  ...tempRow(
+    'Lot14',
+    325,
+    700,
+    10,
+    0,
+    1,
+  ),
+  ...createSpaceRow(
     lot: 'Lot14',
     x: 1000,
     y: 500,
@@ -352,7 +393,7 @@ List<ParkingSpace> tempSpaces = [
     fixedR: -1.5,
     gaps: [6, 7],
   ),
-    ...createSpaceRow(
+  ...createSpaceRow(
     lot: 'Lot14',
     x: 675,
     y: 700,
@@ -362,7 +403,7 @@ List<ParkingSpace> tempSpaces = [
     fixedR: 0,
     gaps: [],
   ),
-    ...createSpaceRow(
+  ...createSpaceRow(
     lot: 'Lot14',
     x: 700,
     y: 500,
@@ -372,24 +413,24 @@ List<ParkingSpace> tempSpaces = [
     fixedR: 0,
     gaps: [],
   ),
-    ...tempRow('Lot14', 300, 500, 8, 0, 0), 
-    ...tempRow('Lot14', 300, 700, 1, 0, 1, type: SpaceType.handicapL),
-    ...tempRow('Lot14', 500, 500, 1, 0, 0, type: SpaceType.handicapR),
-    ...tempRow(
-      'Lot14',
-      535,
-      500,
-      2,
-      0,
-      0,
-    ),
-    ...tempRow('Lot14', 500, 500, 1, 0, 0, type: SpaceType.handicapR),
-    ...tempRow('Lot14', 1385, 413, 1, 337, 0, type: SpaceType.handicapR),
-    ...tempRow('Lot14', 1418, 400, 1, 335, 0, type: SpaceType.handicapL),
-    ...tempRow('Lot14', 1450, 384, 1, 333, 0, type: SpaceType.handicapL),
-    ...tempRow('Lot14', 1480, 366, 1, 330, 0, type: SpaceType.handicapL),
-  
-    ...createSpaceRow(
+  ...tempRow('Lot14', 300, 500, 8, 0, 0),
+  ...tempRow('Lot14', 300, 700, 1, 0, 1, type: SpaceType.handicapL),
+  ...tempRow('Lot14', 500, 500, 1, 0, 0, type: SpaceType.handicapR),
+  ...tempRow(
+    'Lot14',
+    535,
+    500,
+    2,
+    0,
+    0,
+  ),
+  ...tempRow('Lot14', 500, 500, 1, 0, 0, type: SpaceType.handicapR),
+  ...tempRow('Lot14', 1385, 413, 1, 337, 0, type: SpaceType.handicapR),
+  ...tempRow('Lot14', 1418, 400, 1, 335, 0, type: SpaceType.handicapL),
+  ...tempRow('Lot14', 1450, 384, 1, 333, 0, type: SpaceType.handicapL),
+  ...tempRow('Lot14', 1480, 366, 1, 330, 0, type: SpaceType.handicapL),
+
+  ...createSpaceRow(
     lot: 'Lot7',
     x: 1750,
     y: 1400,
@@ -461,7 +502,6 @@ List<ParkingSpace> tempSpaces = [
       13,
       14,
       15,
-      
       28,
       29,
       30,
@@ -496,7 +536,6 @@ List<ParkingSpace> tempSpaces = [
       12,
       13,
       14,
-
       28,
       29,
       30,
@@ -509,15 +548,12 @@ List<ParkingSpace> tempSpaces = [
       37,
       38,
       39,
-      
-      
       42,
       43,
       44,
       45,
       46,
       47,
-      
     ],
   ),
 
