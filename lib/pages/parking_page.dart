@@ -192,8 +192,10 @@ class _HomePageState extends State<HomePage> {
                                     height: 50,
                                     decoration: BoxDecoration(
                                         color: data.available! > data.total! / 2
-                                            ? Colors.blue
-                                            : Colors.yellow),
+                                            ? Colors.green
+                                            : data.available! > data.total! / 4
+                                                ? Colors.red
+                                                : Colors.yellow),
                                     child: Center(
                                       child: Text(
                                         '${data.available} Available',
