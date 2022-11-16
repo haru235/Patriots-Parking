@@ -64,7 +64,6 @@ class FirestoreMethods {
 
 // toggle parking space state
   Future<void> toggleSpace(ParkingSpace space) async {
-    int i;
     StatisticalData temp;
     DateTime time = DateTime.now();
     if (!space.open && space.timeTaken != null) {
@@ -89,8 +88,7 @@ class FirestoreMethods {
             },
     );
 
-    i = locator.get<AppState>().getStatisticalData(space.parkingLot);
-    temp = locator.get<AppState>().parkingData[i];
+    temp = locator.get<AppState>().getStatisticalData(space.parkingLot);
 
     if (space.open) {
       temp.available = temp.available! - 1;

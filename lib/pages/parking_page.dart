@@ -96,8 +96,13 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Container(
+                      padding: const EdgeInsets.all(8.0),
+                      margin: const EdgeInsets.only(bottom: 8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.white.withOpacity(.8),
+                      ),
                       // show selected lot name
                       child: Text(
                         selected == null ? 'Campus Map' : selected.name,

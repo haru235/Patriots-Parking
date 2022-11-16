@@ -39,15 +39,11 @@ class AppState with ChangeNotifier {
     return parkingLots.where((element) => element.name == name).first;
   }
 
-  int getStatisticalData(String lot) {
-    int index = -1;
-    String name = lot;
-    for (var i = 0; i < parkingData.length; i++) {
-      if (name == parkingData[i].parkingLotName) {
-        index = i;
-        break;
-      }
-    }
-    return index;
+  StatisticalData getStatisticalData(String name) {
+    return parkingData.firstWhere(
+      (element) => element.parkingLotName == name,
+      orElse: () => StatisticalData(
+          total: 0, available: 0, occupied: 0, parkingLotName: name),
+    );
   }
 }
