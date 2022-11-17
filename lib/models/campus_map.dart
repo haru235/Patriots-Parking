@@ -43,25 +43,44 @@ class ParkingButton extends StatelessWidget {
     return Positioned(
       left: data[0].toDouble(),
       top: data[1].toDouble(),
-      child: GestureDetector(
-        onTap: () => locator
-            .get<AppState>()
-            .setLot(locator.get<AppState>().getLotByName(name)),
-        child: data.length == 5
-            ? Transform.rotate(
-                alignment: Alignment.topLeft,
-                angle: data[4].toDouble() / 180 * pi,
+      child: data.length == 5
+          ? Transform.rotate(
+              alignment: Alignment.topLeft,
+              angle: data[4].toDouble() / 180 * pi,
+              child: GestureDetector(
+                onTap: () => locator
+                    .get<AppState>()
+                    .setLot(locator.get<AppState>().getLotByName(name)),
                 child: Container(
                   width: data[2].toDouble(),
                   height: data[3].toDouble(),
                   color: Colors.deepPurple,
                 ),
-              )
-            : Text(
-                name.replaceFirst('Lot', 'P'),
-                style: const TextStyle(fontSize: 10, color: Colors.white),
               ),
-      ),
+            )
+          : Stack(
+              children: [
+                // Stroked text as border.
+                Text(
+                  name.replaceFirst('Lot', 'P'),
+                  style: TextStyle(
+                    fontSize: 9,
+                    foreground: Paint()
+                      ..style = PaintingStyle.stroke
+                      ..strokeWidth = 1
+                      ..color = Colors.purple,
+                  ),
+                ),
+                // Solid text as fill.
+                Text(
+                  name.replaceFirst('Lot', 'P'),
+                  style: const TextStyle(
+                    fontSize: 9,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
     );
   }
 }

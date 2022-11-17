@@ -6,32 +6,145 @@ import 'package:patriots_parking/models/Statistical_Data.dart';
 
 List<ParkingLot> tempLots = [
   const ParkingLot(
-    name: 'Lot18',
-    width: 700,
-    height: 800,
+    name: 'Lot1',
+    width: 1,
+    height: 1,
     buttonData: [
-      [439, 685, 43, 43, 0],
-      [453, 701],
+      [622, 639, 20, 15, -35],
+      [629, 635],
     ],
-    roadPath: [
-      [100, 800, 100, 425],
-      // vertical road next to handicap
-      [225, 650, 225, 375],
-      // middle vertical road
-      [375, 100, 375, 750],
-      // vertical road on right
-      [525, 50, 525, 750],
-      // horizontal road right after entrance
-      [100, 750, 550, 750],
-      // short horizontal road
-      [225, 625, 375, 625],
-      // curved road near handicap
-      [225, 375, 225, 300, 375, 300],
-      // curved road in front of garage
-      [100, 425, 125, 100, 525, 50],
-      // path to parking garage
-      [225, 150, 200, 100],
+    roadPath: [],
+  ),
+  const ParkingLot(
+    name: 'Lot2',
+    width: 1,
+    height: 1,
+    buttonData: [
+      [707, 591, 45, 20, -25],
+      [725, 587],
     ],
+    roadPath: [],
+  ),
+  const ParkingLot(
+    name: 'Lot5',
+    width: 1,
+    height: 1,
+    buttonData: [
+      [605, 454, 11, 6, 6],
+      [616, 455, 11, 7, 36],
+      [624.5, 461.5, 11, 7, 66],
+      [629, 471.5, 11, 7, 96],
+      [628, 482, 11, 7, 126],
+      [621.5, 491, 11, 6, 156],
+      [624, 480],
+    ],
+    roadPath: [],
+  ),
+  const ParkingLot(
+    height: 1000,
+    width: 2500,
+    name: 'Lot6',
+    buttonData: [
+      [661, 352, 42, 70, -25],
+      [679, 419, 54, 64, -25],
+      [707, 414],
+    ],
+    roadPath: [],
+  ),
+  const ParkingLot(
+    name: 'Lot7',
+    width: 2800,
+    height: 1500,
+    buttonData: [
+      [526, 265, 60, 13, -15],
+      [580, 238, 30, 24, 0],
+      [610, 238, 30, 24, 10],
+      [639, 243, 30, 24, 15],
+      [667, 251, 40, 24, 30],
+      [630, 248],
+    ],
+    roadPath: [],
+  ),
+  const ParkingLot(
+    height: 1000,
+    width: 2500,
+    name: 'Lot8',
+    buttonData: [
+      [455, 315, 82, 35, -15],
+      [530, 295, 93, 22, -12],
+      [498, 316],
+    ],
+    roadPath: [],
+  ),
+  const ParkingLot(
+    //To Test new method to draw spaces rows with gaps
+    name: 'Lot9',
+    width: 2000,
+    height: 2000,
+    buttonData: [
+      [378, 360, 10, 26, -60],
+      [383, 351.5, 20, 25, -40],
+      [398, 339, 12, 25, -30],
+      [408, 333, 20, 25, -20],
+      [427, 326, 10, 26, 0],
+      [406, 342],
+    ],
+    roadPath: [],
+  ),
+  const ParkingLot(
+    name: 'Lot10',
+    width: 1200,
+    height: 2200,
+    buttonData: [
+      [343, 487, 30, 34, 12],
+      [338, 515, 30, 30, 22],
+      [343, 567, 30, 18, -137],
+      [277, 577, 60, 30, -35],
+      [330, 544],
+    ],
+    roadPath: [],
+  ),
+  const ParkingLot(
+    name: 'Lot11',
+    width: 1,
+    height: 1,
+    buttonData: [
+      [463, 215, 30, 15, -20],
+      [491, 205, 33, 14, 40],
+      [471, 212],
+    ],
+    roadPath: [],
+  ),
+  const ParkingLot(
+    name: 'Lot12',
+    width: 1,
+    height: 1,
+    buttonData: [
+      [148, 498, 53, 15, -80],
+      [151, 474],
+    ],
+    roadPath: [],
+  ),
+  const ParkingLot(
+    name: 'Lot13',
+    width: 1,
+    height: 1,
+    buttonData: [
+      [96, 469, 42, 15, 10],
+      [109, 475],
+    ],
+    roadPath: [],
+  ),
+  const ParkingLot(
+    name: 'Lot14',
+    width: 2000, //changed to 2000 11/2/2022
+    height: 1000,
+    buttonData: [
+      [120, 525, 88, 41, 10],
+      [206, 540, 62, 45, 35],
+      [170, 549],
+    ],
+    roadPath: [],
   ),
   const ParkingLot(
     name: 'Lot15',
@@ -63,73 +176,75 @@ List<ParkingLot> tempLots = [
       [490, 80, 0, 0],
       //the four lines to create the curve on the top   //ends here for roads
     ],
-  ),
-
+  ), //10/16/2022 added lot15 parkinglot
   const ParkingLot(
-    //To Test new method to draw spaces rows with gaps
-    name: 'Lot9',
-    width: 2000,
-    height: 2000,
+    name: 'Lot16',
+    width: 1,
+    height: 1,
     buttonData: [
-      [378, 360, 10, 26, -60],
-      [383, 351.5, 20, 25, -40],
-      [398, 339, 12, 25, -30],
-      [408, 333, 20, 25, -20],
-      [427, 326, 10, 26, 0],
-      [406, 342],
+      [821, 663, 45, 20, -25],
+      [837, 657],
     ],
     roadPath: [],
   ),
   const ParkingLot(
-    name: 'Lot14',
-    width: 2000, //changed to 2000 11/2/2022
-    height: 1000,
+    name: 'Lot17',
+    width: 1,
+    height: 1,
     buttonData: [
-      [120, 525, 88, 41, 10],
-      [206, 540, 62, 45, 35],
-      [170, 548],
+      [575, 657, 42, 14, -35],
+      [589, 645],
     ],
     roadPath: [],
   ),
   const ParkingLot(
-    name: 'Lot10',
-    width: 1200,
-    height: 2200,
+    name: 'Lot18',
+    width: 700,
+    height: 800,
     buttonData: [
-      [343, 487, 30, 34, 12],
-      [338, 515, 30, 30, 22],
-      [343, 567, 30, 18, -137],
-      [277, 577, 60, 30, -35],
-      [330, 544],
+      [439, 685, 43, 43, 0],
+      [453, 701],
+    ],
+    roadPath: [
+      [100, 800, 100, 425],
+      // vertical road next to handicap
+      [225, 650, 225, 375],
+      // middle vertical road
+      [375, 100, 375, 750],
+      // vertical road on right
+      [525, 50, 525, 750],
+      // horizontal road right after entrance
+      [100, 750, 550, 750],
+      // short horizontal road
+      [225, 625, 375, 625],
+      // curved road near handicap
+      [225, 375, 225, 300, 375, 300],
+      // curved road in front of garage
+      [100, 425, 125, 100, 525, 50],
+      // path to parking garage
+      [225, 150, 200, 100],
+    ],
+  ),
+  const ParkingLot(
+    name: 'G1',
+    width: 1,
+    height: 1,
+    buttonData: [
+      [411, 735, 71, 34, 0],
+      [440, 746],
     ],
     roadPath: [],
   ),
   const ParkingLot(
-    name: 'Lot7',
-    width: 2800,
-    height: 1500,
+    name: 'Lot20',
+    width: 1,
+    height: 1,
     buttonData: [
-      [526, 265, 60, 13, -15],
-      [580, 238, 30, 24, 0],
-      [610, 238, 30, 24, 10],
-      [639, 243, 30, 24, 15],
-      [667, 251, 40, 24, 30],
-      [630, 248],
+      [43, 732, 57, 15, -79],
+      [47, 704],
     ],
     roadPath: [],
   ),
-
-  const ParkingLot(
-      height: 1000, width: 2500, name: 'Lot8', buttonData: [], roadPath: []),
-  const ParkingLot(
-    height: 1000,
-    width: 2500,
-    name: 'Lot6',
-    buttonData: [],
-    roadPath: [],
-  )
-
-  //10/16/2022 added lot15 parkinglot
 ];
 List<StatisticalData> tempData = [
   StatisticalData(
