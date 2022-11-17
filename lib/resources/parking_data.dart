@@ -7,8 +7,8 @@ import 'package:patriots_parking/models/Statistical_Data.dart';
 List<ParkingLot> tempLots = [
   const ParkingLot(
     name: 'Lot1',
-    width: 1500,
-    height: 1500,
+    width: 700,
+    height: 700,
     buttonData: [
       [622, 639, 20, 15, -35],
       [629, 635],
@@ -997,4 +997,6 @@ List<ParkingSpace> tempSpaces = [
       side: 0,
       fixedR: 0,
       gaps: []),
+  
+    ...tempRow('Lot1', 300, 300, 6, 0, 0),
 ]; // added to firestore @ 10/17/22
