@@ -127,7 +127,15 @@ List<ParkingLot> tempLots = [
     name: 'Lot6',
     buttonData: [],
     roadPath: [],
-  )
+  ),
+  
+    const ParkingLot(
+    height: 1500,
+    width: 1500,
+    name: 'Lot5',
+    buttonData: [],
+    roadPath: [],
+  ),
 
   //10/16/2022 added lot15 parkinglot
 ];
@@ -788,4 +796,15 @@ List<ParkingSpace> tempSpaces = [
       side: 0,
       fixedR: 0,
       gaps: [12, 13, 14, 15, 16, 17, 18, 19, 20]),
+    ...createSpaceRow(
+      lot: 'Lot5',
+      x: 500,
+      y: 500,
+      count: 22,
+      direction: 30,
+      side: 0,
+      fixedR: 4.5,
+      gaps: []),
+  ...tempRow('Lot5', 523, 955, 1, 126, 1, type: SpaceType.handicapL),
+  ...tempRow('Lot5', 510, 975, 1, 129, 1, type: SpaceType.handicap)
 ]; // added to firestore @ 10/17/22
