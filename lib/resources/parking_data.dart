@@ -1079,6 +1079,8 @@ List<ParkingSpace> tempSpaces = [
         18,
         19,
       ]),
+  ...tempRow('Lot20', 800, 555, 1, 90, 0, type: SpaceType.handicapR),
+  ...tempRow('Lot20', 800, 590, 1, 90, 0, type: SpaceType.handicapL),
   ...createSpaceRow(
       lot: 'Lot20',
       x: 625,
@@ -1088,4 +1090,6 @@ List<ParkingSpace> tempSpaces = [
       side: 1,
       fixedR: 0,
       gaps: [11, 12, 13, 16, 17, 18, 19, 20, 21]),
+  ...tempRow('Lot20', 625, 605, 1, 90, 1, type: SpaceType.handicapR),
+  ...tempRow('Lot20', 625, 568, 1, 90, 1, type: SpaceType.handicapL),
 ]; // added to firestore @ 10/17/22
