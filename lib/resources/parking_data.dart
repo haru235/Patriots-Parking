@@ -959,6 +959,17 @@ List<ParkingSpace> tempSpaces = [
       side: 1,
       fixedR: 0,
       gaps: []),
+  
+  ...tempRow('Lot2', 978, 565, 1, 10, 1, type: SpaceType.handicapL),
+  ...tempRow('Lot2', 1003, 569, 1, 10, 1, type: SpaceType.handicap),
+  ...tempRow('Lot2', 1038, 574, 1, 10, 1, type: SpaceType.handicapL),
+  ...tempRow('Lot2', 1063, 578, 1, 10, 1, type: SpaceType.handicap),
+  ...tempRow('Lot2', 1098, 585, 1, 10, 1, type: SpaceType.handicapL),
+  ...tempRow('Lot2', 1123, 590, 1, 10, 1, type: SpaceType.handicap),
+  ...tempRow('Lot2', 1158, 595, 1, 10, 1, type: SpaceType.handicapL),
+  ...tempRow('Lot2', 1183, 600, 1, 10, 1, type: SpaceType.handicap),
+  ...tempRow('Lot2', 1218, 605, 1, 10, 1, type: SpaceType.handicapL),
+  ...tempRow('Lot2', 1243, 610, 1, 10, 1, type: SpaceType.handicap),
 
   ...createSpaceRow(
       lot: 'Lot16',
