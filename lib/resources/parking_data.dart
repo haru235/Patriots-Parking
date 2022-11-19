@@ -978,6 +978,10 @@ List<ParkingSpace> tempSpaces = [
       side: 1,
       fixedR: 0,
       gaps: [10]),
+  ...tempRow('Lot16', 365, 675, 1, 0, 1, type: SpaceType.handicapR),
+  ...tempRow('Lot16', 330, 675, 1, 0, 1, type: SpaceType.handicapR),
+  ...tempRow('Lot16', 295, 675, 1, 0, 1, type: SpaceType.handicapL),
+  ...tempRow('Lot16', 260, 675, 1, 0, 1, type: SpaceType.handicapL),
   
     ...createSpaceRow(
       lot: 'Lot17',
