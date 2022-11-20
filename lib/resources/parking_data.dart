@@ -816,6 +816,17 @@ List<ParkingSpace> tempSpaces = [
       gaps: [],
       fixedR: 0),
 
+  ...tempRow('Lot6', 125, 135, 1, 82, 1, type: SpaceType.handicapR),
+  ...tempRow('Lot6', 130, 170, 1, 82, 1, type: SpaceType.handicapL),
+  ...tempRow('Lot6', 135, 205, 1, 82, 1, type: SpaceType.handicapR),
+  ...tempRow('Lot6', 140, 240, 1, 82, 1, type: SpaceType.handicapL),
+  ...tempRow('Lot6', 145, 275, 1, 82, 1, type: SpaceType.handicapR),
+  ...tempRow('Lot6', 150, 310, 1, 82, 1, type: SpaceType.handicapL),
+  ...tempRow('Lot6', 155, 345, 1, 82, 1, type: SpaceType.handicapR),
+  ...tempRow('Lot6', 160, 380, 1, 82, 1, type: SpaceType.handicapL),
+  ...tempRow('Lot6', 165, 415, 1, 82, 1, type: SpaceType.handicapR),
+  ...tempRow('Lot6', 170, 450, 1, 82, 1, type: SpaceType.handicapL),
+  ...tempRow('Lot6', 173, 475, 1, 82, 1, type: SpaceType.handicap), 
   ...createSpaceRow(
       lot: 'Lot6',
       x: 250,
@@ -876,6 +887,9 @@ List<ParkingSpace> tempSpaces = [
       side: 0,
       fixedR: 0,
       gaps: [7, 8, 9, 25, 36, 37, 38, 39]),
+  
+  ...tempRow('Lot6', 315, 300, 1, 0, 0, type: SpaceType.handicapL),
+  ...tempRow('Lot6', 290, 300, 1, 0, 0, type: SpaceType.handicap), 
   ...createSpaceRow(
       lot: 'Lot6',
       x: 325,
@@ -885,6 +899,8 @@ List<ParkingSpace> tempSpaces = [
       side: 1,
       fixedR: 0,
       gaps: [7, 8, 9, 10, 11, 12, 13, 25]),
+  ...tempRow('Lot6', 325, 200, 1, 0, 1, type: SpaceType.handicapR),
+  ...tempRow('Lot6', 290, 200, 1, 0, 1, type: SpaceType.handicap),
   ...createSpaceRow(
       lot: 'Lot6',
       x: 725,
@@ -894,6 +910,14 @@ List<ParkingSpace> tempSpaces = [
       side: 0,
       fixedR: 0,
       gaps: [0, 1, 2, 3, 4, 5, 6, 7, 8, 10]),
+  ...tempRow('Lot6', 915, 15, 1, 0, 0, type: SpaceType.handicapL),
+  ...tempRow('Lot6', 890, 15, 1, 0, 0, type: SpaceType.handicap),
+  ...tempRow('Lot6', 855, 15, 1, 0, 0, type: SpaceType.handicapL),
+  ...tempRow('Lot6', 830, 15, 1, 0, 0, type: SpaceType.handicap),
+  ...tempRow('Lot6', 795, 15, 1, 0, 0, type: SpaceType.handicapL),
+  ...tempRow('Lot6', 770, 15, 1, 0, 0, type: SpaceType.handicap),
+  ...tempRow('Lot6', 735, 15, 1, 0, 0, type: SpaceType.handicapL),
+  ...tempRow('Lot6', 710, 15, 1, 0, 0, type: SpaceType.handicap), 
   ...createSpaceRow(
       lot: 'Lot6',
       x: 215,
