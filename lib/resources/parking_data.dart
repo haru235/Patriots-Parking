@@ -127,8 +127,8 @@ List<ParkingLot> tempLots = [
   ),
   const ParkingLot(
     name: 'Lot13',
-    width: 1,
-    height: 1,
+    width: 700,
+    height: 700,
     buttonData: [
       [96, 469, 42, 15, 10],
       [109, 475],
@@ -1191,4 +1191,8 @@ List<ParkingSpace> tempSpaces = [
   ...tempRow('Lot12', 400, 270, 1, -60, 1, type: SpaceType.handicapL),
   ...tempRow('Lot12', 400, 305, 1, -60, 1, type: SpaceType.handicapR),
   ...tempRow('Lot12', 400, 340, 1, -60, 1, type: SpaceType.handicapL),
+  ...tempRow('Lot13', 100, 200, 3, 0, 0),
+  ...tempRow('Lot13', 300, 200, 5, 0, 0),
+  ...tempRow('Lot13', 425, 275, 3, 90, 0),
+  ...tempRow('Lot13', 65, 200, 1, 0, 0, type: SpaceType.handicapL),
 ]; // added to firestore @ 10/17/22
