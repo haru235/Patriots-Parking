@@ -13,7 +13,9 @@ List<ParkingLot> tempLots = [
       [622, 639, 20, 15, -35],
       [629, 635],
     ],
-    roadPath: [],
+    roadPath: [
+      [0, 320, 750, 290, 800, 380],
+      [0, 320, 100, 420],],
   ),
   const ParkingLot(
     name: 'Lot2',
