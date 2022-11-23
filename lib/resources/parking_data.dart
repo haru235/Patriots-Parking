@@ -346,7 +346,12 @@ List<ParkingLot> tempLots = [
       [43, 732, 57, 15, -79],
       [47, 704],
     ],
-    roadPath: [],
+    roadPath: [
+      [740, 100, 740, 1100],
+      [740, 1100, 810, 1200],
+      [740, 1100, 580, 1100],
+      [740, 500, 580, 500],
+      [580, 0, 580, 1200],],
   ),
 ];
 // temp parking lots for testing without firebase
