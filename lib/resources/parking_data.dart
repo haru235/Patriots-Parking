@@ -364,6 +364,21 @@ List<ParkingLot> tempLots = [
       [580, 0, 580, 1200],],
   ),
 ];
+
+List<StatisticalData> tempData = [
+  StatisticalData(
+    available: 50,
+    total: 50,
+    occupied: 0,
+    parkingLotName: 'Lot18',
+  ),
+  StatisticalData(
+    available: 80,
+    occupied: 0,
+    total: 80,
+    parkingLotName: 'Lot15',
+  )
+];
 // temp parking lots for testing without firebase
 List<ParkingSpace> tempSpaces = [
   // added to firestore @ 10/17/22
