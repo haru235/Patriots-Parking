@@ -132,7 +132,7 @@ List<ParkingLot> tempLots = [
       [2000, 460, 2000, 260],],
   ),
   const ParkingLot(
-    //To Test new method to draw spaces rows with gaps
+
     name: 'Lot9',
     width: 2000,
     height: 2000,
@@ -145,12 +145,12 @@ List<ParkingLot> tempLots = [
       [406, 342],
     ],
     roadPath: [
-      [565, 1875, 530, 970, 1470, 400],
-      [740, 1875, 810, 970, 1600, 600],
-      [400, 1925, 600, 520, 1440, 300],
-      [750, 825, 1020, 1040],
-      [365, 1875, 740, 1875],
-      [1400, 300, 1600, 600],
+      [590, 1875, 580, 937, 1530, 445],
+      [750, 1875, 810, 970, 1590, 610],
+      [450, 1925, 460, 800, 1490, 325],
+      [800, 840, 1050, 1040],
+      [465, 1875, 740, 1875],
+      [1475, 300, 1600, 600],
     ],
   ),
   const ParkingLot(
@@ -165,18 +165,20 @@ List<ParkingLot> tempLots = [
       [330, 544],
     ],
     roadPath: [
-      [170, 2050, 730, 970, 505, 40],
-      [360, 2125, 940, 1000, 705, 10],
-      [10, 1700, 400, 1500, 320, 0],
+      [230, 2050, 800, 1040, 555, 40],
+      [390, 2125, 950, 1073, 720, 10],
+      [0, 1600, 700, 900, 400, 0],
       [320, 80, 705, 0],
-      [500, 100, 705, 60],
-      [170, 2050, 360, 2125],
+      //[500, 100, 705, 60],
+      [230, 2050, 380, 2125],
       [
-        350,
-        725,
+        475,
+        715,
         770,
-        760,
+        720,
       ],
+      [475, 740, 770, 745],
+      [475, 775, 770, 780]
     ],
   ),
   const ParkingLot(
@@ -425,33 +427,33 @@ List<ParkingSpace> tempSpaces = [
 
   ...createSpaceRow(
     lot: 'Lot9',
-    x: 500,
+    x: 535,
     y: 150,
     count: 67,
     direction: 90,
     side: 0,
-    fixedR: -0.85,
+    fixedR: -0.92,
     gaps: [16, 39, 40, 41, 42],
   ),
   ...createSpaceRow(
     lot: 'Lot9',
-    x: 620,
+    x: 650,
     y: 125,
     count: 60,
     direction: 90,
     side: 1,
-    fixedR: -0.93,
+    fixedR: -0.97,
     gaps: [26, 35, 36, 37, 38],
   ),
 
   ...createSpaceRow(
     lot: 'Lot9',
-    x: 625,
+    x: 650,
     y: 150,
     count: 60,
     direction: 90,
     side: 0,
-    fixedR: -0.95,
+    fixedR: -0.995,
     gaps: [26, 35, 36, 37, 38],
   ),
 
@@ -472,8 +474,6 @@ List<ParkingSpace> tempSpaces = [
       30,
       31,
       32,
-      // 33,
-      // 34,
       45,
       46,
       47,
@@ -499,10 +499,9 @@ List<ParkingSpace> tempSpaces = [
   ...tempRow('Lot9', 1260, 1168, 1, 41, 1),
   ...tempRow('Lot9', 1240, 1150, 1, 42, 1, type: SpaceType.handicapR),
   ...tempRow('Lot9', 1215, 1125, 1, 43, 1, type: SpaceType.handicap),
-
   ...createSpaceRow(
     lot: 'Lot10',
-    x: 100,
+    x: 185,
     y: 170,
     count: 50,
     direction: 60,
@@ -543,7 +542,7 @@ List<ParkingSpace> tempSpaces = [
   ),
   ...createSpaceRow(
     lot: 'Lot10',
-    x: 280,
+    x: 330,
     y: 210,
     count: 69,
     direction: 60,
@@ -563,7 +562,7 @@ List<ParkingSpace> tempSpaces = [
   ),
   ...createSpaceRow(
     lot: 'Lot10',
-    x: 270,
+    x: 320,
     y: 190,
     count: 69,
     direction: 60,
