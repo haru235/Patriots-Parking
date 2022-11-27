@@ -194,8 +194,8 @@ class _HomePageState extends State<HomePage> {
                                         color: data.available! > data.total! / 2
                                             ? Colors.green
                                             : data.available! > data.total! / 4
-                                                ? Colors.red
-                                                : Colors.yellow),
+                                                ? Colors.yellow
+                                                : Colors.red),
                                     child: Center(
                                       child: Text(
                                         '${data.available} Available',
