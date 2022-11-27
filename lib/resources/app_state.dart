@@ -27,7 +27,7 @@ class AppState with ChangeNotifier {
   }
 
   onStatisticalDataChanged(List<StatisticalData> newData) {
-    parkingData = newData + tempData;
+    parkingData = newData;
   }
 
   void setLot(ParkingLot? lot) {
