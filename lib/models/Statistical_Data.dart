@@ -50,9 +50,9 @@ class StatisticalData {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'Total': total,
-      'Available': available,
-      'Occupied': occupied,
+      'total': total,
+      'available': available,
+      'occupied': occupied,
       'parking lot': parkingLotName
     };
   }
@@ -60,9 +60,9 @@ class StatisticalData {
   static StatisticalData fromJson(Map<String, dynamic> json) {
     return StatisticalData(
       id: json['id'],
-      total: json['Total'],
-      available: json['Available'],
-      occupied: json['Occupied'],
+      total: json['total'],
+      available: json['available'],
+      occupied: json['occupied'],
       parkingLotName: json['parking lot'],
     );
   }

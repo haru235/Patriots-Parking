@@ -16,18 +16,18 @@ class AppState with ChangeNotifier {
 // run when change in parking lot data
   onParkingLotsChanged(List<ParkingLot> newData) {
     parkingLots = newData + tempLots;
-    parkingLots.sort(((a, b) => a.name.compareTo(b.name)));
     notifyListeners();
   }
 
 // run when change in parking space data
   onParkingSpacesChanged(List<ParkingSpace> newData) {
-    parkingSpaces = newData + tempSpaces;
+    parkingSpaces = newData;
     notifyListeners();
   }
 
   onStatisticalDataChanged(List<StatisticalData> newData) {
     parkingData = newData;
+    notifyListeners();
   }
 
   void setLot(ParkingLot? lot) {

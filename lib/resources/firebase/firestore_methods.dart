@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:patriots_parking/models/Statistical_Data.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
@@ -8,6 +9,7 @@ import 'package:patriots_parking/resources/app_state.dart';
 import 'package:patriots_parking/resources/firebase/firestore_path.dart';
 import 'package:patriots_parking/resources/firebase/firestore_service.dart';
 import 'package:patriots_parking/resources/locator.dart';
+import 'package:patriots_parking/resources/parking_data.dart';
 
 class FirestoreMethods {
   final FirestoreService _firestoreService = FirestoreService.instance;
@@ -64,7 +66,6 @@ class FirestoreMethods {
 
 // toggle parking space state
   Future<void> toggleSpace(ParkingSpace space) async {
-    StatisticalData temp;
     DateTime time = DateTime.now();
     if (!space.open && space.timeTaken != null) {
       time.difference(space.timeTaken!);
@@ -87,19 +88,14 @@ class FirestoreMethods {
               //increase available
             },
     );
-
-    temp = locator.get<AppState>().getStatisticalData(space.parkingLot);
-
     if (space.open) {
-      temp.available = temp.available! - 1;
-      //FirestoreService.instance.updateDocument(
-      //path: FirestorePath.StatisticalData_(temp.id!),
-      // data: {'Available': temp.Available! - 1});
+      FirestoreService.instance.updateDocument(
+          path: FirestorePath.statisticalData_(space.parkingLot),
+          data: {'available': FieldValue.increment(-1)});
     } else {
-      temp.available = temp.available! + 1;
-      //FirestoreService.instance.updateDocument(
-      //   path: FirestorePath.StatisticalData_(temp.id!),
-      //  data: {'Available': temp.Available! + 1});
+      FirestoreService.instance.updateDocument(
+          path: FirestorePath.statisticalData_(space.parkingLot),
+          data: {'available': FieldValue.increment(1)});
     }
   }
 
@@ -107,10 +103,50 @@ class FirestoreMethods {
   Future<void> addSpace(ParkingSpace data, {String? customId}) async {
     Map<String, dynamic> map = data.toJson();
     map.addAll({'id': customId ?? ""});
-    FirestoreService.instance.addDocument(
+    await FirestoreService.instance.addDocument(
       path: FirestorePath.parkingSpaces(),
       data: map,
       myId: customId,
     );
+  }
+
+// reupload parking spaces from tempSpaces
+// use only when necessary
+  Future<void> addAllSpacesToCollection() async {
+    cancelSubscriptions();
+    for (ParkingLot lot in locator.get<AppState>().parkingLots) {
+      int counter = 0;
+      for (ParkingSpace space
+          in tempSpaces.where((element) => element.parkingLot == lot.name)) {
+        await addSpace(space, customId: "${lot.name}~$counter");
+        counter++;
+        await Future.delayed(const Duration(milliseconds: 100));
+      }
+      debugPrint("${lot.name} Complete");
+    }
+    initializeSubscriptions();
+    debugPrint("Uploaded All ParkingSpaces");
+  }
+
+  Future<void> calibrateStatisticalData() async {
+    for (ParkingLot lot in locator.get<AppState>().parkingLots) {
+      Iterable<ParkingSpace> spaces = locator
+          .get<AppState>()
+          .parkingSpaces
+          .where((element) => element.parkingLot == lot.name);
+      int total = spaces.length;
+      int available = spaces.where((element) => element.open).length;
+      int occupied = spaces.where((element) => !element.open).length;
+      await FirestoreService.instance.addDocument(
+        path: FirestorePath.statisticalData(),
+        data: StatisticalData(
+          total: total,
+          available: available,
+          occupied: occupied,
+          parkingLotName: lot.name,
+        ).toJson(),
+        myId: lot.name,
+      );
+    }
   }
 }

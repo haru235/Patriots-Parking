@@ -65,6 +65,15 @@ class _HomePageState extends State<HomePage> {
                         },
                         child: const Text('Sign Out'),
                       ),
+                      TextButton(
+                        onPressed: () async {
+                          Navigator.pop(context);
+                          await locator
+                              .get<FirestoreMethods>()
+                              .calibrateStatisticalData();
+                        },
+                        child: const Text('Admin Only'),
+                      ),
                     ],
                   ),
                 ),

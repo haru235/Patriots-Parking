@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:patriots_parking/models/parking_space.dart';
 import 'package:patriots_parking/resources/app_state.dart';
+import 'package:patriots_parking/resources/firebase/firestore_path.dart';
+import 'package:patriots_parking/resources/firebase/firestore_service.dart';
+import 'package:patriots_parking/resources/locator.dart';
 import 'package:provider/provider.dart';
 import 'package:patriots_parking/resources/road_paint.dart';
 
