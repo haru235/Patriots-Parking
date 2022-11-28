@@ -182,10 +182,10 @@ class FirestoreMethods {
     );
   }
 
-  Future<void> toggleAdmin(bool admin) async {
+  Future<void> toggleAdmin(bool admin, {bool forget = false}) async {
     await FirestoreService.instance.updateDocument(
         path: FirestorePath.userData(),
-        data: {'isAdmin': true, 'admin': admin});
+        data: {'isAdmin': !forget, 'admin': admin});
   }
 
 // reupload parking spaces from tempSpaces

@@ -88,6 +88,15 @@ class _HomePageState extends State<HomePage> {
                           },
                           child: const Text('Reload Spaces from Backup'),
                         ),
+                        TextButton(
+                          onPressed: () async {
+                            Navigator.pop(context);
+                            await locator
+                                .get<FirestoreMethods>()
+                                .toggleAdmin(false, forget: true);
+                          },
+                          child: const Text('Forget Admin'),
+                        ),
                       ] else ...[
                         TextButton(
                           onPressed: () async {
