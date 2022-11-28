@@ -58,23 +58,4 @@ class StatisticalData {
       parkingLotName: json['parking lot'],
     );
   }
-
-/*
-  void decreaseStatiticalData(int i) {
-    this.Available--;
-    this.Occupied++;
-  }
-
-  void increaseStatiticalData(int i) {
-    this.Available++;
-    this.Occupied--;
-  }
-
-  bool checkColor() {
-    if (this.Available > this.Total / 2)
-      return true;
-    else
-      return false;
-  }
-*/
 }

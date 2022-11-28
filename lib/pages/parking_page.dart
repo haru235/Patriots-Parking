@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patriots_parking/models/Statistical_Data.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
+import 'package:patriots_parking/models/user.dart';
 import 'package:patriots_parking/pages/passcodePopup.dart';
 import 'package:patriots_parking/resources/app_state.dart';
 import 'package:patriots_parking/resources/firebase/auth_methods.dart';
@@ -177,6 +178,20 @@ class _HomePageState extends State<HomePage> {
                           ),
                         )
                       : Container(),
+                  Selector<AppState, UserModel>(
+                      selector: (p0, p1) => p1.userData,
+                      builder: (_, value, __) {
+                        return value.admin
+                            ? const Align(
+                                alignment: Alignment.topRight,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text("Admin Mode",
+                                      style: TextStyle(fontSize: 18)),
+                                ),
+                              )
+                            : Container();
+                      }),
                 ],
               );
             }),

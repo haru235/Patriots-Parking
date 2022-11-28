@@ -63,7 +63,7 @@ class ParkingSpace extends StatefulWidget {
 // convert json data from firestore to ParkingSpace
   static ParkingSpace fromJson(Map<String, dynamic> json) {
     return ParkingSpace(
-      id: json['id'],
+      id: json['id'] ?? '',
       parkingLot: json['parking lot'],
       positionX: json['x'],
       positionY: json['y'],
