@@ -38,14 +38,6 @@ class StatisticalData {
     id = temp.id;
     parkingLotName = temp.parkingLotName;
   }
-/*
-  const StatisticalDatawidget ({
-  this.id = '',
-  this.Available = 0,
-  this.Total = 0,
-  this.Occupied = 0,
-}) : super(key: key);
-*/
 
   Map<String, dynamic> toJson() {
     return {

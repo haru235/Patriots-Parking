@@ -5,6 +5,14 @@ class FirestoreService {
   FirestoreService._();
   static final instance = FirestoreService._();
 
+  // document exists
+  Future<bool> documentExists({
+    required String path,
+  }) async {
+    final ref = FirebaseFirestore.instance.doc(path);
+    return ref.get().then((value) => value.exists ? true : false);
+  }
+
   // update a document in Firestore
   Future<void> updateDocument({
     required String path,

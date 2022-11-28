@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patriots_parking/models/Statistical_Data.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
+import 'package:patriots_parking/pages/passcodePopup.dart';
 import 'package:patriots_parking/resources/app_state.dart';
 import 'package:patriots_parking/resources/firebase/auth_methods.dart';
 import 'package:patriots_parking/resources/firebase/firestore_methods.dart';
@@ -58,30 +59,57 @@ class _HomePageState extends State<HomePage> {
                   context: context,
                   builder: (context) => Column(
                     children: [
+                      if (locator.get<AppState>().userData.admin) ...[
+                        TextButton(
+                          onPressed: () async {
+                            Navigator.pop(context);
+                            await locator
+                                .get<FirestoreMethods>()
+                                .toggleAdmin(false);
+                          },
+                          child: const Text('Switch to User'),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            Navigator.pop(context);
+                            await locator
+                                .get<FirestoreMethods>()
+                                .calibrateStatisticalData();
+                          },
+                          child: const Text('Callibrate Parking Lots'),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            Navigator.pop(context);
+                            await locator
+                                .get<FirestoreMethods>()
+                                .addAllSpacesToCollection();
+                          },
+                          child: const Text('Reload Spaces from Backup'),
+                        ),
+                      ] else ...[
+                        TextButton(
+                          onPressed: () async {
+                            Navigator.pop(context);
+                            if (locator.get<AppState>().userData.isAdmin) {
+                              await locator
+                                  .get<FirestoreMethods>()
+                                  .toggleAdmin(true);
+                            } else {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => const PassCode());
+                            }
+                          },
+                          child: const Text('Switch to Admin'),
+                        ),
+                      ],
                       TextButton(
                         onPressed: () async {
                           Navigator.pop(context);
                           locator.get<AuthMethods>().signout();
                         },
                         child: const Text('Sign Out'),
-                      ),
-                      TextButton(
-                        onPressed: () async {
-                          Navigator.pop(context);
-                          await locator
-                              .get<FirestoreMethods>()
-                              .calibrateStatisticalData();
-                        },
-                        child: const Text('Callibrate (Admin Only)'),
-                      ),
-                      TextButton(
-                        onPressed: () async {
-                          Navigator.pop(context);
-                          await locator
-                              .get<FirestoreMethods>()
-                              .addAllSpacesToCollection();
-                        },
-                        child: const Text('Add to collection (Admin Only)'),
                       ),
                     ],
                   ),

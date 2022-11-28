@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:patriots_parking/models/Statistical_Data.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
 import 'package:patriots_parking/models/parking_space.dart';
+import 'package:patriots_parking/models/user.dart';
 import 'package:patriots_parking/resources/parking_data.dart';
 
 class AppState with ChangeNotifier {
+  UserModel userData = UserModel();
   ParkingLot? selectedLot;
   ParkingSpace? selectedSpace;
   List<ParkingLot> parkingLots = [];
@@ -12,6 +14,12 @@ class AppState with ChangeNotifier {
   List<StatisticalData> parkingData = [];
   StatisticalData? data;
   Map<String, List<num>> spaceAvailability = {};
+
+  // run when change in user data
+  onUserDataChanged(UserModel newData) {
+    userData = newData;
+    notifyListeners();
+  }
 
 // run when change in parking lot data
   onParkingLotsChanged(List<ParkingLot> newData) {

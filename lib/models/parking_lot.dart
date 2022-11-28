@@ -68,12 +68,12 @@ class ParkingLot extends StatelessWidget {
       color: debugMode ? Colors.blue : null,
       child: CustomPaint(
         painter: RoadPaint(path: roadPath),
-        child: Consumer<AppState>(
+        child: Selector<AppState, List<ParkingSpace>>(
+          selector: (p0, p1) => p1.parkingSpaces,
           builder: (_, value, __) {
             return Stack(
               children: [
-                ...(value.parkingSpaces)
-                    .where((element) => element.parkingLot == name),
+                ...(value).where((element) => element.parkingLot == name),
               ],
             );
           },
