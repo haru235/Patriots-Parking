@@ -67,36 +67,36 @@ class FirestoreMethods {
 // toggle parking space state
   Future<void> toggleSpace(ParkingSpace space) async {
     DateTime time = DateTime.now();
-    if (!space.open && space.timeTaken != null) {
-      time.difference(space.timeTaken!);
-      debugPrint('Space ${space.id} released after $time.');
-    }
-
-    // i = locator.get<AppState>().getStatisticalData(space);
-    //temp = locator.get<AppState>().Statistical_Data[i];
-    FirestoreService.instance.updateDocument(
-      path: FirestorePath.parkingSpace(space.id),
-      data: space.open
-          ? {
-              'open': !space.open,
-              'timeTaken': time,
-              //decrease available
-            }
-          : {
-              'open': !space.open,
-              'timeOpened': time,
-              //increase available
-            },
-    );
-    if (space.open) {
-      FirestoreService.instance.updateDocument(
-          path: FirestorePath.statisticalData_(space.parkingLot),
-          data: {'available': FieldValue.increment(-1)});
-    } else {
-      FirestoreService.instance.updateDocument(
-          path: FirestorePath.statisticalData_(space.parkingLot),
-          data: {'available': FieldValue.increment(1)});
-    }
+    final instance = FirebaseFirestore.instance;
+    final spaceDoc = instance.doc(FirestorePath.parkingSpace(space.id));
+    final statsDoc =
+        instance.doc(FirestorePath.statisticalData_(space.parkingLot));
+    instance.runTransaction((transaction) async {
+      final spaceData = await transaction.get(spaceDoc);
+      if (spaceData.get("open")) {
+        transaction.set(
+          spaceDoc,
+          {"open": false, "timeTaken": time},
+          SetOptions(merge: true),
+        );
+        transaction.set(
+          statsDoc,
+          {"available": FieldValue.increment(-1)},
+          SetOptions(merge: true),
+        );
+      } else {
+        transaction.set(
+          spaceDoc,
+          {"open": true, "timeOpened": time},
+          SetOptions(merge: true),
+        );
+        transaction.set(
+          statsDoc,
+          {"available": FieldValue.increment(1)},
+          SetOptions(merge: true),
+        );
+      }
+    });
   }
 
   // adds parking space to 'spaces' collection
@@ -120,7 +120,7 @@ class FirestoreMethods {
           in tempSpaces.where((element) => element.parkingLot == lot.name)) {
         await addSpace(space, customId: "${lot.name}~$counter");
         counter++;
-        await Future.delayed(const Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 10));
       }
       debugPrint("${lot.name} Complete");
     }

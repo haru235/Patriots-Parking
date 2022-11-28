@@ -72,7 +72,16 @@ class _HomePageState extends State<HomePage> {
                               .get<FirestoreMethods>()
                               .calibrateStatisticalData();
                         },
-                        child: const Text('Admin Only'),
+                        child: const Text('Callibrate (Admin Only)'),
+                      ),
+                      TextButton(
+                        onPressed: () async {
+                          Navigator.pop(context);
+                          await locator
+                              .get<FirestoreMethods>()
+                              .addAllSpacesToCollection();
+                        },
+                        child: const Text('Add to collection (Admin Only)'),
                       ),
                     ],
                   ),
