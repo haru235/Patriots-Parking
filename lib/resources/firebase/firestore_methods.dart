@@ -210,32 +210,30 @@ class FirestoreMethods {
   }
 
   Future<void> calibrateStatisticalData() async {
-    cancelSubscriptions();
     List<UserModel> users = await FirestoreService.instance.collectionFuture(
         path: FirestorePath.users(),
         builder: (data) => UserModel.fromJson(data));
-    for (ParkingSpace space in locator.get<AppState>().parkingSpaces) {
-      bool taken = false;
-      for (UserModel user in users) {
-        if (user.spacesTaken.contains(space.id)) {
-          taken = true;
-        }
-      }
-      if (taken) {
+    List<String> takenIds = [];
+    for (UserModel user in users) {
+      takenIds.addAll(user.spacesTaken);
+    }
+    List<ParkingSpace> spaces = locator.get<AppState>().parkingSpaces;
+    cancelSubscriptions();
+    for (ParkingSpace space in spaces) {
+      if (takenIds.contains(space.id)) {
         await toggleSpace(space, forcedState: false);
+      } else {
+        await toggleSpace(space, forcedState: true);
       }
-      await toggleSpace(space, forcedState: true);
     }
     for (ParkingLot lot in locator.get<AppState>().parkingLots) {
-      Iterable<ParkingSpace> spaces = locator
-          .get<AppState>()
-          .parkingSpaces
-          .where((element) => element.parkingLot == lot.name);
-      int total = spaces.length;
+      Iterable<ParkingSpace> lotSpaces =
+          spaces.where((element) => element.parkingLot == lot.name);
+      int total = lotSpaces.length;
       int available =
-          spaces.where((element) => element.open && !element.blocked).length;
+          lotSpaces.where((element) => element.open && !element.blocked).length;
       int occupied =
-          spaces.where((element) => !element.open || element.blocked).length;
+          lotSpaces.where((element) => !element.open || element.blocked).length;
       await FirestoreService.instance.addDocument(
         path: FirestorePath.statisticalData(),
         data: StatisticalData(

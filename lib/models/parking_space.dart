@@ -111,9 +111,9 @@ class _ParkingSpaceState extends State<ParkingSpace> {
               });
             } else {
               setState(() {
-                widget.temp ||
+                (widget.temp ||
                         widget
-                            .blocked // (HS 10/5/22 @ 1:12AM) temp spaces do not run code
+                            .blocked) // (HS 10/5/22 @ 1:12AM) temp spaces do not run code
                     ? null
                     : locator.get<FirestoreMethods>().toggleSpace(widget);
               });
