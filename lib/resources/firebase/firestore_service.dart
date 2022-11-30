@@ -10,7 +10,8 @@ class FirestoreService {
     required String path,
   }) async {
     final ref = FirebaseFirestore.instance.doc(path);
-    return ref.get().then((value) => value.exists ? true : false);
+    final doc = await ref.get();
+    return doc.exists ? true : false;
   }
 
   // update a document in Firestore

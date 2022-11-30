@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patriots_parking/models/parking_space.dart';
 import 'package:patriots_parking/resources/app_state.dart';
-import 'package:patriots_parking/resources/firebase/firestore_path.dart';
-import 'package:patriots_parking/resources/firebase/firestore_service.dart';
-import 'package:patriots_parking/resources/locator.dart';
 import 'package:provider/provider.dart';
 import 'package:patriots_parking/resources/road_paint.dart';
 
@@ -26,30 +23,6 @@ class ParkingLot extends StatelessWidget {
     this.roadPath = const [],
     super.key,
   });
-
-// convert ParkingLot to json to send to firestore
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'width': width,
-      'height': height,
-      'buttonList': buttonData,
-      'roadPath': roadPath,
-    };
-  }
-
-// convert json data from firestore to ParkingLot
-  static ParkingLot fromJson(Map<String, dynamic> json) {
-    return ParkingLot(
-      id: json['id'],
-      name: json['name'],
-      height: json['height'],
-      width: json['width'],
-      buttonData: json['buttonList'] ?? [],
-      roadPath: json['roadPath'] ?? [],
-    );
-  }
 
   /*New code made on 10/1/2022 at 11:18PM, This code is to make the border lines of the parking lot.  What I did is I just added Widget CustomPaint and moved it above
       the widget of Consumer<Appstate>.  This was the only place where the code worked normally, If I place in the last place of the widget tree it throws an error

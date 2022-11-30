@@ -9,21 +9,14 @@ class AppState with ChangeNotifier {
   UserModel userData = UserModel();
   ParkingLot? selectedLot;
   ParkingSpace? selectedSpace;
-  List<ParkingLot> parkingLots = [];
+  List<ParkingLot> parkingLots = tempLots;
   List<ParkingSpace> parkingSpaces = [];
-  List<StatisticalData> parkingData = [];
-  StatisticalData? data;
+  List<StatisticalData> statisticalData = [];
   Map<String, List<num>> spaceAvailability = {};
 
   // run when change in user data
   onUserDataChanged(UserModel newData) {
     userData = newData;
-    notifyListeners();
-  }
-
-// run when change in parking lot data
-  onParkingLotsChanged(List<ParkingLot> newData) {
-    parkingLots = newData + tempLots;
     notifyListeners();
   }
 
@@ -34,7 +27,7 @@ class AppState with ChangeNotifier {
   }
 
   onStatisticalDataChanged(List<StatisticalData> newData) {
-    parkingData = newData;
+    statisticalData = newData;
     notifyListeners();
   }
 
@@ -48,7 +41,7 @@ class AppState with ChangeNotifier {
   }
 
   StatisticalData getStatisticalData(String name) {
-    return parkingData.firstWhere(
+    return statisticalData.firstWhere(
       (element) => element.parkingLotName == name,
       orElse: () => StatisticalData(
           total: 0, available: 0, occupied: 0, parkingLotName: name),

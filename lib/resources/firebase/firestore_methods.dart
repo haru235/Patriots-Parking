@@ -16,7 +16,6 @@ import 'package:patriots_parking/resources/parking_data.dart';
 class FirestoreMethods {
   final FirestoreService _firestoreService = FirestoreService.instance;
   late StreamSubscription _userDataSubscription;
-  late StreamSubscription _parkingLotsSubscription;
   late StreamSubscription _parkingSpacesSubscription;
   late StreamSubscription _statisticalDataSubscription;
 
@@ -25,25 +24,18 @@ class FirestoreMethods {
     if (!(await _firestoreService.documentExists(
         path: FirestorePath.userData()))) {
       final userModel = UserModel();
-      _firestoreService.addDocument(
+      await _firestoreService.addDocument(
           path: FirestorePath.users(),
           data: userModel.toJson(),
           myId: locator.get<AuthMethods>().uid);
     }
     final state = locator.get<AppState>();
-    state.onParkingLotsChanged([]);
     _userDataSubscription = _firestoreService
         .documentStream(
             path: FirestorePath.userData(),
             builder: (data) => UserModel.fromJson(data))
         .listen((event) {
       state.onUserDataChanged(event);
-    });
-    _parkingLotsSubscription = _firestoreService
-        .collectionStream(
-            path: '/parkingLots', builder: (data) => ParkingLot.fromJson(data))
-        .listen((event) {
-      state.onParkingLotsChanged(event);
     });
     state.onParkingSpacesChanged([]);
     _parkingSpacesSubscription = _firestoreService
@@ -65,7 +57,6 @@ class FirestoreMethods {
 // pause subscriptions
   Future<void> pauseSubscriptions() async {
     _userDataSubscription.pause();
-    _parkingLotsSubscription.pause();
     _parkingSpacesSubscription.pause();
     _statisticalDataSubscription.pause();
   }
@@ -73,7 +64,6 @@ class FirestoreMethods {
 // resume subscriptions
   Future<void> resumeSubscriptions() async {
     _userDataSubscription.resume();
-    _parkingLotsSubscription.resume();
     _parkingSpacesSubscription.resume();
     _statisticalDataSubscription.resume();
   }
@@ -81,7 +71,6 @@ class FirestoreMethods {
 // cancel subscriptions
   Future<void> cancelSubscriptions() async {
     _userDataSubscription.cancel();
-    _parkingLotsSubscription.cancel();
     _parkingSpacesSubscription.cancel();
     _statisticalDataSubscription.cancel();
   }
@@ -89,10 +78,24 @@ class FirestoreMethods {
   Future<void> toggleBlocked(ParkingSpace space) async {
     if (space.blocked) {
       await FirestoreService.instance.updateDocument(
-          path: FirestorePath.parkingSpace(space.id), data: {'blocked': false});
+        path: FirestorePath.parkingSpace(space.id),
+        data: {'blocked': false},
+      );
+      if (space.open) {
+        FirestoreService.instance.updateDocument(
+            path: FirestorePath.statisticalData_(space.parkingLot),
+            data: {"available": FieldValue.increment(1)});
+      }
     } else {
       await FirestoreService.instance.updateDocument(
-          path: FirestorePath.parkingSpace(space.id), data: {'blocked': true});
+        path: FirestorePath.parkingSpace(space.id),
+        data: {'blocked': true},
+      );
+      if (space.open) {
+        FirestoreService.instance.updateDocument(
+            path: FirestorePath.statisticalData_(space.parkingLot),
+            data: {"available": FieldValue.increment(-1)});
+      }
     }
   }
 
@@ -229,8 +232,10 @@ class FirestoreMethods {
           .parkingSpaces
           .where((element) => element.parkingLot == lot.name);
       int total = spaces.length;
-      int available = spaces.where((element) => element.open).length;
-      int occupied = spaces.where((element) => !element.open).length;
+      int available =
+          spaces.where((element) => element.open && !element.blocked).length;
+      int occupied =
+          spaces.where((element) => !element.open || element.blocked).length;
       await FirestoreService.instance.addDocument(
         path: FirestorePath.statisticalData(),
         data: StatisticalData(

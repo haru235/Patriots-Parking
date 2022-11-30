@@ -21,15 +21,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final TransformationController _mapController = TransformationController();
-  final TransformationController _parkingController =
-      TransformationController();
+  late TransformationController _mapController;
+  late TransformationController _parkingController;
 
   @override
   void initState() {
     super.initState();
     // initialize subscriptions to parking lot and space collections
     locator.get<FirestoreMethods>().initializeSubscriptions();
+    _mapController = TransformationController();
+    _parkingController = TransformationController();
   }
 
   @override
@@ -68,7 +69,10 @@ class _HomePageState extends State<HomePage> {
                                 .get<FirestoreMethods>()
                                 .toggleAdmin(false);
                           },
-                          child: const Text('Switch to User'),
+                          child: const Text(
+                            'Switch to User',
+                            style: TextStyle(fontSize: 18),
+                          ),
                         ),
                         TextButton(
                           onPressed: () async {
@@ -77,7 +81,10 @@ class _HomePageState extends State<HomePage> {
                                 .get<FirestoreMethods>()
                                 .calibrateStatisticalData();
                           },
-                          child: const Text('Callibrate Parking Lots'),
+                          child: const Text(
+                            'Callibrate Parking Lots',
+                            style: TextStyle(fontSize: 18),
+                          ),
                         ),
                         TextButton(
                           onPressed: () async {
@@ -86,7 +93,10 @@ class _HomePageState extends State<HomePage> {
                                 .get<FirestoreMethods>()
                                 .addAllSpacesToCollection();
                           },
-                          child: const Text('Reload Spaces from Backup'),
+                          child: const Text(
+                            'Reload Spaces from Backup',
+                            style: TextStyle(fontSize: 18),
+                          ),
                         ),
                         TextButton(
                           onPressed: () async {
@@ -95,7 +105,10 @@ class _HomePageState extends State<HomePage> {
                                 .get<FirestoreMethods>()
                                 .toggleAdmin(false, forget: true);
                           },
-                          child: const Text('Forget Admin'),
+                          child: const Text(
+                            'Forget Admin',
+                            style: TextStyle(fontSize: 18),
+                          ),
                         ),
                       ] else ...[
                         TextButton(
@@ -111,7 +124,10 @@ class _HomePageState extends State<HomePage> {
                                   builder: (context) => const PassCode());
                             }
                           },
-                          child: const Text('Switch to Admin'),
+                          child: const Text(
+                            'Switch to Admin',
+                            style: TextStyle(fontSize: 18),
+                          ),
                         ),
                       ],
                       TextButton(
@@ -119,7 +135,10 @@ class _HomePageState extends State<HomePage> {
                           Navigator.pop(context);
                           locator.get<AuthMethods>().signout();
                         },
-                        child: const Text('Sign Out'),
+                        child: const Text(
+                          'Sign Out',
+                          style: TextStyle(fontSize: 18),
+                        ),
                       ),
                     ],
                   ),
@@ -252,7 +271,7 @@ class _HomePageState extends State<HomePage> {
                               child: Builder(builder: (context) {
                                 List<StatisticalData> dataMatch = locator
                                     .get<AppState>()
-                                    .parkingData
+                                    .statisticalData
                                     .where((element) =>
                                         element.parkingLotName == lot.name)
                                     .toList();

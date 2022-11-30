@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:patriots_parking/resources/firebase/firestore_methods.dart';
-import 'package:patriots_parking/resources/firebase/firestore_path.dart';
-import 'package:patriots_parking/resources/firebase/firestore_service.dart';
 import 'package:patriots_parking/resources/locator.dart';
 
 class PassCode extends StatefulWidget {
