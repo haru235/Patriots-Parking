@@ -4,8 +4,6 @@ import 'package:patriots_parking/resources/app_state.dart';
 import 'package:provider/provider.dart';
 import 'package:patriots_parking/resources/road_paint.dart';
 
-import '../utils/global_variables.dart';
-
 // parking lot object
 class ParkingLot extends StatelessWidget {
   final String id;
@@ -35,10 +33,9 @@ class ParkingLot extends StatelessWidget {
     //HS-9/30/2022 9:28PM, SingleChildScrollView only scrolls in one direction.
     //    Instead, used FittedBox to contain parkinglot in window. Scroll and zoom
     //    taken care of by InteractiveViewer.
-    return Container(
+    return SizedBox(
       width: width.toDouble(),
       height: height.toDouble(),
-      color: debugMode ? Colors.blue : null,
       child: CustomPaint(
         painter: RoadPaint(path: roadPath),
         child: Selector<AppState, List<ParkingSpace>>(

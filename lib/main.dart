@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Patriots Parking',
       theme: ThemeData(
-        //primarySwatch: Colors.blue,
         primaryColor: Colors.blue[900],
       ),
       home: StreamBuilder(
@@ -34,18 +33,11 @@ class MyApp extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
             if (snapshot.hasData) {
-              return FutureBuilder(
-                future: Firebase.initializeApp(
-                  options: DefaultFirebaseOptions.currentPlatform,
+              return ChangeNotifierProvider.value(
+                value: locator.get<AppState>(),
+                child: const HomePage(
+                  title: 'Patriots Parking',
                 ),
-                builder: (context, snapshot) {
-                  return ChangeNotifierProvider.value(
-                    value: locator.get<AppState>(),
-                    child: const HomePage(
-                      title: 'Patriots Parking',
-                    ),
-                  );
-                },
               );
             } else if (snapshot.hasError) {
               return Center(

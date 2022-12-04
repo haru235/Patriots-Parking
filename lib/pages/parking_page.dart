@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:patriots_parking/models/Statistical_Data.dart';
+import 'package:patriots_parking/models/statistical_data.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
 import 'package:patriots_parking/models/user.dart';
-import 'package:patriots_parking/pages/passcodePopup.dart';
+import 'package:patriots_parking/pages/passcode_popup.dart';
 import 'package:patriots_parking/resources/app_state.dart';
 import 'package:patriots_parking/resources/firebase/auth_methods.dart';
 import 'package:patriots_parking/resources/firebase/firestore_methods.dart';

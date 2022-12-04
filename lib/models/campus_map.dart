@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
 import 'package:patriots_parking/resources/app_state.dart';
 import 'package:patriots_parking/resources/locator.dart';
-import 'package:patriots_parking/resources/parking_data.dart';
+import 'package:patriots_parking/resources/parking_lot_data.dart';
 
 class CampusMap extends StatelessWidget {
   const CampusMap({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class CampusMap extends StatelessWidget {
           image: AssetImage('assets/uttylerMap.jpg'),
           fit: BoxFit.contain,
         ),
-        for (ParkingLot lot in tempLots) ...[
+        for (ParkingLot lot in UTTLots) ...[
           for (List<num> data in lot.buttonData) ...[
             ParkingButton(name: lot.name, data: data),
           ]

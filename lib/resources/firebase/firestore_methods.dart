@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:patriots_parking/models/Statistical_Data.dart';
+import 'package:patriots_parking/models/statistical_data.dart';
 import 'package:patriots_parking/models/parking_lot.dart';
 import 'package:patriots_parking/models/parking_space.dart';
 import 'package:patriots_parking/models/user.dart';
@@ -11,7 +11,7 @@ import 'package:patriots_parking/resources/firebase/auth_methods.dart';
 import 'package:patriots_parking/resources/firebase/firestore_path.dart';
 import 'package:patriots_parking/resources/firebase/firestore_service.dart';
 import 'package:patriots_parking/resources/locator.dart';
-import 'package:patriots_parking/resources/parking_data.dart';
+import 'package:patriots_parking/resources/parking_space_data.dart';
 
 class FirestoreMethods {
   final FirestoreService _firestoreService = FirestoreService.instance;
@@ -185,6 +185,7 @@ class FirestoreMethods {
     );
   }
 
+// toggles user admin state. Set forget to true to require reentering of passcode.
   Future<void> toggleAdmin(bool admin, {bool forget = false}) async {
     await FirestoreService.instance.updateDocument(
         path: FirestorePath.userData(),
@@ -209,6 +210,8 @@ class FirestoreMethods {
     debugPrint("Uploaded All ParkingSpaces");
   }
 
+// Scans through user data and opens spaces that are not taken by any user.
+// Then updates availability data
   Future<void> calibrateStatisticalData() async {
     List<UserModel> users = await FirestoreService.instance.collectionFuture(
         path: FirestorePath.users(),

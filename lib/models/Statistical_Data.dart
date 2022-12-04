@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 //added new class for statisticaldata
 //number of Available spaces contained in a box next to parking lot number
 //box changes colors.  if many available, box is blue, if not many available, box is yellow
@@ -13,15 +11,17 @@ import 'package:flutter/material.dart';
 //updated main, added multiprovider, not sure if needed.
 
 //11/14/2022
+import 'package:flutter/material.dart';
+
 class StatisticalData {
   // String parkinglot_Name;
-  String? id;
-  num? total;
-  num? available;
-  num? occupied;
-  String? parkingLotName;
+  final String? id;
+  final num? total;
+  final num? available;
+  final num? occupied;
+  final String? parkingLotName;
 
-  StatisticalData({
+  const StatisticalData({
     //required this.parkinglot_Name,
     this.id = '',
     required this.total,
@@ -30,14 +30,6 @@ class StatisticalData {
     required this.parkingLotName,
     Key? key,
   });
-
-  StatisticalData.widgetc(StatisticalData temp) {
-    available = temp.available;
-    total = temp.total;
-    occupied = temp.occupied;
-    id = temp.id;
-    parkingLotName = temp.parkingLotName;
-  }
 
   Map<String, dynamic> toJson() {
     return {
