@@ -1,3 +1,4 @@
+//user model
 class UserModel {
   final List<String> spacesTaken;
   final bool isAdmin;

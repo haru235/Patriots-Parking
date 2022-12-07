@@ -97,6 +97,7 @@ List<ParkingSpace> createSpaceRow({
   return list;
 }
 
+// generates straight row of parking spaces
 List<ParkingSpace> tempRow(
   String parkingLot,
   double x,

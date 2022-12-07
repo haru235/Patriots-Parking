@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart'; //To draw reference lines, important lines are from line 20 to line 33.
+import 'package:flutter/material.dart';
 
+//To draw reference lines, important lines are from line 20 to line 33.
 class CoordinateSystem extends CustomPainter {
   double width = 0;
   double height = 0;

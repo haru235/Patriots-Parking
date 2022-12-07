@@ -24,6 +24,7 @@ class _PassCodeState extends State<PassCode> {
     super.dispose();
   }
 
+// popup to enter passcode for admin access
   @override
   Widget build(BuildContext context) {
     return AlertDialog(

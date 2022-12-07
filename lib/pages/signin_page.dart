@@ -6,6 +6,7 @@ class SigninPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // use firebase email/password ui
     return const SignInScreen(
       providerConfigs: [
         EmailProviderConfiguration(),

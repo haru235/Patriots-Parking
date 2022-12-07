@@ -13,6 +13,7 @@ import 'package:patriots_parking/resources/firebase/firestore_service.dart';
 import 'package:patriots_parking/resources/locator.dart';
 import 'package:patriots_parking/resources/parking_space_data.dart';
 
+// methods that uses the firestore service methods for indirect communication with firestore
 class FirestoreMethods {
   final FirestoreService _firestoreService = FirestoreService.instance;
   late StreamSubscription _userDataSubscription;
@@ -75,7 +76,9 @@ class FirestoreMethods {
     _statisticalDataSubscription.cancel();
   }
 
+// toggle blocked state of parking space
   Future<void> toggleBlocked(ParkingSpace space) async {
+    // unblock if blocked
     if (space.blocked) {
       await FirestoreService.instance.updateDocument(
         path: FirestorePath.parkingSpace(space.id),
@@ -86,6 +89,7 @@ class FirestoreMethods {
             path: FirestorePath.statisticalData_(space.parkingLot),
             data: {"available": FieldValue.increment(1)});
       }
+      // block if unblocked
     } else {
       await FirestoreService.instance.updateDocument(
         path: FirestorePath.parkingSpace(space.id),
@@ -108,6 +112,7 @@ class FirestoreMethods {
     final statsDoc =
         instance.doc(FirestorePath.statisticalData_(space.parkingLot));
     if (forcedState == null) {
+      // use transaction to avoid collision
       instance.runTransaction((transaction) async {
         final spaceData = await transaction
             .get(spaceDoc)
@@ -115,6 +120,7 @@ class FirestoreMethods {
         final userData = await transaction
             .get(userDoc)
             .then((value) => UserModel.fromJson(value.data()!));
+        // set open to false if open
         if (spaceData.open) {
           transaction.set(
             userDoc,
@@ -133,6 +139,7 @@ class FirestoreMethods {
             {"available": FieldValue.increment(-1)},
             SetOptions(merge: true),
           );
+          // set open to true if not open and is taken by user
         } else if (userData.spacesTaken.contains(space.id) && !space.open) {
           transaction.set(
               userDoc,
@@ -153,6 +160,7 @@ class FirestoreMethods {
         }
       });
     } else {
+      // force open state of parking space
       instance.runTransaction((transaction) async {
         final spaceData = await transaction
             .get(spaceDoc)
@@ -229,6 +237,7 @@ class FirestoreMethods {
         await toggleSpace(space, forcedState: true);
       }
     }
+    // recalculate statistical data of each parking lot
     for (ParkingLot lot in locator.get<AppState>().parkingLots) {
       Iterable<ParkingSpace> lotSpaces =
           spaces.where((element) => element.parkingLot == lot.name);

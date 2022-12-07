@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+// common methods used to communicate with the firestore database directly
 class FirestoreService {
   FirestoreService._();
   static final instance = FirestoreService._();

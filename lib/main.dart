@@ -31,8 +31,10 @@ class MyApp extends StatelessWidget {
       home: StreamBuilder(
         stream: locator.get<AuthMethods>().userStream,
         builder: (context, snapshot) {
+          // if user logged in
           if (snapshot.connectionState == ConnectionState.active) {
             if (snapshot.hasData) {
+              // return home page if connection successful
               return ChangeNotifierProvider.value(
                 value: locator.get<AppState>(),
                 child: const HomePage(

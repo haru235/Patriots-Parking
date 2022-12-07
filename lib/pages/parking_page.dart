@@ -45,8 +45,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     //7:45AM 10/4/2022
-    //spacerows(20, 900, 26); <- This method will create spaces, first space will be at x:20 and y:900 when using the coordinates referencees established by the gray
-    //container.  KEEP THIS METHOD COMMENTED, i am not sure how the database or graphics would respond if it is run again.
     Navigator.canPop(context) ? Navigator.pop(context) : null;
     return Builder(builder: (context) {
       return Scaffold(
@@ -54,6 +52,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: Text(widget.title),
           actions: [
+            // button to open settings
             IconButton(
               icon: const Icon(Icons.settings),
               onPressed: () => {
@@ -61,7 +60,9 @@ class _HomePageState extends State<HomePage> {
                   context: context,
                   builder: (context) => Column(
                     children: [
+                      // settings available for admin
                       if (locator.get<AppState>().userData.admin) ...[
+                        // switch to user mode
                         TextButton(
                           onPressed: () async {
                             Navigator.pop(context);
@@ -74,6 +75,7 @@ class _HomePageState extends State<HomePage> {
                             style: TextStyle(fontSize: 18),
                           ),
                         ),
+                        // calibrate parking lot data
                         TextButton(
                           onPressed: () async {
                             Navigator.pop(context);
@@ -86,6 +88,7 @@ class _HomePageState extends State<HomePage> {
                             style: TextStyle(fontSize: 18),
                           ),
                         ),
+                        // reset all parking lot data from tempSpaces
                         TextButton(
                           onPressed: () async {
                             Navigator.pop(context);
@@ -98,6 +101,7 @@ class _HomePageState extends State<HomePage> {
                             style: TextStyle(fontSize: 18),
                           ),
                         ),
+                        // remove admin access
                         TextButton(
                           onPressed: () async {
                             Navigator.pop(context);
@@ -111,6 +115,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ] else ...[
+                        // switch to admin mode. Ask for passcode if not admin
                         TextButton(
                           onPressed: () async {
                             Navigator.pop(context);
@@ -130,6 +135,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ],
+                      // sign out
                       TextButton(
                         onPressed: () async {
                           Navigator.pop(context);

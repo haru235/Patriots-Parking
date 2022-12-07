@@ -10,11 +10,9 @@
 //updated firestorepaths, for new database collection
 //updated main, added multiprovider, not sure if needed.
 
-//11/14/2022
 import 'package:flutter/material.dart';
 
 class StatisticalData {
-  // String parkinglot_Name;
   final String? id;
   final num? total;
   final num? available;
@@ -22,7 +20,6 @@ class StatisticalData {
   final String? parkingLotName;
 
   const StatisticalData({
-    //required this.parkinglot_Name,
     this.id = '',
     required this.total,
     required this.available,

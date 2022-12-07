@@ -2,6 +2,8 @@ import 'package:patriots_parking/resources/lot_methods.dart';
 import 'package:patriots_parking/models/parking_space.dart';
 
 // uploaded to database 11/27/22
+// list of spaces generated for parking lot layout.
+// not nneded after uploaded to firebase, but keep for backup
 List<ParkingSpace> tempSpaces = [
   ...tempRow('Lot18', 175, 100, 5, 0, 0),
   ...tempRow('Lot18', 125, 150, 5, 90, 1),

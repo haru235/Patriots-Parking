@@ -13,12 +13,14 @@ class CampusMap extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        // campus map image
         const Image(
           width: 1000,
           height: 1000,
           image: AssetImage('assets/uttylerMap.jpg'),
           fit: BoxFit.contain,
         ),
+        // tappable parking lots
         for (ParkingLot lot in UTTLots) ...[
           for (List<num> data in lot.buttonData) ...[
             ParkingButton(name: lot.name, data: data),

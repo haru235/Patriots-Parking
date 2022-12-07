@@ -25,20 +25,24 @@ class AppState with ChangeNotifier {
     notifyListeners();
   }
 
+// run when change in statistical data
   onStatisticalDataChanged(List<StatisticalData> newData) {
     statisticalData = newData;
     notifyListeners();
   }
 
+// change selected lot
   void setLot(ParkingLot? lot) {
     selectedLot != lot ? selectedLot = lot : selectedLot = null;
     notifyListeners();
   }
 
+// get parkingLot model by name
   ParkingLot getLotByName(String name) {
     return parkingLots.where((element) => element.name == name).first;
   }
 
+// get statistical data of parking lot
   StatisticalData getStatisticalData(String name) {
     return statisticalData.firstWhere(
       (element) => element.parkingLotName == name,

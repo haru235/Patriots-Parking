@@ -1,5 +1,6 @@
 import 'package:patriots_parking/models/parking_lot.dart';
 
+// list of parking lots of campus
 // ignore: non_constant_identifier_names
 List<ParkingLot> UTTLots = const [
   ParkingLot(

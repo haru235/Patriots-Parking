@@ -8,6 +8,7 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        // background of welcome page
         Image.asset(
           "assets/welcomeBackground.jpg",
           height: MediaQuery.of(context).size.height,
@@ -49,6 +50,7 @@ class WelcomePage extends StatelessWidget {
                         ),
                       ],
                     ),
+                    // app logo
                     child: Image.asset(
                       'assets/logo.png',
                       height: 150,
@@ -77,6 +79,7 @@ class WelcomePage extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
+                      // button to open signin/signup page
                       child: TextButton(
                         onPressed: () async {
                           showModalBottomSheet(
